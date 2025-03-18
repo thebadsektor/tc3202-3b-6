@@ -1,0 +1,247 @@
+/* LoginPage.css */
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Lilita One', cursive, Arial, sans-serif;
+}
+
+.brawl-login-container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.brawl-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #f9cb5f, #f3881c);
+  z-index: -2;
+}
+
+.brawl-background::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.1) 2px, transparent 2px);
+  background-size: 30px 30px;
+  z-index: -1;
+}
+
+.brawl-login-card {
+  background-color: #191d36;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 1;
+  border: 3px solid #f3881c;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.brawl-logo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.brawl-logo-circle {
+  width: 120px;
+  height: 120px;
+  background-color: #ffb300;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid #222;
+  position: relative;
+  overflow: hidden;
+}
+
+.brawl-skull {
+  width: 80px;
+  height: 80px;
+  background-color: #222;
+  border-radius: 50% 50% 40% 40%;
+  position: relative;
+}
+
+.brawl-eye {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background-color: #ffb300;
+  border-radius: 50%;
+  top: 30px;
+}
+
+.brawl-eye.left {
+  left: 15px;
+}
+
+.brawl-eye.right {
+  right: 15px;
+}
+
+.brawl-nose {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: #ffb300;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.brawl-title {
+  color: #fff;
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 25px;
+  text-shadow: 0 2px 0 #000;
+  letter-spacing: 1px;
+}
+
+.brawl-input-group {
+  margin-bottom: 20px;
+}
+
+.brawl-input {
+  width: 100%;
+  padding: 15px;
+  border-radius: 10px;
+  border: 3px solid #ffb300;
+  background-color: #2a2e52;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.brawl-input:focus {
+  border-color: #f3881c;
+  box-shadow: 0 0 10px rgba(243, 136, 28, 0.5);
+}
+
+.brawl-input::placeholder {
+  color: #8a8fa3;
+}
+
+.brawl-button {
+  width: 100%;
+  padding: 15px;
+  border-radius: 10px;
+  background: linear-gradient(to bottom, #f9cb5f, #f3881c);
+  color: #191d36;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: all 0.2s ease;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 0 #d36a0f, 0 5px 5px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+}
+
+.brawl-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #d36a0f, 0 7px 7px rgba(0, 0, 0, 0.3);
+}
+
+.brawl-button:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #d36a0f, 0 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.brawl-error {
+  color: #ff4455;
+  text-align: center;
+  margin-top: 15px;
+  font-size: 16px;
+  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+.brawl-back-button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  background: transparent;
+  color: #f9cb5f;
+  font-size: 16px;
+  border: 2px solid #f3881c;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 15px;
+  transition: all 0.2s ease;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+}
+
+.brawl-back-button:hover {
+  background: rgba(243, 136, 28, 0.1);
+}
+
+.brawl-back-button:active {
+  transform: translateY(2px);
+}
+
+.brawl-signup-link {
+  margin-top: 20px;
+  text-align: center;
+  color: #b8bbcb;
+}
+
+.brawl-text-button {
+  background: none;
+  border: none;
+  color: #f9cb5f;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: inherit;
+  font-size: inherit;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.brawl-text-button:hover {
+  color: #f3881c;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}

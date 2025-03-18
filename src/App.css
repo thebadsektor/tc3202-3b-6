@@ -1,0 +1,47 @@
+/* Global Styles */
+body {
+  background-color: #1e1e1e; /* Dark theme */
+  font-family: 'Bangers', cursive; /* Brawl Stars-like font */
+  color: white;
+  text-align: center;
+}
+
+h1 {
+  font-size: 3rem;
+  text-shadow: 3px 3px 0px yellow, -3px -3px 0px red; /* Brawl Stars glow effect */
+}
+
+/* Login & Home Container */
+.login-container, .home-container {
+  margin-top: 100px;
+}
+
+/* Input Fields */
+input {
+  font-size: 1.2rem;
+  padding: 10px;
+  margin: 10px;
+  border: 2px solid yellow;
+  border-radius: 5px;
+}
+
+/* Brawl Stars Button */
+button {
+  background: linear-gradient(to bottom, yellow, orange);
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: 3px solid black;
+  box-shadow: 3px 3px black;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+/* HomePage Specific */
+.home-container h1 {
+  color: yellow;
+}

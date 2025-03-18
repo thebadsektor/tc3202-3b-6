@@ -1,0 +1,317 @@
+/* HomePage.css */
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Lilita One', cursive, Arial, sans-serif;
+}
+
+.brawl-home-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #191d36, #2a2e52);
+  color: #fff;
+  padding-bottom: 50px;
+}
+
+/* Header styles */
+.brawl-header {
+  background-color: #191d36;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid #f3881c;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.brawl-logo-small {
+  width: 40px;
+  height: 40px;
+  background-color: #ffb300;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #222;
+}
+
+.brawl-skull-small {
+  width: 25px;
+  height: 25px;
+  background-color: #222;
+  border-radius: 50% 50% 40% 40%;
+  position: relative;
+}
+
+.brawl-skull-small:before, .brawl-skull-small:after {
+  content: '';
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background-color: #ffb300;
+  border-radius: 50%;
+  top: 8px;
+}
+
+.brawl-skull-small:before {
+  left: 5px;
+}
+
+.brawl-skull-small:after {
+  right: 5px;
+}
+
+.brawl-title {
+  font-size: 24px;
+  color: #fff;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.brawl-user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brawl-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f9cb5f, #f3881c);
+  padding: 2px;
+}
+
+.brawl-avatar-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #2a2e52;
+  border: 2px solid #f3881c;
+}
+
+.brawl-username {
+  font-size: 16px;
+  color: #f9cb5f;
+}
+
+.brawl-logout-btn {
+  background: linear-gradient(to bottom, #f14668, #cc1f3d);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 0 #991530, 0 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.brawl-logout-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 0 #991530, 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.brawl-logout-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 #991530, 0 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Search bar styles */
+.brawl-search-container {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 0 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.brawl-search-input {
+  flex: 1;
+  background-color: #2a2e52;
+  border: 2px solid #f3881c;
+  border-radius: 8px;
+  padding: 12px 15px;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+}
+
+.brawl-search-input::placeholder {
+  color: #8a8fa3;
+}
+
+.brawl-search-btn {
+  background: linear-gradient(to bottom, #f9cb5f, #f3881c);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  color: #191d36;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 3px 0 #d36a0f, 0 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+.brawl-search-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 #d36a0f, 0 6px 6px rgba(0, 0, 0, 0.3);
+}
+
+.brawl-search-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 0 #d36a0f, 0 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Welcome banner styles */
+.brawl-welcome-banner {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 25px 20px;
+  background: linear-gradient(135deg, rgba(243, 136, 28, 0.2), rgba(249, 203, 95, 0.2));
+  border-radius: 12px;
+  border: 2px solid #f3881c;
+  text-align: center;
+}
+
+.brawl-welcome-banner h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.brawl-highlight {
+  color: #f9cb5f;
+}
+
+.brawl-welcome-banner p {
+  font-size: 18px;
+  color: #b8bbcb;
+}
+
+/* Gameplay showcase styles */
+.brawl-gameplay-showcase {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.brawl-gameplay-showcase h3 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #f9cb5f;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.brawl-gameplay-image {
+  position: relative;
+  border-radius: 12px;
+  border: 3px solid #f3881c;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.brawl-gameplay-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.brawl-gameplay-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  padding: 15px;
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+}
+
+/* Features section styles */
+.brawl-features {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.brawl-feature-card {
+  background-color: #2a2e52;
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  border: 2px solid #f3881c;
+  transition: all 0.3s ease;
+}
+
+.brawl-feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.brawl-feature-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 15px;
+  background-color: #f3881c;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.brawl-feature-card h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #f9cb5f;
+}
+
+.brawl-feature-card p {
+  font-size: 14px;
+  color: #b8bbcb;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .brawl-header {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  .brawl-title {
+    font-size: 20px;
+  }
+  
+  .brawl-search-container {
+    flex-direction: column;
+  }
+  
+  .brawl-feature-card {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .brawl-user-info {
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .brawl-welcome-banner h2 {
+    font-size: 22px;
+  }
+  
+  .brawl-welcome-banner p {
+    font-size: 16px;
+  }
+}
