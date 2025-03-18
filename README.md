@@ -1,155 +1,70 @@
-# TC-3202 [Project Title]
+# Getting Started with Create React App
 
-![Project Banner](https://via.placeholder.com/1200x400.png?text=Project+Banner+Placeholder)
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Table of Contents
-- [Introduction](#introduction)
-- [Project Overview](#project-overview)
-- [Objectives](#objectives)
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Setup and Installation](#setup-and-installation)
-- [Usage Instructions](#usage-instructions)
-- [Project Structure](#project-structure)
-- [Contributors](#contributors)
-- [Chagelog](#changelog)
-- [Acknowledgments](#acknowledgments)
-- [License](#license)
+## Available Scripts
 
----
+In the project directory, you can run:
 
-## Introduction
-Provide a brief introduction to the project. Explain the purpose, scope, and the problem it solves in a few sentences.
+### `npm start`
 
-## Project Overview
-Describe the project in detail. Include:
-- The project's background or context.
-- Its target audience or users.
-- Any real-world applications or potential impact.
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-## Objectives
-State the main objectives of the capstone project, such as:
-- Develop a solution for [problem].
-- Implement features to [goal].
-- Test and validate [key aspect].
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-## Features
-List the main features of the project:
-- Feature 1: Brief description.
-- Feature 2: Brief description.
-- Feature 3: Brief description.
+### `npm test`
 
-## Technologies Used
-Mention the tools, frameworks, and technologies used in the project:
-- Programming Languages: [e.g., Python, JavaScript, etc.]
-- Frameworks/Libraries: [e.g., React, Flask, etc.]
-- Databases: [e.g., MySQL, MongoDB, etc.]
-- Other Tools: [e.g., Git, Docker, etc.]
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-## Setup and Installation
-Step-by-step instructions for setting up the project locally.
+### `npm run build`
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/your-repo-url.git
-   ```
-2. **Install dependencies:**
-	- If using `npm`:
-   ```bash
-   git clone https://github.com/your-repo-url.git
-   ```
-   - If using `pip` (for Python projects):
-   ```bash
-   git clone https://github.com/your-repo-url.git
-   ```
-3. **Configure environment variables (if any)**: Provide instructions for setting up .env files or any other required configurations.
-   ```bash
-   git clone https://github.com/your-repo-url.git
-   ```
-4. **Run the project:**
-   - For web projects:
-   ```bash
-   npm start
-   ```
-   - IFor backend services:
-   ```bash
-   python app.py
-   ```
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-**Note:** If your project has external depencies like XAMPP, MySQL, special SDK, or other environemnt setup, create another section for it.
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-## Usage Instructions
-Provide detailed instructions on how to use the project after setup:
-- How to access the application.
-- Example commands or API calls (if applicable).
-- Databases: [e.g., MySQL, MongoDB, etc.]
-- Screenshots or GIFs showcasing key functionalities (optional).
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-![UI Placeholder](https://via.placeholder.com/1200x700.png?text=UI+Placeholder)
+### `npm run eject`
 
-Another Screenshot
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-![UI Placeholder](https://via.placeholder.com/1200x700.png?text=UI+Placeholder)
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-## Project Structure
-Explain the structure of the project directory. Example:
-```bash
-.
-├── 📂 src/
-│   ├── 📂 components/
-│   │   ├── <component>
-│   │   ├── <anotherComponent>
-│   │   └── ...
-│   ├── 📂 pages/
-│   └── 📂 utils/
-├── 📂 public/
-├── 📂 tests/
-├── .env.example
-├── package.json
-└── README.md
-```
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-## Contributors
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-List all the team members involved in the project. Include their roles and responsibilities:
+## Learn More
 
-- **[Jess Lee Torzar, Edgardo Gaela, Karl Losanta Reyes, Kinn Ordonez]**: Lead Developer, Backend Developer
-- **[Charls Tubelliza]**: Frontend Developer, UI/UX Designer
-- **Gerald Villaran**: Course Instructor
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-## Project Timeline
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-Outline the project timeline, including milestones or deliverables. Example:
+### Code Splitting
 
-- **Week 1-2**: Research and project planning.
-- **Week 3-5**: Design and setup.
-- **Week 6-10**: Implementation.
-- **Week 11-12**: Testing and debugging.
-- **Week 13-14**: Final presentation and documentation.
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-## Changelog
+### Analyzing the Bundle Size
 
-### [Version 1.0.0] - 2024-09-07
-- Initial release of the project.
-- Added basic functionality for [Feature 1], [Feature 2], and [Feature 3].
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### [Version 1.1.0] - 2024-09-14
-- Improved user interface for [Feature 1].
-- Fixed bugs related to [Feature 2].
-- Updated project documentation with setup instructions.
+### Making a Progressive Web App
 
-### [Version 1.2.0] - 2024-09-21
-- Added new functionality for [Feature 4].
-- Refactored codebase for better performance.
-- Added unit tests for [Feature 3] and [Feature 4].
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
+### Advanced Configuration
 
-## Acknowledgments
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-Acknowledge any resources, mentors, or external tools that helped in completing the project.
+### Deployment
 
-This project was built from [Original Project Name](https://github.com/username/original-repo), created by [Original Author's Name]. You can view the original repository [here](https://github.com/username/original-repo).
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-## License
+### `npm run build` fails to minify
 
-Specify the project's license. For starters, adapt the license of the original repository.
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
