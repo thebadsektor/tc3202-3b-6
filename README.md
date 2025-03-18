@@ -1,70 +1,135 @@
-# Getting Started with Create React App
+# TC-3202 [Smart Brawl]
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Project Banner](https://via.placeholder.com/1200x400.png?text=Project+Banner+Placeholder)
 
-## Available Scripts
+## Table of Contents
+- [Introduction](#introduction)
+- [Project Overview](#project-overview)
+- [Objectives](#objectives)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Setup and Installation](#setup-and-installation)
+- [Usage Instructions](#usage-instructions)
+- [Project Structure](#project-structure)
+- [Contributors](#contributors)
+- [Project Timeline](#project-timeline)
+- [Changelog](#changelog)
+- [Acknowledgments](#acknowledgments)
+- [License](#license)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Introduction
+Smart Brawl is an AI-driven system designed to analyze **Brawl Stars** gameplay data to predict winrates and optimize strategies. By leveraging **machine learning models** such as **CNN and NLP**, the system provides real-time insights based on player choices, map details, character builds, and rotation strategies. This project aims to enhance player decision-making and performance through data-driven analysis.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Project Overview
+Smart Brawl is a game analytics system focused on **Brawl Stars**. It helps players optimize their gameplay by predicting match outcomes based on selected parameters. The system targets:
+- **Casual & Competitive Players**: Improve their game strategies.
+- **Esports Teams & Coaches**: Analyze team performance.
+- **Game Analysts & Content Creators**: Gain meta insights.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+By using **real-time AI-driven predictions**, the system assists players in adapting to the game’s evolving meta and improving their win rates.
 
-### `npm test`
+## Objectives
+- Develop an AI-based system that predicts winrates based on **character selection, build, rotation, and map**.
+- Implement a **recommendation engine** to suggest the best strategies.
+- Build a dynamic **frontend (React.js)** for user interaction.
+- Deploy a scalable **backend (FastAPI + Firebase/Supabase)** for handling real-time data.
+- Host the system on **AWS, Google Cloud, or Heroku** for efficient processing.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
+- **Winrate Prediction**: AI-based probability calculation for match outcomes.
+- **Strategy Recommendations**: Suggested character builds and team compositions.
+- **Historical Match Insights**: Past match data analysis for performance tracking.
+- **Real-time Processing**: AI adapts to new strategies and gameplay updates.
+- **User-friendly Interface**: Interactive UI with visualized analytics.
 
-### `npm run build`
+## Technologies Used
+- **Programming Languages**: Python, JavaScript
+- **Frontend**: React.js
+- **Backend**: FastAPI
+- **Database**: Firebase/Supabase
+- **Machine Learning**: CNN, NLP models
+- **Deployment**: AWS, Google Cloud, Heroku
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Setup and Installation
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/your-repo-url.git
+   ```
+2. **Install dependencies:**
+   - Using `npm` (for frontend):
+   ```bash
+   npm install
+   ```
+   - Using `pip` (for backend):
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. **Configure environment variables:**
+   ```bash
+   cp .env.example .env
+   ```
+4. **Run the project:**
+   - Start the frontend:
+   ```bash
+   npm start
+   ```
+   - Run the backend:
+   ```bash
+   uvicorn main:app --reload
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Usage Instructions
+1. **Enter match details**: Select characters, build, and map.
+2. **Receive AI predictions**: The system calculates winrate probabilities.
+3. **View recommendations**: Get suggested lineup adjustments and strategies.
+4. **Apply insights in-game**: Use AI-generated recommendations to improve performance.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Project Structure
+```bash
+.
+├── 📂 frontend/ (React.js UI)
+├── 📂 backend/ (FastAPI services)
+├── 📂 models/ (Machine learning models)
+├── 📂 data/ (Game match data)
+├── 📂 tests/ (Unit and integration tests)
+├── .env.example
+├── package.json
+└── README.md
+```
 
-### `npm run eject`
+## Contributors
+- **[Kinn Hervy Ordonez, Jesslee Torzar, Edgardo Jr. D. Gaela]**: Lead Developer, Backend Developer
+- **[Charls Andrei Tubelliza, Karl Lenin Reyes]**: Frontend Developer, UI/UX Designer
+- **Gerald Villaran**: Course Instructor
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Project Timeline
+- **Week 1-2**: Research and data collection.
+- **Week 3-5**: AI model development.
+- **Week 6-10**: UI/Backend integration.
+- **Week 11-12**: Testing and optimization.
+- **Week 13-14**: Deployment and documentation.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Changelog
+### [Version 1.0.0] - 2024-09-07
+- Initial AI model implementation.
+- Basic winrate prediction.
+- Frontend setup with match input fields.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### [Version 1.1.0] - 2024-09-14
+- Improved UI design.
+- Enhanced AI recommendations.
+- Bug fixes and performance improvements.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### [Version 1.2.0] - 2024-09-21
+- Added historical match tracking.
+- Implemented strategy suggestion module.
+- Optimized backend for faster processing.
 
-## Learn More
+## Acknowledgments
+We extend our gratitude to our mentors and the open-source community for contributing resources that made this project possible.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## License
+This project is licensed under [MIT License](LICENSE).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
