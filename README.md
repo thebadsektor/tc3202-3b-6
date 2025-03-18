@@ -113,8 +113,8 @@ Explain the structure of the project directory. Example:
 
 List all the team members involved in the project. Include their roles and responsibilities:
 
-- **[jesslee Torzar]**: Lead Developer, Backend Developer
-- **[Jesslee Torzar]**: Frontend Developer, UI/UX Designer
+- **[Jess Lee Torzar, Edgardo Gaela, Karl Losanta Reyes, Kinn Ordonez]**: Lead Developer, Backend Developer
+- **[Charls Tubelliza]**: Frontend Developer, UI/UX Designer
 - **Gerald Villaran**: Course Instructor
 
 ## Project Timeline
