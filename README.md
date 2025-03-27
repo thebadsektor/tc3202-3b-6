@@ -55,7 +55,7 @@ By using **real-time AI-driven predictions**, the system assists players in adap
 ## Setup and Installation
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-repo-url.git
+   git clone https://github.com/thebadsektor/tc3202-3b-6
    ```
 2. **Install dependencies:**
    - Using `npm` (for frontend):
@@ -100,8 +100,8 @@ By using **real-time AI-driven predictions**, the system assists players in adap
 ```
 
 ## Contributors
-- **[Kinn Hervy Ordonez, Jesslee Torzar, Edgardo Jr. D. Gaela]**: Lead Developer, Backend Developer
-- **[Charls Andrei Tubelliza, Karl Lenin Reyes]**: Frontend Developer, UI/UX Designer
+- **[Kinn Hervy Ordonez, Jesslee Torzar, Edgardo Jr. D. Gaela, Karl Lenin Reyes]**: Lead Developer, Backend Developer
+- **[Charls Andrei Tubelliza]**: Frontend Developer, UI/UX Designer
 - **Gerald Villaran**: Course Instructor
 
 ## Project Timeline

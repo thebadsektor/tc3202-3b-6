@@ -5,6 +5,7 @@ import { auth } from "./firebase";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import SignupPage from "./pages/SignupPage ";
+import TeamCompositionPage from "./pages/TeamCompositionPage";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -24,6 +25,7 @@ function App() {
         <Route path="/" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/home" element={isAuthenticated ? <HomePage /> : <Navigate to="/" />} />
+        <Route path="/team-composition" element={<TeamCompositionPage />} />
       </Routes>
     </Router>
   );

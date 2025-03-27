@@ -16,13 +16,17 @@ function HomePage() {
     navigate("/");
   };
 
+  const handleMatchPredictionsClick = () => {
+    navigate("/team-composition"); // Navigate to TeamCompositionPage
+  };
+
   return (
     <div className="brawl-home-container">
       <div className="brawl-header">
         <div className="brawl-logo-small">
           <div className="brawl-skull-small"></div>
         </div>
-        <h1 className="brawl-title">BRAWL PREDICTOR</h1>
+        <h1 className="brawl-title">SMART BRAWL</h1>
         <div className="brawl-user-info">
           <div className="brawl-avatar">
             <div className="brawl-avatar-inner"></div>
@@ -59,7 +63,7 @@ function HomePage() {
       </div>
 
       <div className="brawl-features">
-        <div className="brawl-feature-card">
+        <div className="brawl-feature-card" onClick={handleMatchPredictionsClick} style={{ cursor: "pointer" }}>
           <div className="brawl-feature-icon prediction"></div>
           <h4>MATCH PREDICTIONS</h4>
           <p>Analyze and predict your gameplay outcomes</p>
