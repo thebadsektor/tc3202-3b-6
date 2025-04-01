@@ -3,18 +3,38 @@ import axios from "axios";
 
 const TeamCompositionPage = () => {
   // State for team selection
-  const [allyTeam, setAllyTeam] = useState(["Piper", "Brock", "Tick"]);
-  const [enemyTeam, setEnemyTeam] = useState(["Leon", "Crow", "Mortis"]);
-  const [gameMode, setGameMode] = useState("Bounty");
-  const [mapName, setMapName] = useState("Hideout");
+  const [allyTeam, setAllyTeam] = useState([" ", " ", " "]);
+  const [enemyTeam, setEnemyTeam] = useState([" ", " ", " "]);
+  const [gameMode, setGameMode] = useState(" ");
   const [prediction, setPrediction] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState(" ");
 
   // List of Brawlers (Replace this with actual data)
-  const brawlerList = ["Piper", "Brock", "Tick", "Leon", "Crow", "Mortis"];
-  const gameModes = ["Bounty", "Gem Grab", "Brawl Ball"];
-  const mapNames = ["Hideout", "Cavern Churn"];
+  const brawlerList = [
+    "GENE", "LILY", "BROCK", "KENJI", "BUZZ", "OLLIE", "PIPER", "MORTIS", 
+    "DYNAMIKE", "COLETTE", "RICO", "PENNY", "BULL", "TARA", "STU", 
+    "JACKY", "MR. P", "SHELLY", "EDGAR", "JUJU", "GROM", "SURGE", 
+    "LOU", "BIBI", "NITA", "BO", "FANG", "ASH", "BEA", "JANET", 
+    "MAX", "HANK", "FINX", "MELODIE", "SHADE", "TICK", "FRANK", 
+    "LEON", "SPIKE", "EL PRIMO", "DARRYL", "SANDY", "POCO", "GRAY", 
+    "R-T", "MANDY", "SPROUT", "SQUEAK", "KIT", "JESSIE", "COLT", 
+    "MAISIE", "EMZ", "MEEPLE", "BELLE", "BARLEY", "CORDELIUS", 
+    "CHESTER", "BERRY", "CHARLIE", "ANGELO", "PEARL", "GUS", "WILLOW", 
+    "BUSTER", "BYRON", "CLANCY", "NANI", "OTIS", "DRACO", "GALE", 
+    "AMBER", "LARRY & LAWRIE", "EVE", "LOLA"
+];
+
+const gameModes = [
+    "Bounty",
+    "Knockout",
+    "Hot Zone",
+    "Brawl Ball",
+    "Trio Showdown",
+    "Duo Showdown",
+    "Gem Grab"
+];
+
 
   // Handle Prediction Request
   const predictOutcome = async () => {
@@ -29,11 +49,10 @@ const TeamCompositionPage = () => {
           ally_team: allyTeam,
           enemy_team: enemyTeam,
           game_mode: gameMode,
-          map_name: mapName
         },
         {
           headers: { "Content-Type": "application/json" },
-          timeout: 10000 // 10 second timeout
+          timeout: 10000, // 10 second timeout
         }
       );
 
@@ -93,14 +112,6 @@ const TeamCompositionPage = () => {
         <h3>Game Mode</h3>
         <select value={gameMode} onChange={(e) => setGameMode(e.target.value)}>
           {gameModes.map(mode => <option key={mode} value={mode}>{mode}</option>)}
-        </select>
-      </div>
-
-      {/* Map Selection */}
-      <div>
-        <h3>Map</h3>
-        <select value={mapName} onChange={(e) => setMapName(e.target.value)}>
-          {mapNames.map(map => <option key={map} value={map}>{map}</option>)}
         </select>
       </div>
 

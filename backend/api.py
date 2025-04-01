@@ -2,8 +2,8 @@ import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import joblib
-import numpy as np
 from pydantic import BaseModel
+from typing import List, Dict
 
 # Get the absolute path to the project root
 base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -26,50 +26,79 @@ app.add_middleware(
 
 # Define input format
 class MatchInput(BaseModel):
-    ally_team: list[str]  # Example: ["Piper", "Brock", "Tick"]
-    enemy_team: list[str]  # Example: ["Leon", "Crow", "Mortis"]
+    ally_team: List[str]  # Example: ["Piper", "Brock", "Tick"]
+    enemy_team: List[str]  # Example: ["Leon", "Crow", "Mortis"]
     game_mode: str  # Example: "Bounty"
-    map_name: str  # Example: "Hideout"
 
-# Convert brawler names to numerical IDs (Replace this with actual encoding logic)
+# Convert brawler names to numerical IDs
+# Encode Brawlers
 brawler_encoding = {
-    "Piper": 1, "Brock": 2, "Tick": 3,
-    "Leon": 4, "Crow": 5, "Mortis": 6
+    "GENE": 1, "LILY": 2, "BROCK": 3, "KENJI": 4, "BUZZ": 5, "OLLIE": 6, "PIPER": 7, "MORTIS": 8, 
+    "DYNAMIKE": 9, "COLETTE": 10, "RICO": 11, "PENNY": 12, "BULL": 13, "TARA": 14, "STU": 15, 
+    "JACKY": 16, "MR. P": 17, "SHELLY": 18, "EDGAR": 19, "JUJU": 20, "GROM": 21, "SURGE": 22, 
+    "LOU": 23, "BIBI": 24, "NITA": 25, "BO": 26, "FANG": 27, "ASH": 28, "BEA": 29, "JANET": 30, 
+    "MAX": 31, "HANK": 32, "FINX": 33, "MELODIE": 34, "SHADE": 35, "TICK": 36, "FRANK": 37, 
+    "LEON": 38, "SPIKE": 39, "EL PRIMO": 40, "DARRYL": 41, "SANDY": 42, "POCO": 43, "GRAY": 44, 
+    "R-T": 45, "MANDY": 46, "SPROUT": 47, "SQUEAK": 48, "KIT": 49, "JESSIE": 50, "COLT": 51, 
+    "MAISIE": 52, "EMZ": 53, "MEEPLE": 54, "BELLE": 55, "BARLEY": 56, "CORDELIUS": 57, 
+    "CHESTER": 58, "BERRY": 59, "CHARLIE": 60, "ANGELO": 61, "PEARL": 62, "GUS": 63, "WILLOW": 64, 
+    "BUSTER": 65, "BYRON": 66, "CLANCY": 67, "NANI": 68, "OTIS": 69, "DRACO": 70, "GALE": 71, 
+    "AMBER": 72, "LARRY & LAWRIE": 73, "EVE": 74, "LOLA": 75
 }
 
-# Ensure model input has the correct number of features
-expected_features = 11
+# Encode Game Modes
+game_mode_encoding = {
+    "bounty": 1,
+    "knockout": 2,
+    "hotZone": 3,
+    "brawlBall": 4,
+    "trioShowdown": 5,
+    "duoShowdown": 6,
+    "gemGrab": 7,
+}
+# Expected number of features
+expected_features = 7
+
+def convert_to_features(ally_team, enemy_team, game_mode):
+    """Convert input into numerical features."""
+    # Encode brawlers
+    ally_encoded = [brawler_encoding.get(brawler.upper(), 0) for brawler in ally_team]
+    enemy_encoded = [brawler_encoding.get(brawler.upper(), 0) for brawler in enemy_team]
+
+    # Encode game mode
+    game_mode_encoded = game_mode_encoding.get(game_mode, 0)
+
+    # Combine into a feature vector
+    features = ally_encoded + enemy_encoded + [game_mode_encoded]
+
+    # Ensure the feature vector has the expected length
+    while len(features) < expected_features:
+        features.append(0)
+
+    return features
 
 @app.post("/predict")
 def predict_match(data: MatchInput):
+    """Predict the match outcome based on teams and game mode."""
+    print("Received data:", data.dict())  # Debugging log
+
     try:
-        # Convert brawler names to numeric values
-        ally_team_ids = [brawler_encoding.get(b, 0) for b in data.ally_team]
-        enemy_team_ids = [brawler_encoding.get(b, 0) for b in data.enemy_team]
+        ally_team = data.ally_team
+        enemy_team = data.enemy_team
+        game_mode = data.game_mode
 
-        # Convert game mode and map (Example encoding)
-        mode_encoding = {"Bounty": 1, "Gem Grab": 2, "Brawl Ball": 3}
-        map_encoding = {"Hideout": 1, "Cavern Churn": 2}
+        # Convert to features
+        features = convert_to_features(ally_team, enemy_team, game_mode)
+        print("Extracted features:", features)  # Debugging log
 
-        mode_id = mode_encoding.get(data.game_mode, 0)
-        map_id = map_encoding.get(data.map_name, 0)
+        if len(features) != expected_features:
+            return {"error": f"Expected {expected_features} features, but got {len(features)}"}
 
-        # Prepare input for the model (Ensure correct feature count)
-        match_features = np.array([ally_team_ids + enemy_team_ids + [mode_id, map_id]])
+        # Make predictions
+        prediction = model.predict([features])
+        probability = model.predict_proba([features])[0][1] * 100  # Assuming class 1 is "Win"
 
-        # Add missing features if necessary
-        if match_features.shape[1] < expected_features:
-            missing_count = expected_features - match_features.shape[1]
-            match_features = np.hstack((match_features, np.zeros((1, missing_count))))  # Pad with zeros
-
-        # Ensure correct shape for prediction
-        match_features = match_features.reshape(1, -1)
-
-        # Make prediction
-        win_prediction = model.predict(match_features)[0]
-        win_probability = model.predict_proba(match_features)[0][1]  # Probability of winning
-
-        return {"win_prediction": int(win_prediction), "win_probability": round(win_probability * 100, 2)}
+        return {"win_prediction": bool(prediction[0]), "win_probability": round(probability, 2)}
 
     except Exception as e:
         return {"error": str(e)}
