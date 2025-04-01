@@ -24,7 +24,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #f9cb5f, #f3881c);
+  background: url(/public/images/brawl_stars_lobby.jpg);
+  background-size: cover;
   z-index: -2;
 }
 
@@ -38,17 +39,62 @@
   z-index: -1;
 }
 
-.brawl-login-card {
-  background-color: #191d36;
-  width: 90%;
-  max-width: 400px;
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+/* Form wrapper */
+.brawl-form-container {
+  display: flex;
+  width: 1000px;
+  height: 550px;
+  overflow: hidden;
   position: relative;
+  background: #1e1e1e;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
+  transition: transform 0.5s ease-in-out;
+}
+
+/* Move left when Sign Up is clicked */
+.shift-left {
+  transform: translateX(-100%);
+}
+
+/* Login Form */
+.brawl-login-card, .brawl-signup-card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.5s ease-in-out;
+}
+
+/* Initially visible login */
+.brawl-login-card {
+  background: url('/public/images/login4.png') no-repeat center center;
+  background-size: cover;
+  z-index: 2;
+}
+
+/* Initially off-screen (right) */
+.brawl-signup-card {
+  background: url('/public/images/Untitled\ design\ \(17\).png') no-repeat center center;
+  background-size: cover;
+  transform: translateX(100%);
   z-index: 1;
-  border: 3px solid #f3881c;
-  animation: float 3s ease-in-out infinite;
+}
+
+/* When active, slide in the Sign Up form */
+.brawl-signup-active .brawl-signup-card {
+  transform: translateX(0);
+  z-index: 2;
+}
+
+/* Move Login form off-screen */
+.brawl-signup-active .brawl-login-card {
+  transform: translateX(-100%);
+  z-index: 1;
 }
 
 @keyframes float {
@@ -59,87 +105,98 @@
     transform: translateY(-10px);
   }
 }
-
-.brawl-logo {
+.brawl-login-title {
+  color: #2a2e52;
   text-align: center;
-  margin-bottom: 20px;
+  margin-left: -53%;
+  font-size: 28px;
+  margin-bottom: 25px;
+  text-shadow: 0 2px 0 #ffb300;
+  letter-spacing: 1px;
 }
 
-.brawl-logo-circle {
-  width: 120px;
-  height: 120px;
-  background-color: #ffb300;
-  border-radius: 50%;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  border: 5px solid #222;
-  position: relative;
-  overflow: hidden;
-}
-
-.brawl-skull {
-  width: 80px;
-  height: 80px;
-  background-color: #222;
-  border-radius: 50% 50% 40% 40%;
-  position: relative;
-}
-
-.brawl-eye {
-  position: absolute;
-  width: 22px;
-  height: 22px;
-  background-color: #ffb300;
-  border-radius: 50%;
-  top: 30px;
-}
-
-.brawl-eye.left {
-  left: 15px;
-}
-
-.brawl-eye.right {
-  right: 15px;
-}
-
-.brawl-nose {
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  background-color: #ffb300;
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.brawl-title {
-  color: #fff;
+.brawl-signup-title {
+  color: #2a2e52;
   text-align: center;
   font-size: 28px;
   margin-bottom: 25px;
-  text-shadow: 0 2px 0 #000;
+  margin-right: -53%;
+  text-shadow: 0 2px 0 #ffb300;
   letter-spacing: 1px;
 }
 
 .brawl-input-group {
-  margin-bottom: 20px;
+  width: 80%;
+  margin: 12px;
 }
-
-.brawl-input {
-  width: 100%;
+/* Login Input Styling */
+.login-input {
+  width: 56%;
   padding: 15px;
-  border-radius: 10px;
-  border: 3px solid #ffb300;
-  background-color: #2a2e52;
-  color: #fff;
+  margin-left: -66.7%;
+  border-radius: 6px;
+  border: 2px solid #ffb300;
+  background-color: #f6f6f6;
+  color: black;
   font-size: 16px;
   outline: none;
-  transition: all 0.3s ease;
+  transition: transform 0.4s ease, border-color 0.4s ease;
 }
 
-.brawl-input:focus {
+.login-input::placeholder {
+  font-size: 16px;
+  color: gray;
+  transition: all 0.2s ease;
+}
+
+/* Shrink placeholder */
+.login-input:focus::placeholder {
+  font-size: 12px;
+  transform: translateY(-15px);
+  color: gray;
+}
+
+/* Zoom effect */
+.login-input:focus {
+  transform: scale(1.03); 
+  border-color: #f3881c; 
+}
+
+/* Sign Up Input Styling */
+.signup-input {
+  width: 56%;
+  padding: 15px;
+  margin-right: -66.5%;
+  border-radius: 6px;
+  border: 2px solid #ffb300;
+  background-color: #f6f6f6;
+  color: black;
+  font-size: 16px;
+  outline: none;
+  transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+.signup-input::placeholder {
+  font-size: 16px;
+  color: gray;
+  transition: all 0.2s ease;
+}
+
+/* Shrink placeholder */
+.signup-input:focus::placeholder {
+  font-size: 12px;
+  transform: translateY(-15px);
+  color: gray;
+}
+
+/* Zoom effect */
+.signup-input:focus {
+  transform: scale(1.03); 
+  border-color: #f3881c; 
+}
+
+
+.login-input:focus, .signup-input:focus{
   border-color: #f3881c;
   box-shadow: 0 0 10px rgba(243, 136, 28, 0.5);
 }
@@ -148,9 +205,76 @@
   color: #8a8fa3;
 }
 
-.brawl-button {
-  width: 100%;
+.remember-me {
+  display: flex;
+  align-items: center;
+  color: #2a2e52;
+  gap: 8px; /* Space between checkbox and label */
+  margin-top: 5px; /* Adjust spacing below password input */
+  margin-left: -87%;
+  margin-bottom: 3px;
+}
+
+/* Hide the default checkbox */
+.remember-me input {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #2a2e52; /* Orange border */
+  border-radius: 4px;
+  background-color: white;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.remember-me input:checked {
+  background-color: #ffc107; /* Yellow when checked */
+  border-color: #ffb300;
+}
+
+.remember-me input:checked::after {
+  content: "✔";
+  font-size: 14px;
+  font-weight: bold;
+  color: #2a2e52;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Hover effect */
+.remember-me input:hover {
+  border-color: #ffb300;
+}
+
+.remember-me label {
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.forgot-password {
+  display: block;
+  margin-top: 2px; 
+  margin-right: 21%;
+  margin-top: -2.2%;
+  margin-bottom: 3px;
+  font-size: 14px;
+  color: #2a2e52; 
+  text-decoration: none;
+  font-weight: normal;
+  transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+  color: #ffa500; 
+} 
+
+.brawl-login-button {
+  width: 45%;
   padding: 15px;
+  margin-left: -54%;
   border-radius: 10px;
   background: linear-gradient(to bottom, #f9cb5f, #f3881c);
   color: #191d36;
@@ -158,29 +282,153 @@
   border: none;
   cursor: pointer;
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 20px;
   transition: all 0.2s ease;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
   box-shadow: 0 4px 0 #d36a0f, 0 5px 5px rgba(0, 0, 0, 0.3);
   letter-spacing: 1px;
 }
 
-.brawl-button:hover {
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-top: 15px;
+  margin-right: 54%;
+  width: 46%;
+
+}
+
+.separator::before,
+.separator::after {
+  content: "";
+  flex-grow: 1;
+  height: 1px; 
+  background-color: #2a2e52; 
+  margin: 0 10px;
+}
+
+.separator span {
+  font-size: 14px;
+  color: #666;
+  font-weight: bold;
+}
+
+.google-login-btn {
+  width: 45%; 
+  height: 80px;
+  padding: 10px;
+  background-color: #f6f6f6;
+  color: black;
+  font-size: 16px;
+  font-weight: normal;
+  border: 2px solid black; 
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; 
+  margin-top: 15px;
+  margin-right: 54%;
+}
+
+.google-login-btn:hover,
+.google-login-btn:focus {
+  background-color: black;
+  color: white;
+  border-color: white;
+  transform: scale(1.05); 
+}
+
+.google-logo {
+  width: 20px; 
+  height: 20px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.google-login-btn:hover .google-logo,
+.google-login-btn:focus .google-logo {
+  transform: scale(1.1);
+}
+
+.supercell-login-btn {
+  width: 45%;
+  height: 80px;
+  padding: 10px;
+  background-color: #f6f6f6;
+  color: #2a2e52;
+  font-size: 16px;
+  font-weight: normal;
+  border: 2px solid #2a2e52;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px; /* Adjust to match Google button */
+  margin-right: 54%; /* Align similarly to Google button */
+}
+
+.supercell-login-btn:hover,
+.supercell-login-btn:focus {
+  background-color: #2a2e52;
+  color: white;
+  border-color: white;
+  transform: scale(1.05);
+}
+
+.supercell-logo {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.supercell-login-btn:hover .supercell-logo,
+.supercell-login-btn:focus .supercell-logo {
+  transform: scale(1.1);
+}
+
+
+.brawl-signup-button {
+  width: 45%;
+  padding: 15px;
+  margin-right: -53.6%;
+  border-radius: 10px;
+  background: linear-gradient(to bottom, #f9cb5f, #f3881c);
+  color: #191d36;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 20px;
+  transition: all 0.2s ease;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 0 #d36a0f, 0 5px 5px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+}
+
+.brawl-login-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 0 #d36a0f, 0 7px 7px rgba(0, 0, 0, 0.3);
 }
 
-.brawl-button:active {
+.brawl-login-button:active {
   transform: translateY(2px);
   box-shadow: 0 2px 0 #d36a0f, 0 3px 3px rgba(0, 0, 0, 0.3);
 }
 
-.brawl-error {
-  color: #ff4455;
-  text-align: center;
-  margin-top: 15px;
-  font-size: 16px;
-  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+.brawl-signup-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #d36a0f, 0 7px 7px rgba(0, 0, 0, 0.3);
+}
+
+.brawl-signup-button:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #d36a0f, 0 3px 3px rgba(0, 0, 0, 0.3);
 }
 
 .brawl-back-button {
@@ -206,10 +454,120 @@
   transform: translateY(2px);
 }
 
-.brawl-signup-link {
-  margin-top: 20px;
+.brawl-signuplink-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent; /* Optional: Light background */
+  padding: 20px;
+  border-radius: 10px;
   text-align: center;
-  color: #b8bbcb;
+}
+
+.signuplink-text1 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #191d36;
+  text-shadow: 0 2px 0 #ffb300;
+  margin-bottom: 2px;
+  margin-top: -10px;
+}
+
+.signuplink-text2 {
+  font-size: 16px;
+  color: #191d36;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.brawl-signuplink-button {
+  width: 45%;
+  height: 40px;
+  padding: 15px;
+  border-radius: 10px;
+  background: linear-gradient(to bottom, #f9cb5f, #f3881c);
+  color: #191d36;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-right: -5%;
+  margin-bottom: -50px  ;
+  transition: all 0.2s ease;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 0 #d36a0f, 0 5px 5px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+}
+
+.brawl-signuplink-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #d36a0f, 0 7px 7px rgba(0, 0, 0, 0.3);
+}
+
+.brawl-signuplink-button:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #d36a0f, 0 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.brawl-loginlink-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 6%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  padding: 20px 25px; 
+  border-radius: 10px;
+  text-align: center;
+  min-width: 250px;
+}
+
+
+.loginlink-text1 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #191d36;
+  text-shadow: 0 2px 0 #ffb300;
+  margin-bottom: 2px;
+  margin-top: -10px;
+}
+
+.brawl-loginlink-button {
+  width: 80px; 
+  height: 40px;
+  padding: 10px; 
+  border-radius: 10px;
+  background: linear-gradient(to bottom, #f9cb5f, #f3881c);
+  color: #191d36;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 10px 0 0 0; 
+  transition: all 0.2s ease;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 0 #d36a0f, 0 5px 5px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.brawl-loginlink-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #d36a0f, 0 7px 7px rgba(0, 0, 0, 0.3);
+}
+
+.brawl-loginlink-button:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #d36a0f, 0 3px 3px rgba(0, 0, 0, 0.3);
 }
 
 .brawl-text-button {
@@ -244,4 +602,24 @@
   40%, 60% {
     transform: translate3d(4px, 0, 0);
   }
+}
+
+.errorlogin-message {
+  color: red;
+  font-size: 14px;
+  font-weight: normal;
+  text-align: center;
+  margin-right: 53%;
+  margin-bottom: -5px; 
+  margin-top: 20px;
+}
+
+.errorsignup-message {
+  color: red;
+  font-size: 14px;
+  font-weight: normal;
+  text-align: center;
+  margin-left: 53%;
+  margin-bottom: -5px; 
+  margin-top: 20px;
 }
