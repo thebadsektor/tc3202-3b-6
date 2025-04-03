@@ -26,13 +26,14 @@ const TeamCompositionPage = () => {
 ];
 
 const gameModes = [
-    "Bounty",
-    "Knockout",
-    "Hot Zone",
-    "Brawl Ball",
-    "Trio Showdown",
-    "Duo Showdown",
-    "Gem Grab"
+  "BOUNTY",
+  "BRAWL BALL",
+  "GEM GRAB",
+  "HEIST",
+  "HOT ZONE",
+  "KNOCKOUT",
+  "WIPEOUT",
+  "GEM GRAB"
 ];
 
 

@@ -48,15 +48,16 @@ brawler_encoding = {
 
 # Encode Game Modes
 game_mode_encoding = {
-    "bounty": 1,
-    "knockout": 2,
-    "hotZone": 3,
-    "brawlBall": 4,
-    "trioShowdown": 5,
-    "duoShowdown": 6,
+    "bounty": 0,
+    "brawlBall": 1,
+    "gemGrab": 2,
+    "heist": 3,
+    "hotZone": 4,
+    "knockout": 5,
+    "wipeout": 6,
     "gemGrab": 7,
 }
-# Expected number of features
+
 expected_features = 7
 
 def convert_to_features(ally_team, enemy_team, game_mode):
