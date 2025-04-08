@@ -55,7 +55,7 @@ function HomePage() {
       <div className="brawl-gameplay-showcase">
         <h3>FEATURED GAMEPLAY</h3>
         <div className="brawl-gameplay-image">
-          <img src="/images/down.jpg" alt="Brawl Stars Gameplay" />
+          <img src="/images/brawl.jpg" alt="Brawl Stars Gameplay" />
           <div className="brawl-gameplay-caption">
             Exciting Brawl Stars Battle Arena
           </div>
