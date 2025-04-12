@@ -6,6 +6,7 @@ import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import SignupPage from "./pages/SignupPage ";
 import TeamCompositionPage from "./pages/TeamCompositionPage";
+import PredictionPage from './pages/PredictionPage';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -26,6 +27,7 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/home" element={isAuthenticated ? <HomePage /> : <Navigate to="/" />} />
         <Route path="/team-composition" element={<TeamCompositionPage />} />
+        <Route path="/predict" element={<PredictionPage />} />
       </Routes>
     </Router>
   );

@@ -26,12 +26,10 @@ app.add_middleware(
 
 # Define input format
 class MatchInput(BaseModel):
-    ally_team: List[str]  # Example: ["Piper", "Brock", "Tick"]
-    enemy_team: List[str]  # Example: ["Leon", "Crow", "Mortis"]
-    game_mode: str  # Example: "Bounty"
+    ally_team: List[str] 
+    enemy_team: List[str]  
+    game_mode: str  
 
-# Convert brawler names to numerical IDs
-# Encode Brawlers
 brawler_encoding = {
     "GENE": 1, "LILY": 2, "BROCK": 3, "KENJI": 4, "BUZZ": 5, "OLLIE": 6, "PIPER": 7, "MORTIS": 8, 
     "DYNAMIKE": 9, "COLETTE": 10, "RICO": 11, "PENNY": 12, "BULL": 13, "TARA": 14, "STU": 15, 
