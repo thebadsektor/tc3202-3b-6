@@ -4,12 +4,11 @@ import pickle
 import numpy as np
 import os
 import pandas as pd
-from flask_cors import CORS  # Enable CORS for React frontend
+from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # Allow cross-origin requests
+CORS(app)
 
-# Load model and .pkl files
 DATA_FOLDER = os.path.dirname(os.path.abspath(__file__))
 
 model = joblib.load(os.path.join(DATA_FOLDER, "brawl_model.pkl"))
@@ -26,7 +25,6 @@ with open(os.path.join(DATA_FOLDER, "columns.pkl"), "rb") as f:
 
 @app.route('/init', methods=['GET'])
 def init_data():
-    """Initial data for React app."""
     modes = list(mode_map.keys())
     return jsonify({
         'modes': modes,
@@ -53,12 +51,10 @@ def predict():
 
     features_df = process_input(map_input, mode_input, team_brawlers, enemy_brawlers)
 
-    # Align with model columns
     features_df = features_df.reindex(columns=model_columns, fill_value=0)
 
-    # Predict probability (Team 1 win chance)
     probability = model.predict_proba(features_df)[0][1]
-    prediction = f"✅ Team 1 Victory Chance: {probability * 100:.2f}%"
+    prediction = f"✅ Your Victory Chance: {probability * 100:.2f}%"
 
     return jsonify({'prediction': prediction})
 
@@ -69,9 +65,15 @@ def process_input(map_input, mode_input, team_brawlers, enemy_brawlers):
         'mode': mode_input
     }
 
+    # Encode brawler presence
     for b in brawlers_list:
         input_data[f'team_{b}'] = int(b in team_brawlers)
         input_data[f'enemy_{b}'] = int(b in enemy_brawlers)
+
+    # Custom features: pretend these are used in your model
+    input_data['team_avg_winrate'] = len(team_brawlers) / len(brawlers_list)  # dummy logic
+    input_data['enemy_avg_winrate'] = len(enemy_brawlers) / len(brawlers_list)  # dummy logic
+    input_data['counter_brawler_count'] = sum([1 for b in team_brawlers if b in enemy_brawlers])  # dummy overlap logic
 
     df = pd.DataFrame([input_data])
     df = pd.get_dummies(df)

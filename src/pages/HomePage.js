@@ -4,26 +4,16 @@ import "./HomePage.css";
 
 function HomePage() {
   const navigate = useNavigate();
-  const username = localStorage.getItem("username") || "Brawler"; // Get username from localStorage
-
-  const handleLogout = () => {
-    const confirmLogout = window.confirm("Are you sure you want to logout?");
-    if (!confirmLogout) return;
-  
-    localStorage.removeItem("isAuthenticated");
-    localStorage.removeItem("username");
-    
-    navigate("/");
-  };
+  const username = "Brawler"; 
 
   const handleMatchPredictionsClick = () => {
-    navigate("/team-composition"); // Navigate to TeamCompositionPage
+    navigate("/team-composition"); 
   };
 
   const goToPrediction = () => {
     navigate('/predict');
   };
-  
+
   return (
     <div className="brawl-home-container">
       <div className="brawl-header">
@@ -36,9 +26,7 @@ function HomePage() {
             <div className="brawl-avatar-inner"></div>
           </div>
           <span className="brawl-username">{username}</span>
-          <button className="brawl-logout-btn" onClick={handleLogout}>
-            LOGOUT
-          </button>
+          {}
         </div>
       </div>
 
@@ -72,11 +60,11 @@ function HomePage() {
           <h4>MATCH PREDICTIONS</h4>
           <p>Analyze and predict your gameplay outcomes</p>
         </div>
-      <div className="brawl-feature-card" onClick={goToPrediction} style={{ cursor: 'pointer' }}>
-        <div className="brawl-feature-icon strategy"></div>
-        <h4>MATCH PREDICTIONS 2</h4>
-        <p> predict your gameplay outcomes 2.0</p>
-      </div>
+        <div className="brawl-feature-card" onClick={goToPrediction} style={{ cursor: 'pointer' }}>
+          <div className="brawl-feature-icon strategy"></div>
+          <h4>MATCH PREDICTIONS 2</h4>
+          <p>Predict your gameplay outcomes 2.0</p>
+        </div>
         <div className="brawl-feature-card">
           <div className="brawl-feature-icon stats"></div>
           <h4>PLAYER STATS</h4>
