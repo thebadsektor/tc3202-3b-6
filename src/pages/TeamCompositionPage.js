@@ -1,135 +1,132 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+const brawlers = [
+  "Shelly", "Colt", "Bull", "Brock", "Rico", "Spike", "Barley", "Jessie", "Nita",
+  // Add more brawlers from your previous list
+];
+
+const modeMapOptions = {
+  "Bounty": ["BraceForImpact", "DrySeason", "Hideout", "LayerCake", "NoExcuses", "ShootingStar"],
+  "Gem Grab": ["CrystalArcade", "DeathcapTrap", "DoubleSwoosh", "ForestClearing", "GemFort", "HardRockMine", "LastStop", "LilygearLake", "LocalRestaurants", "OpenSpace", "RusticArcade", "Undermine"],
+  "Heist": ["BridgeTooFar", "HotPotato", "KaboomCanyon", "PitStop", "PlainText"],
+  "Brawl Ball": ["BackyardBowl", "BeachBall", "BelowZero", "CenterStage", "CoolBox", "PinballDreams", "PinholePunt", "PricelessCactus", "RooftopRunners", "SecondTry", "SneakyFields", "StarrGarden", "SunnySoccer", "SuperBeach", "SuperCenter", "Trickey", "TripleDribble"],
+  "Knockout": ["Belle'sRock", "CloseQuarters", "DeepEnd", "FlaringPhoenix", "FlowingSprings", "FourLevels", "GoldarmGulch", "HealthyMiddleGround", "HFor...", "MossyCrossing", "NewHorizons", "NewPerspective", "OutInTheOpen"],
+  "Hot Zone": ["Bejeweled", "DuelingBeetles", "FishingBed", "OpenBusiness", "OpenZone", "ParallelPlays", "RingOfFire"]
+};
+
 const TeamCompositionPage = () => {
-  // State for team selection
-  const [allyTeam, setAllyTeam] = useState([" ", " ", " "]);
-  const [enemyTeam, setEnemyTeam] = useState([" ", " ", " "]);
-  const [gameMode, setGameMode] = useState(" ");
-  const [prediction, setPrediction] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(" ");
+  const [team1, setTeam1] = useState(["", "", ""]);
+  const [team2, setTeam2] = useState(["", "", ""]);
+  const [mode, setMode] = useState("");
+  const [map, setMap] = useState("");
+  const [mapOptions, setMapOptions] = useState([]);
+  const [result, setResult] = useState(null);
 
-  // List of Brawlers (Replace this with actual data)
-  const brawlerList = [
-    "GENE", "LILY", "BROCK", "KENJI", "BUZZ", "OLLIE", "PIPER", "MORTIS", 
-    "DYNAMIKE", "COLETTE", "RICO", "PENNY", "BULL", "TARA", "STU", 
-    "JACKY", "MR. P", "SHELLY", "EDGAR", "JUJU", "GROM", "SURGE", 
-    "LOU", "BIBI", "NITA", "BO", "FANG", "ASH", "BEA", "JANET", 
-    "MAX", "HANK", "FINX", "MELODIE", "SHADE", "TICK", "FRANK", 
-    "LEON", "SPIKE", "EL PRIMO", "DARRYL", "SANDY", "POCO", "GRAY", 
-    "R-T", "MANDY", "SPROUT", "SQUEAK", "KIT", "JESSIE", "COLT", 
-    "MAISIE", "EMZ", "MEEPLE", "BELLE", "BARLEY", "CORDELIUS", 
-    "CHESTER", "BERRY", "CHARLIE", "ANGELO", "PEARL", "GUS", "WILLOW", 
-    "BUSTER", "BYRON", "CLANCY", "NANI", "OTIS", "DRACO", "GALE", 
-    "AMBER", "LARRY & LAWRIE", "EVE", "LOLA"
-];
+  useEffect(() => {
+    if (mode && modeMapOptions[mode]) {
+      setMapOptions(modeMapOptions[mode]);
+      setMap(""); // Reset map when mode changes
+    }
+  }, [mode]);
 
-const gameModes = [
-  "BOUNTY",
-  "BRAWL BALL",
-  "GEM GRAB",
-  "HEIST",
-  "HOT ZONE",
-  "KNOCKOUT",
-  "WIPEOUT",
-  "GEM GRAB"
-];
+  const handleChange = (index, team, value) => {
+    const updated = [...(team === "team1" ? team1 : team2)];
+    updated[index] = value;
+    team === "team1" ? setTeam1(updated) : setTeam2(updated);
+  };
 
-
-  // Handle Prediction Request
-  const predictOutcome = async () => {
-    setLoading(true);
-    setError("");
-    setPrediction(null);
-
+  const predict = async () => {
     try {
-      const response = await axios.post(
-        "http://localhost:8000/predict",
-        {
-          ally_team: allyTeam,
-          enemy_team: enemyTeam,
-          game_mode: gameMode,
-        },
-        {
-          headers: { "Content-Type": "application/json" },
-          timeout: 10000, // 10 second timeout
-        }
-      );
-
-      if (response.data.error) {
-        setError(response.data.error);
-      } else {
-        setPrediction(response.data);
-      }
-    } catch (error) {
-      if (error.response) {
-        setError(error.response.data.detail || "Server error");
-      } else if (error.request) {
-        setError("No response from server. Check your connection.");
-      } else {
-        setError("Error setting up the request");
-      }
-      console.error("Detailed error:", error);
-    } finally {
-      setLoading(false);
+      const res = await axios.post("http://localhost:5000/predict", {
+        team1,
+        team2,
+        mode,
+        map,
+      });
+      setResult(res.data);
+    } catch (err) {
+      console.error("Prediction error:", err);
     }
   };
 
   return (
-    <div>
-      <h2>Brawl Stars Match Predictor</h2>
+    <div className="p-4 max-w-xl mx-auto">
+      <h1 className="text-xl font-bold mb-4 text-center">Brawl Stars Match Prediction</h1>
 
-      {/* Ally Team Selection */}
-      <div>
-        <h3>Select Your Team</h3>
-        {allyTeam.map((brawler, index) => (
-          <select key={index} value={brawler} onChange={(e) => {
-            let updatedTeam = [...allyTeam];
-            updatedTeam[index] = e.target.value;
-            setAllyTeam(updatedTeam);
-          }}>
-            {brawlerList.map(b => <option key={b} value={b}>{b}</option>)}
-          </select>
-        ))}
-      </div>
-
-      {/* Enemy Team Selection */}
-      <div>
-        <h3>Select Enemy Team</h3>
-        {enemyTeam.map((brawler, index) => (
-          <select key={index} value={brawler} onChange={(e) => {
-            let updatedTeam = [...enemyTeam];
-            updatedTeam[index] = e.target.value;
-            setEnemyTeam(updatedTeam);
-          }}>
-            {brawlerList.map(b => <option key={b} value={b}>{b}</option>)}
-          </select>
-        ))}
-      </div>
-
-      {/* Game Mode Selection */}
-      <div>
-        <h3>Game Mode</h3>
-        <select value={gameMode} onChange={(e) => setGameMode(e.target.value)}>
-          {gameModes.map(mode => <option key={mode} value={mode}>{mode}</option>)}
+      <div className="mb-4">
+        <label className="font-semibold">Select Mode</label>
+        <select
+          value={mode}
+          onChange={(e) => setMode(e.target.value)}
+          className="w-full border p-2 rounded"
+        >
+          <option value="">Select Mode</option>
+          {Object.keys(modeMapOptions).map((m) => (
+            <option key={m} value={m}>{m}</option>
+          ))}
         </select>
       </div>
 
-      {/* Predict Button */}
-      <button onClick={predictOutcome} disabled={loading}>
-        {loading ? "Processing..." : "Predict Match Outcome"}
+      <div className="mb-4">
+        <label className="font-semibold">Select Map</label>
+        <select
+          value={map}
+          onChange={(e) => setMap(e.target.value)}
+          className="w-full border p-2 rounded"
+        >
+          <option value="">Select a Map</option>
+          {mapOptions.map((m) => (
+            <option key={m} value={m}>{m}</option>
+          ))}
+        </select>
+      </div>
+
+      <div className="mb-4">
+        <h2 className="font-semibold mb-2">Team 1</h2>
+        {team1.map((b, i) => (
+          <select
+            key={i}
+            value={b}
+            onChange={(e) => handleChange(i, "team1", e.target.value)}
+            className="w-full border p-2 rounded mb-1"
+          >
+            <option value="">Select Brawler {i + 1}</option>
+            {brawlers.map((br) => (
+              <option key={br} value={br}>{br}</option>
+            ))}
+          </select>
+        ))}
+      </div>
+
+      <div className="mb-4">
+        <h2 className="font-semibold mb-2">Team 2</h2>
+        {team2.map((b, i) => (
+          <select
+            key={i}
+            value={b}
+            onChange={(e) => handleChange(i, "team2", e.target.value)}
+            className="w-full border p-2 rounded mb-1"
+          >
+            <option value="">Select Brawler {i + 1}</option>
+            {brawlers.map((br) => (
+              <option key={br} value={br}>{br}</option>
+            ))}
+          </select>
+        ))}
+      </div>
+
+      <button
+        onClick={predict}
+        className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition"
+      >
+        Predict Outcome
       </button>
 
-      {/* Error Message */}
-      {error && <p style={{ color: "red" }}>{error}</p>}
-
-      {/* Display Prediction */}
-      {prediction && (
-        <div>
-          <h3>Prediction Results</h3>
-          <p><strong>Win Prediction:</strong> {prediction.win_prediction ? "Win" : "Lose"}</p>
-          <p><strong>Win Probability:</strong> {prediction.win_probability}%</p>
+      {result && (
+        <div className="mt-4 text-center">
+          <p className="text-lg font-semibold">{result.result}</p>
+          <p>Confidence: {result.win_percentage}%</p>
         </div>
       )}
     </div>

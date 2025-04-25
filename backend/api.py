@@ -1,108 +1,106 @@
-# import os
-# from fastapi import FastAPI
-# from fastapi.middleware.cors import CORSMiddleware
-# import joblib
-# from pydantic import BaseModel
-# from typing import List, Dict
+from flask import Flask, request, jsonify
+import os
+import pandas as pd
+import numpy as np
+import joblib
+import pickle
 
-# # Get the absolute path to the project root
-# base_dir = os.path.dirname(os.path.abspath(__file__))
-# model_path = os.path.join(base_dir, 'brawlstars_model.pkl')
+app = Flask(__name__)
 
-# # Load the trained model
-# model = joblib.load(model_path)
+DATA_FOLDER = os.path.dirname(__file__)
 
-# # Define FastAPI app
-# app = FastAPI()
+# Load model and data
+model = joblib.load(os.path.join(DATA_FOLDER, "BuhayNgaNaman.pkl"))
+counter_matrix = pd.read_csv(os.path.join(DATA_FOLDER, "CounterBrawler.csv"), index_col=0)
 
-# # Add CORS middleware
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=["http://localhost:3000", "http://127.0.0.1:3000", "*"],  # Allows React frontend
-#     allow_credentials=True,
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
+with open(os.path.join(DATA_FOLDER, "AllMapBrawlerWinrate.pkl"), "rb") as f:
+    all_map_brawler_winrate = pickle.load(f)
 
-# # Define input format
-# class MatchInput(BaseModel):
-#     ally_team: List[str] 
-#     enemy_team: List[str]  
-#     game_mode: str  
+with open(os.path.join(DATA_FOLDER, "Flat_MapBestTeam.pkl"), "rb") as f:
+    flat_map_best_team = pickle.load(f)
 
-# brawler_encoding = {
-#     "GENE": 1, "LILY": 2, "BROCK": 3, "KENJI": 4, "BUZZ": 5, "OLLIE": 6, "PIPER": 7, "MORTIS": 8, 
-#     "DYNAMIKE": 9, "COLETTE": 10, "RICO": 11, "PENNY": 12, "BULL": 13, "TARA": 14, "STU": 15, 
-#     "JACKY": 16, "MR. P": 17, "SHELLY": 18, "EDGAR": 19, "JUJU": 20, "GROM": 21, "SURGE": 22, 
-#     "LOU": 23, "BIBI": 24, "NITA": 25, "BO": 26, "FANG": 27, "ASH": 28, "BEA": 29, "JANET": 30, 
-#     "MAX": 31, "HANK": 32, "FINX": 33, "MELODIE": 34, "SHADE": 35, "TICK": 36, "FRANK": 37, 
-#     "LEON": 38, "SPIKE": 39, "EL PRIMO": 40, "DARRYL": 41, "SANDY": 42, "POCO": 43, "GRAY": 44, 
-#     "R-T": 45, "MANDY": 46, "SPROUT": 47, "SQUEAK": 48, "KIT": 49, "JESSIE": 50, "COLT": 51, 
-#     "MAISIE": 52, "EMZ": 53, "MEEPLE": 54, "BELLE": 55, "BARLEY": 56, "CORDELIUS": 57, 
-#     "CHESTER": 58, "BERRY": 59, "CHARLIE": 60, "ANGELO": 61, "PEARL": 62, "GUS": 63, "WILLOW": 64, 
-#     "BUSTER": 65, "BYRON": 66, "CLANCY": 67, "NANI": 68, "OTIS": 69, "DRACO": 70, "GALE": 71, 
-#     "AMBER": 72, "LARRY & LAWRIE": 73, "EVE": 74, "LOLA": 75
-# }
+# Static map data
+map_data_dict = {
+    "Bounty": ["BraceForImpact", "DrySeason", "Hideout", "LayerCake", "NoExcuses", "ShootingStar"],
+    "Gem Grab": ["CrystalArcade", "DeathcapTrap", "DoubleSwoosh", "ForestClearing", "GemFort",
+                 "HardRockMine", "LastStop", "LilygearLake", "LocalRestaurants", "OpenSpace",
+                 "RusticArcade", "Undermine"],
+    "Heist": ["BridgeTooFar", "HotPotato", "KaboomCanyon", "PitStop", "PlainText"],
+    "Brawl Ball": ["BackyardBowl", "BeachBall", "BelowZero", "CenterStage", "CoolBox", "PinballDreams",
+                   "PinholePunt", "PricelessCactus", "RooftopRunners", "SecondTry", "SneakyFields",
+                   "StarrGarden", "SunnySoccer", "SuperBeach", "SuperCenter", "Trickey", "TripleDribble"],
+    "Knockout": ["Belle'sRock", "CloseQuarters", "DeepEnd", "FlaringPhoenix", "FlowingSprings",
+                 "FourLevels", "GoldarmGulch", "HealthyMiddleGround", "HFor...", "MossyCrossing",
+                 "NewHorizons", "NewPerspective", "OutInTheOpen"],
+    "Hot Zone": ["Bejeweled", "DuelingBeetles", "FishingBed", "OpenBusiness", "OpenZone", "ParallelPlays",
+                 "RingOfFire"]
+}
 
-# # Encode Game Modes
-# game_mode_encoding = {
-#     "bounty": 0,
-#     "brawlBall": 1,
-#     "gemGrab": 2,
-#     "heist": 3,
-#     "hotZone": 4,
-#     "knockout": 5,
-#     "wipeout": 6,
-#     "gemGrab": 7,
-# }
+# --- Helper functions ---
+def get_win_rate(brawler, brawler_winrate_data):
+    brawler_lower = brawler.lower()
+    brawler_winrate_data['Brawler_lower'] = brawler_winrate_data['Brawler'].str.lower()
+    if brawler_lower in brawler_winrate_data['Brawler_lower'].values:
+        return brawler_winrate_data[brawler_winrate_data['Brawler_lower'] == brawler_lower]['Win Rate'].values[0]
+    else:
+        return 0
 
-# expected_features = 7
+def get_counter(brawler, opponent, counter_matrix):
+    brawler_lower = brawler.lower()
+    opponent_lower = opponent.lower()
+    if brawler_lower in counter_matrix.index and opponent_lower in counter_matrix.columns:
+        return counter_matrix.loc[brawler_lower, opponent_lower]
+    else:
+        return 0
 
-# def convert_to_features(ally_team, enemy_team, game_mode):
-#     """Convert input into numerical features."""
-#     # Encode brawlers
-#     ally_encoded = [brawler_encoding.get(brawler.upper(), 0) for brawler in ally_team]
-#     enemy_encoded = [brawler_encoding.get(brawler.upper(), 0) for brawler in enemy_team]
+def simulate_match_with_model(team1, team2):
+    features = []
+    for brawler1 in team1:
+        for brawler2 in team2:
+            team1_winrate = get_win_rate(brawler1, all_map_brawler_winrate)
+            team2_winrate = get_win_rate(brawler2, all_map_brawler_winrate)
+            counter_score = get_counter(brawler1, brawler2, counter_matrix)
+            reverse_counter_score = get_counter(brawler2, brawler1, counter_matrix)
+            features.append([
+                team1_winrate, team2_winrate, counter_score,
+                team2_winrate, team1_winrate, reverse_counter_score
+            ])
+    features = np.array(features)
+    predictions = model.predict(features)
+    team1_win_count = sum(predictions)
+    win_percentage = team1_win_count / len(predictions) * 100
 
-#     # Encode game mode
-#     game_mode_encoded = game_mode_encoding.get(game_mode, 0)
+    if team1_win_count > len(predictions) / 2:
+        return "Team 1 Wins!", round(win_percentage, 2)
+    else:
+        return "Team 2 Wins!", round(100 - win_percentage, 2)
 
-#     # Combine into a feature vector
-#     features = ally_encoded + enemy_encoded + [game_mode_encoded]
+# --- API Endpoints ---
 
-#     # Ensure the feature vector has the expected length
-#     while len(features) < expected_features:
-#         features.append(0)
+@app.route('/predict', methods=['POST'])
+def predict():
+    data = request.get_json()
+    team1 = data.get('team1', [])
+    team2 = data.get('team2', [])
+    
+    if not team1 or not team2 or len(team1) != 3 or len(team2) != 3:
+        return jsonify({'error': 'Invalid team data'}), 400
+    
+    result, win_percentage = simulate_match_with_model(team1, team2)
+    return jsonify({
+        'result': result,
+        'win_percentage': win_percentage
+    })
 
-#     return features
+@app.route('/brawlers', methods=['GET'])
+def get_brawlers():
+    brawlers = sorted(counter_matrix.index.tolist())
+    return jsonify({'brawlers': brawlers})
 
-# @app.post("/predict")
-# def predict_match(data: MatchInput):
-#     """Predict the match outcome based on teams and game mode."""
-#     print("Received data:", data.dict())  # Debugging log
+@app.route('/maps', methods=['GET'])
+def get_maps():
+    return jsonify(map_data_dict)
 
-#     try:
-#         ally_team = data.ally_team
-#         enemy_team = data.enemy_team
-#         game_mode = data.game_mode
-
-#         # Convert to features
-#         features = convert_to_features(ally_team, enemy_team, game_mode)
-#         print("Extracted features:", features)  # Debugging log
-
-#         if len(features) != expected_features:
-#             return {"error": f"Expected {expected_features} features, but got {len(features)}"}
-
-#         # Make predictions
-#         prediction = model.predict([features])
-#         probability = model.predict_proba([features])[0][1] * 100  # Assuming class 1 is "Win"
-
-#         return {"win_prediction": bool(prediction[0]), "win_probability": round(probability, 2)}
-
-#     except Exception as e:
-#         return {"error": str(e)}
-
-# # Run the API (For local testing)
-# if __name__ == "__main__":
-#     import uvicorn
-#     uvicorn.run(app, host="0.0.0.0", port=8000)
+# --- Run app ---
+if __name__ == '__main__':
+    app.run(debug=True)
