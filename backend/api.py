@@ -4,8 +4,12 @@ import pandas as pd
 import numpy as np
 import joblib
 import pickle
+from flask_cors import CORS
 
-app = Flask(__name__)
+
+api = Flask(__name__)
+CORS(api)  # Allow requests from frontend
+
 
 DATA_FOLDER = os.path.dirname(__file__)
 
@@ -61,10 +65,7 @@ def simulate_match_with_model(team1, team2):
             team2_winrate = get_win_rate(brawler2, all_map_brawler_winrate)
             counter_score = get_counter(brawler1, brawler2, counter_matrix)
             reverse_counter_score = get_counter(brawler2, brawler1, counter_matrix)
-            features.append([
-                team1_winrate, team2_winrate, counter_score,
-                team2_winrate, team1_winrate, reverse_counter_score
-            ])
+            features.append([team1_winrate, team2_winrate, counter_score, team2_winrate, team1_winrate, reverse_counter_score])
     features = np.array(features)
     predictions = model.predict(features)
     team1_win_count = sum(predictions)
@@ -76,8 +77,7 @@ def simulate_match_with_model(team1, team2):
         return "Team 2 Wins!", round(100 - win_percentage, 2)
 
 # --- API Endpoints ---
-
-@app.route('/predict', methods=['POST'])
+@api.route('/predict', methods=['POST'])
 def predict():
     data = request.get_json()
     team1 = data.get('team1', [])
@@ -92,15 +92,16 @@ def predict():
         'win_percentage': win_percentage
     })
 
-@app.route('/brawlers', methods=['GET'])
+@api.route('/brawlers', methods=['GET'])
 def get_brawlers():
-    brawlers = sorted(counter_matrix.index.tolist())
+    brawlers = sorted(all_map_brawler_winrate['Brawler'].unique().tolist())
     return jsonify({'brawlers': brawlers})
 
-@app.route('/maps', methods=['GET'])
+
+@api.route('/maps', methods=['GET'])
 def get_maps():
     return jsonify(map_data_dict)
 
 # --- Run app ---
 if __name__ == '__main__':
-    app.run(debug=True)
+    api.run(debug=True)

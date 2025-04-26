@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const brawlers = [
-  "Shelly", "Colt", "Bull", "Brock", "Rico", "Spike", "Barley", "Jessie", "Nita",
-  // Add more brawlers from your previous list
-];
-
 const modeMapOptions = {
   "Bounty": ["BraceForImpact", "DrySeason", "Hideout", "LayerCake", "NoExcuses", "ShootingStar"],
   "Gem Grab": ["CrystalArcade", "DeathcapTrap", "DoubleSwoosh", "ForestClearing", "GemFort", "HardRockMine", "LastStop", "LilygearLake", "LocalRestaurants", "OpenSpace", "RusticArcade", "Undermine"],
@@ -21,7 +16,9 @@ const TeamCompositionPage = () => {
   const [mode, setMode] = useState("");
   const [map, setMap] = useState("");
   const [mapOptions, setMapOptions] = useState([]);
+  const [brawlers, setBrawlers] = useState([]);
   const [result, setResult] = useState(null);
+  const [error, setError] = useState(""); // New error state
 
   useEffect(() => {
     if (mode && modeMapOptions[mode]) {
@@ -30,6 +27,18 @@ const TeamCompositionPage = () => {
     }
   }, [mode]);
 
+  useEffect(() => {
+    const fetchBrawlers = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/brawlers");
+        setBrawlers(res.data.brawlers);
+      } catch (err) {
+        console.error("Error fetching brawlers:", err);
+      }
+    };
+    fetchBrawlers();
+  }, []);
+
   const handleChange = (index, team, value) => {
     const updated = [...(team === "team1" ? team1 : team2)];
     updated[index] = value;
@@ -37,6 +46,20 @@ const TeamCompositionPage = () => {
   };
 
   const predict = async () => {
+    // Basic validation
+    if (!mode || !map) {
+      setError("Please select both a game mode and a map.");
+      return;
+    }
+
+    if (team1.includes("") || team2.includes("")) {
+      setError("Please select all 3 brawlers for both teams.");
+      return;
+    }
+
+    setError(""); // Clear previous error
+    setResult(null); // Clear previous result
+
     try {
       const res = await axios.post("http://localhost:5000/predict", {
         team1,
@@ -47,6 +70,7 @@ const TeamCompositionPage = () => {
       setResult(res.data);
     } catch (err) {
       console.error("Prediction error:", err);
+      setError("Something went wrong with the prediction.");
     }
   };
 
@@ -115,6 +139,12 @@ const TeamCompositionPage = () => {
           </select>
         ))}
       </div>
+
+      {error && (
+        <div className="mb-4 text-red-600 font-semibold text-center">
+          {error}
+        </div>
+      )}
 
       <button
         onClick={predict}
