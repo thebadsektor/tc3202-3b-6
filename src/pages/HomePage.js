@@ -14,6 +14,10 @@ function HomePage() {
     navigate('/predict');
   };
 
+  const gotoBrawlerList = () => {
+    navigate('/brawler-list')
+  };
+
   return (
     <div className="brawl-home-container">
       <div className="brawl-header">
@@ -65,10 +69,10 @@ function HomePage() {
           <h4>MATCH PREDICTIONS 2</h4>
           <p>Predict your gameplay outcomes 2.0</p>
         </div>
-        <div className="brawl-feature-card">
+        <div className="brawl-feature-card"onClick={gotoBrawlerList} style={{ cursor: 'pointer' }}>
           <div className="brawl-feature-icon stats"></div>
-          <h4>PLAYER STATS</h4>
-          <p>Track your performance and progress</p>
+          <h4>Brawlers</h4>
+          <p>Brawlers Winrate and Information</p>
         </div>
       </div>
     </div>
