@@ -314,4 +314,252 @@
   .brawl-welcome-banner p {
     font-size: 16px;
   }
+
+ /* Add these styles to your HomePage.css file */
+
+/* Chat Bubble Icon */
+.chat-bubble {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background-color: #ff6b6b;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 1000;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.chat-bubble:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* GPT-Style Chat Window */
+.gpt-chat-window {
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  width: 400px;
+  height: 550px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Chat Header */
+.gpt-chat-header {
+  padding: 15px 20px;
+  background-color: #ff6b6b;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.gpt-chat-header h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.gpt-chat-close-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  transition: background-color 0.2s;
+}
+
+.gpt-chat-close-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Messages Container */
+.gpt-chat-messages {
+  flex: 1;
+  padding: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+}
+
+/* Message Containers */
+.gpt-message-container {
+  display: flex;
+  padding: 16px 20px;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.bot-container {
+  background-color: #f7f7f8;
+}
+
+.user-container {
+  background-color: #ffffff;
+}
+
+.gpt-avatar {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #ff6b6b;
+  color: white;
+  font-size: 16px;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.user-container .gpt-avatar {
+  background-color: #5e72e4;
+}
+
+/* Message Content */
+.gpt-message {
+  font-size: 15px;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+  flex: 1;
+  padding-top: 4px;
+}
+
+/* Typing Indicator */
+.gpt-typing-indicator {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 0;
+}
+
+.gpt-typing-indicator span {
+  height: 8px;
+  width: 8px;
+  margin: 0 2px;
+  background-color: #888;
+  border-radius: 50%;
+  display: inline-block;
+  animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.gpt-typing-indicator span:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.gpt-typing-indicator span:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+  0%, 80%, 100% { 
+    transform: scale(0);
+  }
+  40% { 
+    transform: scale(1.0);
+  }
+}
+
+/* Input Area */
+.gpt-chat-input-area {
+  display: flex;
+  padding: 15px 20px;
+  background-color: #ffffff;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  align-items: center;
+}
+
+.gpt-chat-input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  font-size: 15px;
+  line-height: 1.4;
+  resize: none;
+  max-height: 120px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+}
+
+.gpt-chat-input:focus {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2);
+}
+
+.gpt-send-button {
+  width: 36px;
+  height: 36px;
+  margin-left: 10px;
+  background-color: #f3f3f3;
+  color: #aaa;
+  border: none;
+  border-radius: 8px;
+  cursor: not-allowed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.gpt-send-button.active {
+  background-color: #ff6b6b;
+  color: white;
+  cursor: pointer;
+}
+
+.gpt-send-button.active:hover {
+  background-color: #ff5252;
+}
+
+.gpt-send-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .gpt-chat-window {
+    width: 90%;
+    height: 80%;
+    right: 5%;
+    bottom: 80px;
+  }
+}
+
 }

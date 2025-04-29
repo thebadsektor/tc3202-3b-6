@@ -1,4 +1,3 @@
-// src/pages/BrawlerList.js
 import React, { useEffect, useState } from "react";
 import * as XLSX from "xlsx";
 import { Link } from "react-router-dom";
@@ -6,7 +5,7 @@ import { Link } from "react-router-dom";
 const BrawlerList = () => {
   const [brawlers, setBrawlers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10; // 10 brawlers per page
+  const itemsPerPage = 10; 
 
   useEffect(() => {
     const fetchData = async () => {

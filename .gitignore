@@ -4,6 +4,7 @@
 # Dependency directories
 node_modules/
 vendor/
+backend/*.gguf
 
 # Logs
 *.log
@@ -14,3 +15,5 @@ yarn-error.log*
 # OS-generated files
 .DS_Store
 Thumbs.db
+
+backend/Meta-Llama-3-8B-Instruct.Q4_K_M.gguf

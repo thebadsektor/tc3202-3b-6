@@ -1,3 +1,4 @@
+// sssssssss
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import brawlerInfo from "../brawlerInfo";
@@ -6,7 +7,7 @@ const BrawlerDetail = () => {
   const { name } = useParams();
   const info = brawlerInfo[name] || {
     image: "/images/brawlers/default.png",
-    info: "No info available."
+    info: "No info available bobo ka eh."
   };
 
   return (
