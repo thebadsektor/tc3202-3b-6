@@ -9,9 +9,7 @@ from flask_cors import CORS
 
 
 api = Flask(__name__)
-CORS(api)  # Allow requests from frontend
-
-llama = llama_cpp.Llama(model_path="tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf", n_ctx=4096)
+CORS(api)  
 
 DATA_FOLDER = os.path.dirname(__file__)
 
@@ -103,20 +101,6 @@ def get_brawlers():
 @api.route('/maps', methods=['GET'])
 def get_maps():
     return jsonify(map_data_dict)
-
-@api.route('/chat', methods=['POST'])
-def chat():
-    data = request.get_json()
-    user_prompt = data.get('prompt')
-
-    if not user_prompt:
-        return jsonify({'error': 'No prompt provided'}), 400
-
-    system_prompt = "You are a Brawl Stars expert. Only answer questions related to Brawl Stars. If asked anything else, say 'I only answer Brawl Stars questions.'"
-    prompt = f"<s>[INST] {system_prompt} {user_prompt} [/INST]"
-
-    output = llama(prompt, max_tokens=300)
-    return jsonify({'response': output['choices'][0]['text']})
 
 # --- Run app ---
 if __name__ == '__main__':

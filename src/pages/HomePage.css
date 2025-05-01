@@ -561,5 +561,14 @@
     bottom: 80px;
   }
 }
+.lumina-embed-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.lumina-iframe-wrapper {
+  display: flex;
+  justify-content: center;
+}
 
 }

@@ -7,6 +7,7 @@ import TeamCompositionPage from "./pages/TeamCompositionPage";
 import PredictionPage from './pages/PredictionPage';
 import BrawlerList from './pages/BrawlerList';
 import BrawlerDetail from "./pages/BrawlerDetail";
+import LuminaPage from "./pages/LuminaPage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/predict" element={<PredictionPage />} />
         <Route path="/brawler-list" element={<BrawlerList />} />
         <Route path="/brawler/:name" element={<BrawlerDetail />} />
+        <Route path="/lumina" element={<LuminaPage />} /> 
       </Routes>
     </Router>
   );
