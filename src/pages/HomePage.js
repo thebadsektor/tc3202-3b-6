@@ -8,7 +8,7 @@ function HomePage() {
 
   const handleMatchPredictionsClick = () => navigate("/team-composition");
   const goToPrediction = () => navigate("/predict");
-  const gotoBrawlerList = () => navigate("/brawler-list");
+  const gotoBrawlerList = () => navigate("/brawler");
 
   return (
     <div className="brawl-home-container">

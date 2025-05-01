@@ -1,37 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 
 function LoginPage() {
   const navigate = useNavigate();
-  const [isSignUp, setIsSignUp] = useState(false);
 
   return (
     <div className="brawl-login-container">
       <div className="brawl-background"></div>
 
-      {/* Wrapper for both forms */}
       <div className="brawl-form-wrapper">
-        <div className={`brawl-form-container ${isSignUp ? "brawl-signup-active" : ""}`}>
+        <div className="brawl-form-container">
 
-          {/* Login Section */}
           <div className="brawl-login-card">
-            <h1 className="brawl-login-title">Welcome Back!</h1> 
+            <h1 className="brawl-login-title">Welcome Back!</h1>
 
             <div className="brawl-input-group">
-              <input
-                type="email"
-                placeholder="Email"
-                className="login-input"
-              />
+              <input type="email" placeholder="Email" className="login-input" />
             </div>
 
             <div className="brawl-input-group">
-              <input
-                type="password"
-                placeholder="Password"
-                className="login-input"
-              />
+              <input type="password" placeholder="Password" className="login-input" />
             </div>
 
             <div className="remember-me">
@@ -47,7 +36,7 @@ function LoginPage() {
 
             <div className="separator">
               <span>or</span>
-            </div> 
+            </div>
 
             <button className="google-login-btn">
               <img src="/images/google.png" alt="Google Logo" className="google-logo" />
@@ -59,54 +48,7 @@ function LoginPage() {
               Log in with Supercell ID
             </button>
 
-            <div className="brawl-signuplink-container">
-              <p className="signuplink-text1">Predict. <b>Dominate.</b> Win.</p>
-              <p className="signuplink-text2">Sign up to get started!</p>
-              <button onClick={() => setIsSignUp(true)} className="brawl-signuplink-button">
-                SIGN UP
-              </button>
-            </div>
           </div>
-
-          {/* Sign-Up Section */}
-          <div className="brawl-signup-card">
-            <h1 className="brawl-signup-title">Create Your Account</h1>
-            <div className="brawl-input-group">
-              <input
-                type="email"
-                placeholder="Email"
-                className="signup-input"
-              />
-            </div>
-
-            <div className="brawl-input-group">
-              <input
-                type="password"
-                placeholder="Password"
-                className="signup-input"
-              />
-            </div>
-
-            <div className="brawl-input-group">
-              <input
-                type="password"
-                placeholder="Confirm Password"
-                className="signup-input"
-              />
-            </div>
-
-            <button className="brawl-signup-button" onClick={() => navigate("/home")}>
-              Sign Up & Go to Home
-            </button>
-
-            <div className="brawl-loginlink-container">
-              <p className="loginlink-text1">Already have an Account?</p>
-              <button onClick={() => setIsSignUp(false)} className="brawl-loginlink-button">
-                LOGIN
-              </button>
-            </div>
-          </div>
-
         </div>
       </div>
     </div>
