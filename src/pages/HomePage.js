@@ -48,10 +48,6 @@ function HomePage() {
     navigate("/team-composition");
   };
 
-  // const goToPrediction = () => {
-  //   navigate("/predict");
-  // };
-
   const gotoBrawlerList = () => {
     navigate("/brawler");
   };
@@ -83,15 +79,12 @@ function HomePage() {
         </div>
       </div>
 
-      <div className="brawl-search-container">
-        <input
-          type="text"
-          className="brawl-search-input"
-          placeholder="Search for brawlers, maps, or strategies..."
-        />
-        <button className="brawl-search-btn">SEARCH</button>
+      <div>
+        <h1>Welcome to Brawl Stars App</h1>
+        <button onClick={() => navigate("/lumina")}>Talk to AI Assistant</button>
       </div>
 
+    
       <div className="brawl-welcome-banner">
         <h2>
           WELCOME, <span className="brawl-highlight">{username.toUpperCase()}</span>!

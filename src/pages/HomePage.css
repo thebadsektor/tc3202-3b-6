@@ -235,54 +235,6 @@ button {
   box-shadow: 0 2px 0 var(--danger-dark), 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* Search bar styles - improved */
-.brawl-search-container {
-  max-width: 800px;
-  margin: var(--space-xxl) auto;
-  padding: 0 var(--space-lg);
-  display: flex;
-  gap: var(--space-sm);
-}
-
-.brawl-search-input {
-  flex: 1;
-  background-color: rgba(42, 46, 82, 0.8);
-  border: 2px solid var(--accent-orange);
-  border-radius: var(--radius-md);
-  padding: 12px var(--space-md);
-  color: var(--text-light);
-  font-size: 16px;
-  outline: none;
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.brawl-search-input:focus {
-  border-color: var(--accent-yellow);
-  box-shadow: 0 0 0 3px rgba(249, 203, 95, 0.3);
-}
-
-.brawl-search-input::placeholder {
-  color: var(--text-muted);
-}
-
-.brawl-search-btn {
-  background: linear-gradient(to bottom, var(--accent-yellow), var(--accent-orange));
-  border-radius: var(--radius-md);
-  padding: 12px var(--space-xl);
-  color: var(--primary-dark);
-  font-weight: bold;
-  box-shadow: 0 3px 0 #d36a0f, 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.brawl-search-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 0 #d36a0f, 0 6px 12px rgba(0, 0, 0, 0.3);
-}
-
-.brawl-search-btn:active {
-  transform: translateY(1px);
-  box-shadow: 0 2px 0 #d36a0f, 0 3px 6px rgba(0, 0, 0, 0.3);
-}
 
 /* Welcome banner styles - improved */
 .brawl-welcome-banner {
