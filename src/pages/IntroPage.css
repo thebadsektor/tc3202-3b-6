@@ -1,134 +1,592 @@
-/* Fullscreen Background Container */
-.intro-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: url('/public/images/brawl_stars_lobby.jpg') no-repeat center center/cover;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    position: relative;
-    overflow: hidden;
+/* Enhanced Fullscreen Background Container */
+.brawl-login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #1a1b41, #232659);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  overflow: hidden;
+  color: white;
+  --accent-orange: #F57328;
+  --accent-yellow: #FCBF29;
+  --accent-blue: #3A93D1;
+}
+
+/* Logo and Website Name Container */
+.brawl-logo-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+  animation: fadeInLeft 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.brawl-logo {
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+  filter: drop-shadow(0 0 8px rgba(58, 147, 209, 0.6));
+}
+
+.brawl-website-name {
+  font-size: 24px;
+  font-weight: 1000;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: linear-gradient(45deg, #fff, var(--accent-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 15px rgba(58, 147, 209, 0.5);
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animated Background Elements */
+.brawl-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: url('/public/images/Downstarsbg.png');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.5) saturate(1.3);
+  z-index: -1;
+  animation: backgroundPulse 15s infinite alternate;
+}
+
+@keyframes backgroundPulse {
+  0% {
+    filter: brightness(0.5) saturate(1.3) hue-rotate(0deg);
+    transform: scale(1);
+  }
+  50% {
+    filter: brightness(0.6) saturate(1.5) hue-rotate(5deg);
+    transform: scale(1.03);
+  }
+  100% {
+    filter: brightness(0.5) saturate(1.3) hue-rotate(0deg);
+    transform: scale(1);
+  }
+}
+
+/* Particle effects */
+.particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+/* Different particle types with game themed colors */
+.particle:nth-child(3n) {
+  background: radial-gradient(circle, rgba(58, 147, 209, 0.9) 0%, rgba(58, 147, 209, 0) 70%);
+  box-shadow: 0 0 10px rgba(58, 147, 209, 0.5);
+}
+
+.particle:nth-child(3n+1) {
+  background: radial-gradient(circle, rgba(245, 115, 40, 0.9) 0%, rgba(245, 115, 40, 0) 70%);
+  box-shadow: 0 0 10px rgba(245, 115, 40, 0.5);
+}
+
+.particle:nth-child(3n+2) {
+  background: radial-gradient(circle, rgba(252, 191, 41, 0.9) 0%, rgba(252, 191, 41, 0) 70%);
+  box-shadow: 0 0 10px rgba(252, 191, 41, 0.5);
+}
+
+/* Generate 20 random particles with animations */
+@keyframes floatUp {
+  0% {
+    transform: translateY(100vh) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: var(--particle-opacity);
+  }
+  90% {
+    opacity: var(--particle-opacity);
+  }
+  100% {
+    transform: translateY(-100px) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Enhanced form wrapper with gamecard style glassmorphism */
+.brawl-form-wrapper {
+  margin-right: 53%;
+  background: rgba(25, 35, 80, 0.7);
+  padding: 40px 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(1px);
+  text-align: center;
+  max-width: 400px;
+  width: 100%; /* Ensure it takes full width up to max-width */
+  position: relative;
+  z-index: 2;
+  transform: translateZ(0);
+  animation: cardAppear 1s ease-out forwards;
+  border: 1px solid rgba(58, 147, 209, 0.3);
+  overflow: hidden;
+}
+
+/* Animated gradient border effect with game style colors */
+.brawl-form-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: -1;
+}
+
+@keyframes borderRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes cardAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Container inside the form wrapper */
+.brawl-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Change from center to flex-start to align content left */
+  width: 100%; /* Ensure it takes full width */
+  position: relative;
+  z-index: 3;
+}
+
+
+/* Main title with gaming style glow effect - expanded for full display */
+.brawl-login-title {
+  color: #EEF1FF;
+  text-align: start;
+  font-size: 32px;
+  font-weight: 200;
+  margin-bottom: 15px;
+  text-shadow: 0 0 15px var(--accent-blue);
+  position: relative;
+  animation: titlePulse 2s infinite alternate;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  width: 100%; /* Ensure it takes full width */
+  max-width: 340px; /* Increase from 100% to accommodate the full text */
+  white-space: normal; /* allow wrapping */
+  overflow: visible;   /* show full content */
+  text-overflow: unset; /* don't show ellipsis */
+}
+
+.brawl-login-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 20%; /* Change from 50% to align with text-align: start */
+  transform: translateX(0); /* Remove translateX(-50%) to align with left position */
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(to right, var(--accent-orange), var(--accent-yellow));
+  border-radius: 3px;
+  animation: lineWidth 3s infinite alternate;
+}
+
+@keyframes titlePulse {
+  0% {
+    text-shadow: 0 0 10px rgba(58, 147, 209, 0.6);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(58, 147, 209, 0.8), 0 0 25px rgba(58, 147, 209, 0.5);
+  }
+  100% {
+    text-shadow: 0 0 20px rgba(58, 147, 209, 0.9), 0 0 30px rgba(58, 147, 209, 0.6);
+  }
+}
+
+@keyframes lineWidth {
+  0% {
+    width: 40px;
+    opacity: 0.7;
+  }
+  100% {
+    width: 120px;
+    opacity: 1;
+  }
+}
+
+/* Taglines with staggered animation - fixed for full display */
+.tagline-container {
+  margin-bottom: 30px;
+  width: 100%; /* Take full width of parent */
+  max-width: 340px; /* Increase from 300px */
+  opacity: 0;
+  animation: fadeInUp 0.5s forwards 0.5s;
+}
+
+.brawl-tagline {
+  color: #F5F5F5;
+  text-align: start;
+  font-weight: 200;
+  font-size: 20px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+  width: 100%; /* Full width */
+  min-height: calc(1.5em * 2); /* For two lines */
+  /* Fix line clamping */
+  display: -webkit-box;
+  -line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced Get Started button with neon effect */
+.brawl-login-button {
+  background: linear-gradient(45deg, var(--accent-yellow), var(--accent-yellow));
+  color: white;
+  padding: 16px 38px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(255, 82, 82, 0.4),
+              0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  opacity: 0;
+  animation: fadeInUp 0.5s forwards 1s;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+.brawl-login-button::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--accent-orange), #ff7752, var(--accent-orange));
+  z-index: -1;
+  filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.brawl-login-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  transition: all 0.75s ease;
+}
+
+.brawl-login-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 82, 82, 0.5);
+}
+
+.brawl-login-button:hover::before {
+  opacity: 0.8;
+}
+
+.brawl-login-button:hover::after {
+  left: 100%;
+}
+
+/* Button active state */
+.brawl-login-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 15px rgba(255, 82, 82, 0.4);
+}
+
+/* Enhanced button press animation */
+.button-pressed {
+  animation: enhancedButtonPress 0.6s ease forwards;
+}
+
+@keyframes enhancedButtonPress {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 5px 15px rgba(255, 82, 82, 0.4);
+  }
+  40% {
+    transform: scale(0.85);
+    opacity: 0.8;
+    box-shadow: 0 0 5px rgba(255, 82, 82, 0.2);
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+    box-shadow: 0 0 0 rgba(255, 82, 82, 0);
+  }
+}
+
+/* Enhanced fade-out animation on whole page */
+.fade-out {
+  animation: enhancedFadeOut 0.8s forwards;
+}
+
+@keyframes enhancedFadeOut {
+  0% {
+    opacity: 1;
+    filter: brightness(1) saturate(1);
+  }
+  100% {
+    opacity: 0;
+    filter: brightness(3) saturate(0);
+  }
+}
+
+/* Enhanced slide-and-fade-in animation */
+.page-enter {
+  animation: enhancedSlideFadeIn 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+@keyframes enhancedSlideFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(60px) scale(0.95);
+    filter: blur(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* Reset basic styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  height: 100%;
+  background: #191d36;
+}
+
+/* Enhanced Decorative game elements */
+.brawl-decoration {
+  position: absolute;
+  z-index: 1;
+  filter: drop-shadow(0 0 8px rgba(255, 82, 82, 0.4));
+  animation: float 6s infinite ease-in-out;
+  opacity: 0.35;
+}
+
+/* Enhanced Game character silhouettes with improved visual effects */
+.deco-1 {
+  top: 15%;
+  right: 12%;
+  width: 140px;
+  height: 140px;
+  background: url('/public/images/Downstarsbg.png') no-repeat;
+  background-size: 400px;
+  background-position: -280px -150px;
+  filter: brightness(0) invert(0.8) drop-shadow(0 0 12px var(--accent-orange));
+  mask-image: linear-gradient(45deg, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+}
+
+.deco-2 {
+  bottom: 10%;
+  right: 20%;
+  width: 170px;
+  height: 170px;
+  background: url('/public/images/Downstarsbg.png') no-repeat;
+  background-size: 600px;
+  background-position: -420px -350px;
+  filter: brightness(0) invert(0.8) drop-shadow(0 0 15px var(--accent-blue));
+  mask-image: linear-gradient(-45deg, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+}
+
+.deco-3 {
+  top: 25%;
+  left: 10%;
+  width: 120px;
+  height: 120px;
+  background: url('/public/images/Downstarsbg.png') no-repeat;
+  background-size: 500px;
+  background-position: -200px -200px;
+  filter: brightness(0) invert(0.8) drop-shadow(0 0 12px var(--accent-yellow));
+  mask-image: linear-gradient(135deg, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+}
+
+/* Additional character silhouettes */
+.deco-4 {
+  bottom: 20%;
+  left: 15%;
+  width: 130px;
+  height: 130px;
+  transform: rotate(-12deg);
+  animation-delay: 3s;
+  background: url('/public/images/Downstarsbg.png') no-repeat;
+  background-size: 600px;
+  background-position: -100px -250px;
+  filter: brightness(0) invert(0.8) drop-shadow(0 0 12px var(--accent-orange));
+  mask-image: linear-gradient(225deg, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+}
+
+.deco-5 {
+  top: 40%;
+  right: 8%;
+  width: 110px;
+  height: 110px;
+  transform: rotate(10deg);
+  animation-delay: 2.5s;
+  background: url('/public/images/Downstarsbg.png') no-repeat;
+  background-size: 450px;
+  background-position: -150px -180px;
+  filter: brightness(0) invert(0.8) drop-shadow(0 0 12px var(--accent-blue));
+  mask-image: linear-gradient(-135deg, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+}
+
+/* Star decorations */
+.star-decoration {
+  position: absolute;
+  background: radial-gradient(circle at center, rgba(252, 191, 41, 0.9) 0%, rgba(252, 191, 41, 0.1) 70%);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  z-index: 1;
+  opacity: 0;
+  animation: twinkle 4s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%, 100% { 
+    opacity: 2;
+    transform: scale(0.5);
+  }
+  50% { 
+    opacity: 0.8;
+    transform: scale(1.5);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(var(--rotate, 0deg));
+  }
+  50% {
+    transform: translateY(-15px) rotate(var(--rotate, 0deg));
+  }
+  100% {
+    transform: translateY(0) rotate(var(--rotate, 0deg));
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 992px) {
+  .brawl-form-wrapper {
+    margin-right: 0;
   }
   
-  /* Optional blurred image background */
-  .intro-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    filter: blur(8px) brightness(0.6);
-    z-index: -1;
-  
+  .deco-1, .deco-2, .deco-3, .deco-4, .deco-5 {
+    opacity: 0.1;
+  }
+
+  .brawl-logo-container {
+    top: 10px;
+    left: 10px;
+  }
+
+  .brawl-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .brawl-website-name {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .brawl-form-wrapper {
+    padding: 30px 20px;
+    max-width: 320px;
   }
   
-  /* Container aligned to the right */
-  .intro-form-wrapper {
-    margin-right: 8%;
-    margin-left: auto; /* Push it to the right */
-    background: rgba(255, 255, 255, 0.05);
-    padding: 40px 30px;
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    max-width: 400px;
+  .brawl-login-title {
+    font-size: 26px;
   }
   
-  /* Container inside the form wrapper */
-  .intro-form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .brawl-tagline {
+    font-size: 14px;
   }
   
-  /* Main title */
-  .intro-login-title {
-    color: #ffffff;
-    font-size: 28px;
-    font-style: normal;
-    margin-bottom: 10px;
-    
-  }
-  
-  /* Taglines */
-  .intro-text1,
-  .intro-text2 {
-    color: #ddd;
-    font-size: 16px;
-    margin: 5px 0 20px;
-  }
-  
-  /* Get Started button */
-  .intro-login-button {
-    background-color: #ff5252;
-    color: white;
+  .brawl-login-button {
     padding: 14px 30px;
     font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: background 0.3s ease;
   }
-  
-  .intro-login-button:hover {
-    background-color: #e34242;
+
+  .brawl-logo {
+    width: 30px;
+    height: 30px;
   }
-  
-  /* Fade-out animation on whole page */
-  .fade-out {
-    animation: fadeOut 0.6s forwards;
+
+  .brawl-website-name {
+    font-size: 16px;
   }
-  
-  @keyframes fadeOut {
-    0% {
-      opacity: 1;
-      transform: scale(1);
-    }
-    100% {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-  }
-  
-  /* Button shrink/press animation */
-  .button-pressed {
-    animation: buttonPress 0.3s ease forwards;
-  }
-  
-  @keyframes buttonPress {
-    0% {
-      transform: scale(1);
-      opacity: 1;
-    }
-    100% {
-      transform: scale(0.9);
-      opacity: 0.5;
-    }
-  }
-  
-  /* Shared slide-and-fade-in animation (matches Get Started) */
-  .page-enter {
-    animation: slideFadeIn 0.6s ease-out forwards;
-  }
-  
-  @keyframes slideFadeIn {
-    0% {
-      opacity: 0;
-      transform: translateX(50px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
-  
-  html, body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    height: 100%;
-  }
-  
+}

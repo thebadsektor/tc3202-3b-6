@@ -48,9 +48,9 @@ function HomePage() {
     navigate("/team-composition");
   };
 
-  const goToPrediction = () => {
-    navigate("/predict");
-  };
+  // const goToPrediction = () => {
+  //   navigate("/predict");
+  // };
 
   const gotoBrawlerList = () => {
     navigate("/brawler");
@@ -67,7 +67,7 @@ function HomePage() {
             <button className="brawl-nav-button" onClick={handleMatchPredictionsClick}>
               MATCH PREDICTIONS
             </button>
-            <button className="brawl-nav-button" onClick={goToPrediction}>
+            <button className="brawl-nav-button">
               MATCH PREDICTIONS 2
             </button>
             <button className="brawl-nav-button" onClick={gotoBrawlerList}>
