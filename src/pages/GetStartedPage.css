@@ -140,16 +140,17 @@
 
 /* Enhanced form wrapper with gamecard style glassmorphism */
 .brawl-form-wrapper {
-  margin-right: 53%;
+  margin-right: 300px;
   background: rgba(25, 35, 80, 0.7);
   padding: 40px 30px;
   border-radius: 20px;
   backdrop-filter: blur(1px);
   text-align: center;
-  max-width: 400px;
-  width: 100%; /* Ensure it takes full width up to max-width */
+  max-width: 2000px;
+  width: 3000px; /* Ensure it takes full width up to max-width */
   position: relative;
   z-index: 2;
+  margin-left: 250px;
   transform: translateZ(0);
   animation: cardAppear 1s ease-out forwards;
   border: 1px solid rgba(58, 147, 209, 0.3);
@@ -192,7 +193,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start; /* Change from center to flex-start to align content left */
-  width: 100%; /* Ensure it takes full width */
+  width: 2000px; /* Ensure it takes full width */
   position: relative;
   z-index: 3;
 }
@@ -202,7 +203,7 @@
 .brawl-login-title {
   color: #EEF1FF;
   text-align: start;
-  font-size: 32px;
+  font-size: 30px;
   font-weight: 200;
   margin-bottom: 15px;
   text-shadow: 0 0 15px var(--accent-blue);
@@ -211,8 +212,8 @@
   letter-spacing: 1px;
   text-transform: uppercase;
   width: 100%; /* Ensure it takes full width */
-  max-width: 340px; /* Increase from 100% to accommodate the full text */
-  white-space: normal; /* allow wrapping */
+   /* Increase from 100% to accommodate the full text */
+  white-space: nowrap; /* allow wrapping */
   overflow: visible;   /* show full content */
   text-overflow: unset; /* don't show ellipsis */
 }
@@ -269,13 +270,15 @@
   font-size: 20px;
   line-height: 1.5;
   margin-bottom: 10px;
-  width: 100%; /* Full width */
+  width: 800px; /* Full width */
   min-height: calc(1.5em * 2); /* For two lines */
   /* Fix line clamping */
   display: -webkit-box;
   -line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  white-space: normal;
+
 }
 
 @keyframes fadeInUp {
