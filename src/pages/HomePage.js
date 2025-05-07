@@ -52,6 +52,9 @@ function HomePage() {
     navigate("/brawler");
   };
 
+  const gotoMapShowcase = () => {
+    navigate("/map-show");
+  };
   return (
     <div className="brawl-home-container">
       <div className="brawl-header">
@@ -63,7 +66,7 @@ function HomePage() {
             <button className="brawl-nav-button" onClick={handleMatchPredictionsClick}>
               MATCH PREDICTIONS
             </button>
-            <button className="brawl-nav-button">
+            <button className="brawl-nav-button" onClick={gotoMapShowcase}>
               MATCH PREDICTIONS 2
             </button>
             <button className="brawl-nav-button" onClick={gotoBrawlerList}>
