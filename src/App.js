@@ -7,6 +7,8 @@ import BrawlerTable from "./pages/BrawlerTable";
 import LuminaPage from "./pages/LuminaPage";
 import IntroPage from "./pages/IntroPage";
 import GetStartedPage from "./pages/GetStartedPage";
+import MapShowcase from './pages/MapShowcase';
+import MapDetail from './pages/MapDetail';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Route path="/brawler/:name" element={<BrawlerDetail />} />
         <Route path="/brawler" element={<BrawlerTable />} />
         <Route path="/lumina" element={<LuminaPage />} /> 
+        <Route path = "/map-show" element = { < MapShowcase /> } /> 
+        <Route path = "/map/:mapName"element = { < MapDetail /> }/> 
       </Routes>
     </Router>
   );

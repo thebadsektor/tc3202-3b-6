@@ -43,17 +43,7 @@ function HomePage() {
   const gotoBrawlerList = () => {
     navigate("/brawler");
   };
-  const getCarouselItemClass = (index) => {
-    // Calculate the position relative to the active index
-    const diff = (brawlers.length + (index - activeIndex)) % brawlers.length;
-    // Assign classes based on position
-    if (diff === 0) return "carousel-item active";
-    if (diff === 1) return "carousel-item next";
-    if (diff === 2) return "carousel-item far-next";
-    if (diff === brawlers.length - 1) return "carousel-item prev";
-    if (diff === brawlers.length - 2) return "carousel-item far-prev";
-    return "carousel-item hidden";
-  };
+
   return (
     <div className={`brawl-home-container ${isLoaded ? 'loaded' : ''}`}>
       {/* Stars background */}
@@ -72,19 +62,27 @@ function HomePage() {
       </div>
       {/* Header */}
       <div className="brawl-header">
-        <div className="brawl-logo">
-          <div className="logo-text">Smart Brawl</div>
+        <div className="brawl-logo-container">
+          <div className="brawl-logo-small">
+            <div className="brawl-skull-small"></div>
+          </div>
+          <div className="brawl-nav-buttons">
+            <button className="brawl-nav-button" onClick={handleMatchPredictionsClick}>
+              MATCH PREDICTIONS
+            </button>
+            <button className="brawl-nav-button">
+              MATCH PREDICTIONS 2
+            </button>
+            <button className="brawl-nav-button" onClick={gotoBrawlerList}>
+              PLAYER STATS
+            </button>
+          </div>
         </div>
-        <div className="brawl-nav-buttons">
-          <button className="brawl-nav-button" onClick={handleMatchPredictionsClick}>
-            PREDICT MATCH
-          </button>
-          <button className="brawl-nav-button">
-            MATCH PREDICTIONS 2
-          </button>
-          <button className="brawl-nav-button" onClick={gotoBrawlerList}>
-            ALL BRAWLERS
-          </button>
+        <div className="brawl-user-info">
+          <div className="brawl-avatar">
+            <div className="brawl-avatar-inner"></div>
+          </div>
+          <span className="brawl-username">{username}</span>
         </div>
       </div>
       {/* AI Assistant button with floating animation */}
