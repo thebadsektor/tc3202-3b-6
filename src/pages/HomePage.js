@@ -43,6 +43,11 @@ function HomePage() {
   const gotoBrawlerList = () => {
     navigate("/brawler");
   };
+
+  const gotoMapDetails = () => {
+    navigate("/map-show");
+  };
+
   const getCarouselItemClass = (index) => {
     // Calculate the position relative to the active index
     const diff = (brawlers.length + (index - activeIndex)) % brawlers.length;
@@ -79,8 +84,8 @@ function HomePage() {
           <button className="brawl-nav-button" onClick={handleMatchPredictionsClick}>
             PREDICT MATCH
           </button>
-          <button className="brawl-nav-button">
-            MATCH PREDICTIONS 2
+          <button className="brawl-nav-button" onClick={gotoMapDetails}>
+            MAP OVERVIEW
           </button>
           <button className="brawl-nav-button" onClick={gotoBrawlerList}>
             ALL BRAWLERS
