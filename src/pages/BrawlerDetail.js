@@ -25,7 +25,7 @@ function BrawlerDetail() {
         const statsData = XLSX.utils.sheet_to_json(statsWorksheet);
         const foundBrawler = statsData.find(b => b.Brawler === name);
 
-        const descResponse = await fetch('/BrawlDescription12.xlsx');
+        const descResponse = await fetch('/BrawlDescription124.xlsx');
         const descArrayBuffer = await descResponse.arrayBuffer();
         const descWorkbook = XLSX.read(descArrayBuffer, { type: 'array' });
         const descWorksheet = descWorkbook.Sheets[descWorkbook.SheetNames[0]];
@@ -33,7 +33,7 @@ function BrawlerDetail() {
         const foundDesc = descData.find(b => b.Brawler === name);
         const found = descData.find(b => b.Brawler === name);
 
-        const statsBrawlResponse = await fetch('/StatisticsBrawl.xlsx');
+        const statsBrawlResponse = await fetch('/StatisticsBrawl1.csv');
         const statsBrawlArrayBuffer = await statsBrawlResponse.arrayBuffer();
         const statsBrawlWorkbook = XLSX.read(statsBrawlArrayBuffer, { type: 'array' });
         const statsBrawlWorksheet = statsBrawlWorkbook.Sheets[statsBrawlWorkbook.SheetNames[0]];
@@ -258,17 +258,17 @@ function BrawlerDetail() {
   }}
   alt={brawler.Brawler}
   style={{
-    width: '300px',
-    height: '300px',
+    width: '200px',
+    height: '200px',
     borderRadius: '20px',
     objectFit: 'cover',
-    marginTop: '60px'
+    marginTop: '20px'
   }}
 />
     {/* Text Section */}
     <div>
-      <h1 style={{ fontSize: '48px', marginTop: '100px' }}>{brawler.Brawler.toUpperCase()}</h1>
-      <p style={{ maxWidth: '700px', lineHeight: '1.6', fontSize: '25px' }}>
+      <h1 style={{ fontSize: '32px', marginTop: '60px' }}>{brawler.Brawler.toUpperCase()}</h1>
+      <p style={{ maxWidth: '400px', lineHeight: '1.6', fontSize: '20px' }}>
         {description}
       </p>
     </div>
@@ -279,7 +279,7 @@ function BrawlerDetail() {
       src={`/Icon/${brawler.Brawler}.png`}
       onError={(e) => { e.target.onerror = null; e.target.src = '/Icon/default.png'; }}
       alt={brawler.Brawler}
-      style={{ width: '250px', height: '400px', borderRadius: '20px', objectFit: 'cover', marginLeft:'220px' }}
+      style={{ width: '200px', height: '350px', borderRadius: '20px', objectFit: 'cover', marginLeft:'20px' }}
     />
   </div>
 
@@ -287,7 +287,7 @@ function BrawlerDetail() {
   <div style={{ marginTop: '30px', display: 'flex', flexDirection: 'column', gap: '40px', marginLeft:'50px'}}>
     {/* Loses Against Most */}
     <div style={{ flex: '1' }}>
-      <h2 style={{ fontSize: '24px', marginBottom: '10px' }}>Lose against most - According to statistics</h2>
+      <h2 style={{ fontSize: '23px', marginBottom: '10px' }}>Lose against most - According to statistics</h2>
       <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '10px' }}>
         {foundDesc.LoseAgainstMost && foundDesc.LoseAgainstMost.split(',').map((opponent, index) => (
           <div key={index} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -295,7 +295,7 @@ function BrawlerDetail() {
               src={`/images1/${opponent.trim()}.png`} 
               onError={(e) => { e.target.onerror = null; e.target.src = '/images1/default.png'; }}
               alt={opponent.trim()}
-              style={{ width: '60px', height: '60px', borderRadius: '10px', objectFit: 'cover' }}
+              style={{ width: '50px', height: '50px', borderRadius: '10px', objectFit: 'cover' }}
             />
             <span style={{ fontSize: '14px', marginTop: '5px' }}>{index + 1}</span>
           </div>
@@ -305,7 +305,7 @@ function BrawlerDetail() {
 
     {/* Wins Against Most */}
     <div style={{ flex: '1', marginTop: '10px' }}>
-      <h2 style={{ fontSize: '24px', marginBottom: '10px' }}>Win against most - According to statistics</h2>
+      <h2 style={{ fontSize: '23px', marginBottom: '10px' }}>Win against most - According to statistics</h2>
       <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '10px' }}>
         {foundDesc.WinAgainstMost && foundDesc.WinAgainstMost.split(',').map((opponent, index) => (
           <div key={index} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -313,7 +313,7 @@ function BrawlerDetail() {
               src={`/images1/${opponent.trim()}.png`} 
               onError={(e) => { e.target.onerror = null; e.target.src = '/images1/default.png'; }}
               alt={opponent.trim()}
-              style={{ width: '60px', height: '60px', borderRadius: '10px', objectFit: 'cover' }}
+              style={{ width: '50px', height: '50px', borderRadius: '10px', objectFit: 'cover' }}
             />
             <span style={{ fontSize: '14px', marginTop: '5px' }}>{index + 1}</span>
           </div>

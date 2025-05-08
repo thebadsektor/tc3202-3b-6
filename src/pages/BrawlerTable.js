@@ -49,6 +49,12 @@ function BrawlerTable() {
   const rowsPerPage = 15;
 
   useEffect(() => {
+    // Add global styles to ensure the body and html can scroll
+    document.body.style.overflow = 'auto';
+    document.documentElement.style.overflow = 'auto';
+    document.body.style.height = 'auto';
+    document.documentElement.style.height = 'auto';
+    
     fetch('/modified_brawler_data.xlsx')
       .then(res => {
         if (!res.ok) throw new Error('Network response was not ok');
@@ -67,6 +73,14 @@ function BrawlerTable() {
         setError('Failed to load brawler data.');
         setLoading(false);
       });
+      
+    // Cleanup function
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      document.body.style.height = '';
+      document.documentElement.style.height = '';
+    };
   }, []);
 
   const handleRowClick = (name) => {
@@ -80,66 +94,76 @@ function BrawlerTable() {
   if (error) return <div style={errorStyle}><h2>{error}</h2></div>;
 
   return (
-    <div style={containerStyle}>
-      <h1 style={{ textAlign: 'center', marginTop: 40, marginBottom: 70, fontSize: 50 }}>Brawler Stats</h1>
+    <div style={outerContainerStyle}>
+      <h1 style={headerStyle}>Brawler Stats</h1>
       
-      <div style={{ overflowX: 'auto', borderRadius: 20 }}>
-        <table style={tableStyle}>
-          <thead>
-            <tr style={theadRowStyle}>
-              <th style={thStyle}>Brawler</th>
-              <th style={thStyle}>Class</th>
-              <th style={thStyle}>Win Rate</th>
-              <th style={thStyle}>Use Rate</th>
-              <th style={thStyle}>Tier</th>
-              <th style={thStyle}>Picks Record</th>
-              <th style={thStyle}>Wins Record</th>
-            </tr>
-          </thead>
-          <tbody>
-            {displayedBrawlers.map((row, i) => (
-              <tr
-                key={i}
-                onClick={() => handleRowClick(row.Brawler)}
-                style={{ ...rowStyle(i), cursor: 'pointer', transition: 'background-color 0.3s' }}
-                onMouseOver={e => e.currentTarget.style.backgroundColor = '#333'}
-                onMouseOut={e => e.currentTarget.style.backgroundColor = i % 2 === 0 ? '#1e1e1e' : '#2a2a2a'}
-              >
-                <td style={brawlerCellStyle}>
-                  <img
-                    src={`/images1/${row.Brawler}.png`}
-                    onError={e => { e.target.onerror = null; e.target.src = '/images1/default.png'; }}
-                    alt={row.Brawler}
-                    style={brawlerImageStyle}
-                  />
-                  {row.Brawler ?? 'Unknown'}
-                </td>
-                <td>
-                  <img
-                    src={getClassImage(row.Class)}
-                    alt={row.Class ?? 'Unknown'}
-                    title={row.Class ?? 'Unknown'}
-                    style={{ width: 50, height: 50, objectFit: 'contain', borderRadius: 8 }}
-                    onError={e => { e.target.onerror = null; e.target.src = '/Class/default.png'; }}
-                  />
-                </td>
-                <td>{formatPercentage(row['Win Rate'])}</td>
-                <td>{formatPercentage(row['Use Rate'])}</td>
-                <td style={{ color: getTierColor(row.Tier), fontWeight: 'bold' }}>{row.Tier ?? 'N/A'}</td>
-                <td>{formatNumber(row['Picks Recorded'])}</td>
-                <td>{formatNumber(row['Wins Recorded'])}</td>
+      <div style={tableContainerStyle}>
+        <div style={tableScrollStyle}>
+          <table style={tableStyle}>
+            <thead>
+              <tr style={theadRowStyle}>
+                <th style={thStyle}>Brawler</th>
+                <th style={thStyle}>Class</th>
+                <th style={thStyle}>Win Rate</th>
+                <th style={thStyle}>Use Rate</th>
+                <th style={thStyle}>Tier</th>
+                <th style={thStyle}>Picks Record</th>
+                <th style={thStyle}>Wins Record</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {displayedBrawlers.map((row, i) => (
+                <tr
+                  key={i}
+                  onClick={() => handleRowClick(row.Brawler)}
+                  style={{ ...rowStyle(i), cursor: 'pointer', transition: 'background-color 0.3s' }}
+                  onMouseOver={e => e.currentTarget.style.backgroundColor = '#333'}
+                  onMouseOut={e => e.currentTarget.style.backgroundColor = i % 2 === 0 ? '#1e1e1e' : '#2a2a2a'}
+                >
+                  <td style={brawlerCellStyle}>
+                    <img
+                      src={`/images1/${row.Brawler}.png`}
+                      onError={e => { e.target.onerror = null; e.target.src = '/images1/default.png'; }}
+                      alt={row.Brawler}
+                      style={brawlerImageStyle}
+                    />
+                    {row.Brawler ?? 'Unknown'}
+                  </td>
+                  <td style={tdStyle}>
+                    <img
+                      src={getClassImage(row.Class)}
+                      alt={row.Class ?? 'Unknown'}
+                      title={row.Class ?? 'Unknown'}
+                      style={{ width: 50, height: 50, objectFit: 'contain', borderRadius: 8 }}
+                      onError={e => { e.target.onerror = null; e.target.src = '/Class/default.png'; }}
+                    />
+                  </td>
+                  <td style={tdStyle}>{formatPercentage(row['Win Rate'])}</td>
+                  <td style={tdStyle}>{formatPercentage(row['Use Rate'])}</td>
+                  <td style={{...tdStyle, color: getTierColor(row.Tier), fontWeight: 'bold'}}>{row.Tier ?? 'N/A'}</td>
+                  <td style={tdStyle}>{formatNumber(row['Picks Recorded'])}</td>
+                  <td style={tdStyle}>{formatNumber(row['Wins Recorded'])}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
-      <div style={{ textAlign: 'center', margin: '30px 0' }}>
-        <button onClick={() => setCurrentPage(p => Math.max(p - 1, 1))} style={paginationButtonStyle}>
+      <div style={paginationContainerStyle}>
+        <button 
+          onClick={() => setCurrentPage(p => Math.max(p - 1, 1))} 
+          style={{...paginationButtonStyle, opacity: currentPage === 1 ? 0.5 : 1}}
+          disabled={currentPage === 1}
+        >
           &#8592; Previous
         </button>
-        <span style={{ fontWeight: 'bold', margin: '0 15px' }}>Page {currentPage}</span>
-        <button onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))} style={paginationButtonStyle}>
+        <span style={{ fontWeight: 'bold', margin: '0 15px' }}>Page {currentPage} of {totalPages}</span>
+        <button 
+          onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))} 
+          style={{...paginationButtonStyle, opacity: currentPage === totalPages ? 0.5 : 1}}
+          disabled={currentPage === totalPages}
+        >
           Next &#8594;
         </button>
       </div>
@@ -148,21 +172,38 @@ function BrawlerTable() {
 }
 
 // --- Styling ---
-
-const containerStyle = {
+const outerContainerStyle = {
   backgroundColor: '#121212',
   color: 'white',
-  minHeight: '100vh',
-  padding: 40
+  width: '100%',
+  position: 'static',
+  padding: '20px',
+  boxSizing: 'border-box'
+};
+
+const headerStyle = {
+  textAlign: 'center',
+  marginTop: 40, 
+  marginBottom: 40, 
+  fontSize: 50
+};
+
+const tableContainerStyle = {
+  width: '100%',
+  marginBottom: 30,
+  borderRadius: 20,
+  boxShadow: '0 0 15px #000'
+};
+
+const tableScrollStyle = {
+  width: '100%',
+  overflowX: 'auto'
 };
 
 const tableStyle = {
   width: '100%',
-  maxWidth: 1600,
-  margin: '0 auto',
-  borderCollapse: 'collapse',
-  borderRadius: 10,
-  boxShadow: '0 0 15px #000'
+  minWidth: '900px',
+  borderCollapse: 'collapse'
 };
 
 const theadRowStyle = {
@@ -179,6 +220,15 @@ const rowStyle = (i) => ({
 const thStyle = {
   padding: 20,
   fontSize: 25,
+  textAlign: 'center',
+  position: 'sticky',
+  top: 0,
+  backgroundColor: '#1f1f1f',
+  zIndex: 1
+};
+
+const tdStyle = {
+  padding: 15,
   textAlign: 'center'
 };
 
@@ -194,6 +244,12 @@ const brawlerImageStyle = {
   height: 60,
   borderRadius: 10,
   objectFit: 'cover'
+};
+
+const paginationContainerStyle = {
+  textAlign: 'center',
+  margin: '30px 0',
+  width: '100%'
 };
 
 const paginationButtonStyle = {

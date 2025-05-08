@@ -116,6 +116,7 @@ const MapDetail = () => {
       </div>
     </div>
   );
+  
 };
 
 export default MapDetail;
