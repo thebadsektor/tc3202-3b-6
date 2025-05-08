@@ -82,7 +82,8 @@ function BrawlerTable() {
   return (
     <div style={containerStyle}>
       <h1 style={{ textAlign: 'center', marginTop: 40, marginBottom: 70, fontSize: 50 }}>Brawler Stats</h1>
-      <div style={{ overflowX: 'auto', textAlign: 'center', borderRadius: 20 }}>
+      
+      <div style={{ overflowX: 'auto', borderRadius: 20 }}>
         <table style={tableStyle}>
           <thead>
             <tr style={theadRowStyle}>
@@ -152,7 +153,6 @@ const containerStyle = {
   backgroundColor: '#121212',
   color: 'white',
   minHeight: '100vh',
-  borderRadius: 10,
   padding: 40
 };
 
