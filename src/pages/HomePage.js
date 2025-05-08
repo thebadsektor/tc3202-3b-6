@@ -1,133 +1,140 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./HomePage.css";
 
 function HomePage() {
   const navigate = useNavigate();
   const username = "Brawler";
-
-  // Enhanced slideshow state
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [previousImageIndex, setPreviousImageIndex] = useState(null);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-
-  const slideImages = [
-    "/images/brawl.jpg",
-    "/images/bakla.jpg",
-    "/images/down syndrome.jpg"
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+  // Sample brawler data for the carousel
+  const brawlers = [
+    { id: 1, name: "Lee Panot", image: "/images/leee.jpg" },
+    { id: 2, name: "James Bayag", image: "/images/james.jpg" },
+    { id: 3, name: "Kinn-antot", image: "/images/kinn.jpg" },
+    { id: 4, name: "Batusay", image: "/images/eyyy.jpg" },
+    { id: 5, name: "Ed Primo", image: "/images/edd.jpg" },
+    { id: 6, name: "No ones Property", image: "/images/Argie.jpg" },
+    { id: 7, name: "Predator", image: "/images/karlito.jpg" },
   ];
-
-  const slideCaptions = [
-    "Exciting Brawl Stars Battle Arena",
-    "Epic Team Battles in Brawl Stars",
-    "Strategic Gameplay in Action"
-  ];
-
-  // Enhanced slideshow effect with transitions
   useEffect(() => {
-    const transitionImage = () => {
-      setPreviousImageIndex(currentImageIndex);
-      setIsTransitioning(true);
-
-      setCurrentImageIndex((prevIndex) =>
-        prevIndex === slideImages.length - 1 ? 0 : prevIndex + 1
-      );
-
-      // Reset transition state after animation completes
-      setTimeout(() => {
-        setIsTransitioning(false);
-      }, 1000);
+    // Auto-rotate the carousel
+    const interval = setInterval(() => {
+      setActiveIndex((prevIndex) => (prevIndex + 1) % brawlers.length);
+    }, 3000);
+    // Set animation delay for initial page load
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 300);
+    // Enable scrolling on body
+    document.body.style.overflow = "auto";
+    document.body.style.height = "auto";
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timer);
     };
-
-    const intervalId = setInterval(transitionImage, 5000);
-
-    return () => clearInterval(intervalId);
-  }, [currentImageIndex, slideImages.length]);
-
+  }, [brawlers.length]);
+  const handleCarouselNav = (index) => {
+    setActiveIndex(index);
+  };
   const handleMatchPredictionsClick = () => {
     navigate("/team-composition");
   };
-
   const gotoBrawlerList = () => {
     navigate("/brawler");
   };
-
+  const getCarouselItemClass = (index) => {
+    // Calculate the position relative to the active index
+    const diff = (brawlers.length + (index - activeIndex)) % brawlers.length;
+    // Assign classes based on position
+    if (diff === 0) return "carousel-item active";
+    if (diff === 1) return "carousel-item next";
+    if (diff === 2) return "carousel-item far-next";
+    if (diff === brawlers.length - 1) return "carousel-item prev";
+    if (diff === brawlers.length - 2) return "carousel-item far-prev";
+    return "carousel-item hidden";
+  };
   return (
-    <div className="brawl-home-container">
+    <div className={`brawl-home-container ${isLoaded ? 'loaded' : ''}`}>
+      {/* Stars background */}
+      <div className="stars-container">
+        {[...Array(20)].map((_, i) => (
+          <div 
+            key={i} 
+            className="star" 
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`
+            }}
+          />
+        ))}
+      </div>
+      {/* Header */}
       <div className="brawl-header">
-        <div className="brawl-logo-container">
-          <div className="brawl-logo-small">
-            <div className="brawl-skull-small"></div>
-          </div>
-          <div className="brawl-nav-buttons">
-            <button className="brawl-nav-button" onClick={handleMatchPredictionsClick}>
-              MATCH PREDICTIONS
-            </button>
-            <button className="brawl-nav-button">
-              MATCH PREDICTIONS 2
-            </button>
-            <button className="brawl-nav-button" onClick={gotoBrawlerList}>
-              PLAYER STATS
-            </button>
-          </div>
+        <div className="brawl-logo">
+          <div className="logo-text">Smart Brawl</div>
         </div>
-        <div className="brawl-user-info">
-          <div className="brawl-avatar">
-            <div className="brawl-avatar-inner"></div>
-          </div>
-          <span className="brawl-username">{username}</span>
+        <div className="brawl-nav-buttons">
+          <button className="brawl-nav-button" onClick={handleMatchPredictionsClick}>
+            PREDICT MATCH
+          </button>
+          <button className="brawl-nav-button">
+            MATCH PREDICTIONS 2
+          </button>
+          <button className="brawl-nav-button" onClick={gotoBrawlerList}>
+            ALL BRAWLERS
+          </button>
         </div>
       </div>
-
-      <div>
-        <h1>Welcome to Brawl Stars App</h1>
-        <button onClick={() => navigate("/lumina")}>Talk to AI Assistant</button>
+      {/* AI Assistant button with floating animation */}
+      <div className="ai-assistant-container">
+        <button 
+          className="ai-assistant-button" 
+          onClick={() => navigate("/lumina")}
+        >
+          <span className="ai-icon">./.</span>
+          <span>Lumina ni ed</span>
+        </button>
       </div>
-
-    
+      {/* Welcome banner with improved animation */}
       <div className="brawl-welcome-banner">
-        <h2>
+        <h2 className="welcome-title">
           WELCOME, <span className="brawl-highlight">{username.toUpperCase()}</span>!
         </h2>
-        <p>Ready to predict your next Brawl Stars victory?</p>
+        <p className="welcome-subtitle">Ready to predict your next Brawl Stars victory?</p>
       </div>
-
-      <div className="brawl-gameplay-showcase">
-        <h3>FEATURED GAMEPLAY</h3>
-        <div className="brawl-slideshow-container">
-          {/* Current Image */}
-          <div className={`brawl-gameplay-image ${isTransitioning ? "fade-in" : "active"}`}>
-            <img
-              src={slideImages[currentImageIndex]}
-              alt={`Brawl Stars Gameplay ${currentImageIndex + 1}`}
-            />
-            <div className="brawl-gameplay-caption">
-              {slideCaptions[currentImageIndex]}
-            </div>
-          </div>
-
-          {/* Previous Image (for transition effect) */}
-          {isTransitioning && previousImageIndex !== null && (
-            <div className="brawl-gameplay-image fade-out">
-              <img
-                src={slideImages[previousImageIndex]}
-                alt={`Brawl Stars Gameplay ${previousImageIndex + 1}`}
-              />
-              <div className="brawl-gameplay-caption">
-                {slideCaptions[previousImageIndex]}
+      {/* 3D Carousel */}
+      <div className="carousel-container">
+        <h3 className="carousel-title">FEATURED BRAWLERS</h3>
+        <div className="carousel-wrapper">
+          <div className="carousel">
+            {brawlers.map((brawler, index) => (
+              <div 
+                key={brawler.id} 
+                className={getCarouselItemClass(index)}
+                onClick={() => handleCarouselNav(index)}
+              >
+                <div className="carousel-card">
+                  <img src={brawler.image} alt={brawler.name} />
+                  <div className="carousel-card-content">
+                    <h4>{brawler.name}</h4>
+                   
+                  </div>
+                </div>
               </div>
-            </div>
-          )}
-
-          {/* Slideshow indicators */}
-          <div className="brawl-slideshow-indicators">
-            {slideImages.map((_, index) => (
-              <div
-                key={index}
-                className={`brawl-indicator ${index === currentImageIndex ? "active" : ""}`}
-              />
             ))}
           </div>
+        </div>
+        {/* Carousel navigation dots */}
+        <div className="carousel-dots">
+          {brawlers.map((_, index) => (
+            <span 
+              key={index} 
+              className={`carousel-dot ${index === activeIndex ? 'active' : ''}`}
+              onClick={() => handleCarouselNav(index)}
+            />
+          ))}
         </div>
       </div>
     </div>

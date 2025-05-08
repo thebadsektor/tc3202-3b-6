@@ -1,11 +1,9 @@
 /* Enhanced Fullscreen Background Container */
-
 .brawl-login-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(135deg, #1a1b41, #232659);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     position: relative;
     overflow: hidden;
@@ -15,9 +13,7 @@
     --accent-blue: #3A93D1;
 }
 
-
 /* Logo and Website Name Container */
-
 .brawl-logo-container {
     position: absolute;
     top: 20px;
@@ -62,32 +58,37 @@
 
 
 /* Animated Background Elements */
-
 .brawl-background {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 10;
     height: 100%;
     width: 100%;
-    background: url('/public/images/Downstarsbg.png');
+    background: url('/public/images/donw2.png');
     background-size: cover;
     background-position: center;
-    filter: brightness(0.5) saturate(1.3);
     z-index: -1;
     animation: backgroundPulse 15s infinite alternate;
+    overflow: hidden;
 }
 
 @keyframes backgroundPulse {
     0% {
-        filter: brightness(0.5) saturate(1.3) hue-rotate(0deg);
+        filter: brightness(0.9) saturate(1.1) hue-rotate(0deg);
         transform: scale(1);
     }
+    25% {
+        filter: brightness(0.9) saturate(1.1) hue-rotate(2deg);
+    }
     50% {
-        filter: brightness(0.6) saturate(1.5) hue-rotate(5deg);
+        filter: brightness(0.9) saturate(1.2) hue-rotate(5deg);
         transform: scale(1.03);
     }
+    75% {
+        filter: brightness(0.9) saturate(1.2) hue-rotate(2deg);
+    }
     100% {
-        filter: brightness(0.5) saturate(1.3) hue-rotate(0deg);
+        filter: brightness(0.9) saturate(1.2) hue-rotate(0deg);
         transform: scale(1);
     }
 }
@@ -103,85 +104,289 @@
     height: 100%;
     z-index: 0;
     pointer-events: none;
+    overflow: hidden;
 }
 
 .particle {
     position: absolute;
     border-radius: 50%;
     opacity: 0;
+    transform-origin: center;
+    will-change: transform, opacity;
 }
+
 
 
 /* Different particle types with game themed colors */
 
-.particle:nth-child(3n) {
+.particle:nth-child(5n) {
     background: radial-gradient(circle, rgba(58, 147, 209, 0.9) 0%, rgba(58, 147, 209, 0) 70%);
-    box-shadow: 0 0 10px rgba(58, 147, 209, 0.5);
+    box-shadow: 0 0 15px rgba(58, 147, 209, 0.7), 0 0 25px rgba(58, 147, 209, 0.4);
+    filter: blur(0.5px);
 }
 
-.particle:nth-child(3n+1) {
+.particle:nth-child(5n+1) {
     background: radial-gradient(circle, rgba(245, 115, 40, 0.9) 0%, rgba(245, 115, 40, 0) 70%);
-    box-shadow: 0 0 10px rgba(245, 115, 40, 0.5);
+    box-shadow: 0 0 15px rgba(245, 115, 40, 0.7), 0 0 25px rgba(245, 115, 40, 0.4);
+    filter: blur(0.5px);
 }
 
-.particle:nth-child(3n+2) {
+.particle:nth-child(5n+2) {
     background: radial-gradient(circle, rgba(252, 191, 41, 0.9) 0%, rgba(252, 191, 41, 0) 70%);
-    box-shadow: 0 0 10px rgba(252, 191, 41, 0.5);
+    box-shadow: 0 0 15px rgba(252, 191, 41, 0.7), 0 0 25px rgba(252, 191, 41, 0.4);
+    filter: blur(0.5px);
 }
+
+.particle:nth-child(5n+3) {
+    background: radial-gradient(circle, rgba(120, 203, 106, 0.9) 0%, rgba(120, 203, 106, 0) 70%);
+    box-shadow: 0 0 15px rgba(120, 203, 106, 0.7), 0 0 25px rgba(120, 203, 106, 0.4);
+    filter: blur(0.5px);
+}
+
+.particle:nth-child(5n+4) {
+    background: radial-gradient(circle, rgba(194, 93, 227, 0.9) 0%, rgba(194, 93, 227, 0) 70%);
+    box-shadow: 0 0 15px rgba(194, 93, 227, 0.7), 0 0 25px rgba(194, 93, 227, 0.4);
+    filter: blur(0.5px);
+}
+
 
 
 /* Generate 20 random particles with animations */
 
 @keyframes floatUp {
     0% {
-        transform: translateY(100vh) scale(0);
+        transform: translate(0, 100vh) scale(0) rotate(0deg);
         opacity: 0;
     }
-    10% {
+    5% {
         opacity: var(--particle-opacity);
+    }
+    25% {
+        transform: translate(calc(var(--drift-x) * 0.3), calc(100vh - 25vh)) scale(0.7) rotate(calc(var(--rotation) * 0.3));
+    }
+    50% {
+        transform: translate(calc(var(--drift-x) * 0.6), calc(100vh - 50vh)) scale(0.9) rotate(calc(var(--rotation) * 0.6));
+    }
+    75% {
+        transform: translate(calc(var(--drift-x) * 0.9), calc(100vh - 75vh)) scale(1) rotate(calc(var(--rotation) * 0.9));
     }
     90% {
         opacity: var(--particle-opacity);
     }
     100% {
-        transform: translateY(-100px) scale(1);
+        transform: translate(var(--drift-x), -50px) scale(0.8) rotate(var(--rotation));
         opacity: 0;
     }
 }
 
+/* Enhanced Star Twinkle Effect */
 
-/* Enhanced form wrapper with gamecard style glassmorphism */
+.star-decoration {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+    will-change: transform, opacity;
+}
 
+/* Different types of stars with varying shapes and colors */
+.star-decoration:nth-child(4n) {
+    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8),
+                0 0 20px 4px rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.star-decoration:nth-child(4n+1) {
+    box-shadow: 0 0 8px 2px rgba(135, 206, 250, 0.8),
+                0 0 16px 4px rgba(135, 206, 250, 0.4);
+    background-color: rgba(135, 206, 250, 0.9);
+}
+
+.star-decoration:nth-child(4n+2) {
+    box-shadow: 0 0 8px 2px rgba(255, 215, 0, 0.8),
+                0 0 16px 4px rgba(255, 215, 0, 0.4);
+    background-color: rgba(255, 215, 0, 0.9);
+}
+
+.star-decoration:nth-child(4n+3) {
+    box-shadow: 0 0 8px 2px rgba(255, 182, 193, 0.8),
+                0 0 16px 4px rgba(255, 182, 193, 0.4);
+    background-color: rgba(255, 182, 193, 0.9);
+}
+
+/* Enhanced twinkling animations with multiple variations */
+
+@keyframes twinkle {
+    0% {
+        transform: scale(0.4);
+        opacity: 0.2;
+    }
+    25% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(0.8);
+        opacity: 0.6;
+    }
+    75% {
+        transform: scale(1.1);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(0.4);
+        opacity: 0.2;
+    }
+}
+
+@keyframes twinkleAlt {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(0.5);
+        opacity: 0.2;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+}
+
+@keyframes twinklePulse {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.6;
+        box-shadow: 0 0 5px 1px currentColor;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+        box-shadow: 0 0 15px 3px currentColor, 0 0 30px 5px currentColor;
+    }
+    100% {
+        transform: scale(0.8);
+        opacity: 0.6;
+        box-shadow: 0 0 5px 1px currentColor;
+    }
+}
+
+/* Shooting star effect */
+.shooting-star {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, #FFFA8D50, rgba(255,255,255,0) 100%);
+    animation: shootingStar 4s linear infinite;
+    opacity: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+@keyframes shootingStar {
+    0% {
+        opacity: 0;
+        transform: translate(0, 0) rotate(var(--angle));
+        width: 0;
+    }
+    1% {
+        opacity: 1;
+        width: var(--length);
+    }
+    10% {
+        opacity: 1;
+        transform: translate(calc(var(--distance) * 0.1), calc(var(--distance) * 0.1 * var(--rise-factor))) rotate(var(--angle));
+    }
+    20% {
+        opacity: 1;
+        transform: translate(calc(var(--distance) * 0.2), calc(var(--distance) * 0.2 * var(--rise-factor))) rotate(var(--angle));
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--distance), calc(var(--distance) * var(--rise-factor))) rotate(var(--angle));
+        width: 0;
+    }
+}
+
+/* Glow effect for active elements */
+.brawl-login-button, .brawl-login-title {
+    position: relative;
+    z-index: 2;
+}
+
+.brawl-login-button {
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(58, 147, 209, 0.3), 0 0 20px rgba(58, 147, 209, 0.2);
+}
+
+.brawl-login-button:hover {
+    box-shadow: 0 0 15px rgba(58, 147, 209, 0.7), 0 0 30px rgba(58, 147, 209, 0.4);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    transform: scale(1.03);
+}
+
+.brawl-login-button:active, .button-pressed {
+    transform: scale(0.97);
+    box-shadow: 0 0 30px rgba(58, 147, 209, 1), 0 0 50px rgba(58, 147, 209, 0.6);
+}
+
+/* Additional glow effects for text elements */
+.brawl-login-title {
+    text-shadow: 0 0 10px rgba(58, 147, 209, 0.7), 0 0 20px rgba(58, 147, 209, 0.4);
+    animation: titleGlow 5s infinite alternate;
+}
+
+@keyframes titleGlow {
+    0% {
+        text-shadow: 0 0 10px rgba(58, 147, 209, 0.7), 0 0 20px rgba(58, 147, 209, 0.4);
+    }
+    50% {
+        text-shadow: 0 0 15px rgba(245, 115, 40, 0.7), 0 0 25px rgba(245, 115, 40, 0.4);
+    }
+    100% {
+        text-shadow: 0 0 10px rgba(58, 147, 209, 0.7), 0 0 20px rgba(58, 147, 209, 0.4);
+    }
+}
+
+/* container of title, tagline and button */
 .brawl-form-wrapper {
-    margin-right: 300px;
-    background: rgba(25, 35, 80, 0.7);
+    margin-right: 670px;
+    background: linear-gradient(to right, rgba(30, 47, 65, 0.5), rgba(20, 30, 60, 0) 100%);
     padding: 40px 30px;
-    border-radius: 20px;
-    backdrop-filter: blur(1px);
+    border-radius: 8px 0 0 12px; 
     text-align: center;
-    max-width: 2000px;
+    max-width: 1000px;
     width: 3000px;
-    /* Ensure it takes full width up to max-width */
     position: relative;
     z-index: 2;
     margin-left: 250px;
     transform: translateZ(0);
     animation: cardAppear 1s ease-out forwards;
-    border: 1px solid rgba(58, 147, 209, 0.3);
+    border: none;
+    box-shadow: none;
     overflow: hidden;
 }
 
-
-/* Animated gradient border effect with game style colors */
-
+/* extremely intensified blur effect */
 .brawl-form-wrapper::before {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    backdrop-filter: blur(5px); 
+    border-radius: 12px 0 0 12px;
     z-index: -1;
+    pointer-events: none;
+    mask-image: linear-gradient(to right, 
+                 rgba(0, 0, 0, 1) 60%, 
+                 rgba(0, 0, 0, 0) 90%);
+    -webkit-mask-image: linear-gradient(to right, 
+                        rgba(0, 0, 0, 1) 60%, 
+                        rgba(0, 0, 0, 0) 90%);
 }
 
 @keyframes borderRotate {
@@ -203,24 +408,16 @@
         transform: translateY(0);
     }
 }
-
-
 /* Container inside the form wrapper */
-
 .brawl-form-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    /* Change from center to flex-start to align content left */
     width: 2000px;
-    /* Ensure it takes full width */
     position: relative;
     z-index: 3;
 }
-
-
-/* Main title with gaming style glow effect - expanded for full display */
-
+/* Main title with premium gaming-style effects */
 .brawl-login-title {
     color: #EEF1FF;
     text-align: start;
@@ -242,140 +439,138 @@
     text-overflow: unset;
     /* don't show ellipsis */
 }
-
 .brawl-login-title::after {
     content: '';
     position: absolute;
     bottom: -8px;
-    left: 20%;
-    /* Change from 50% to align with text-align: start */
-    transform: translateX(0);
-    /* Remove translateX(-50%) to align with left position */
+    left: 0;
     width: 80px;
-    height: 3px;
+    height: 4px;
     background: linear-gradient(to right, var(--accent-orange), var(--accent-yellow));
-    border-radius: 3px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(157, 101, 201, 0.7);
     animation: lineWidth 3s infinite alternate;
 }
-
 @keyframes titlePulse {
     0% {
         text-shadow: 0 0 10px rgba(58, 147, 209, 0.6);
-    }
+    }   
     50% {
         text-shadow: 0 0 15px rgba(58, 147, 209, 0.8), 0 0 25px rgba(58, 147, 209, 0.5);
     }
     100% {
-        text-shadow: 0 0 20px rgba(58, 147, 209, 0.9), 0 0 30px rgba(58, 147, 209, 0.6);
+        text-shadow: 0 0 20px rgba(58, 147, 209, 0.9), 0 0 30px rgba(58, 147, 209, 0.6), 0 0 50px rgba(58, 147, 209, 0.3);
     }
 }
-
 @keyframes lineWidth {
     0% {
-        width: 40px;
+        width: 10px;
         opacity: 0.7;
+        transform: translateX(0);
     }
     100% {
-        width: 120px;
+        width: 382px;
         opacity: 1;
+        transform: translateX(10px);
     }
 }
-
-
 /* Taglines with staggered animation - fixed for full display */
-
 .tagline-container {
     margin-bottom: 30px;
     width: 100%;
-    /* Take full width of parent */
-    max-width: 340px;
-    /* Increase from 300px */
+    max-width: 370px;
     opacity: 0;
     animation: fadeInUp 0.5s forwards 0.5s;
 }
-
 .brawl-tagline {
-    color: #F5F5F5;
+    color: #d9e6ff;
+    text-shadow: 0 0 20px rgba(58, 147, 209, 0.2);
     text-align: start;
-    font-weight: 200;
+    font-weight: 600;
     font-size: 19px;
     line-height: 1.5;
-    margin-bottom: 10px;
-    width: 800px;
-    /* Full width */
+    margin-bottom: 5px;
+    margin-top: 10px;
+    width: 930px;
     min-height: calc(1.5em * 2);
-    /* For two lines */
-    /* Fix line clamping */
     display: -webkit-box;
     -line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     white-space: normal;
 }
-
 @keyframes fadeInUp {
     0% {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(15px);
     }
     100% {
         opacity: 1;
         transform: translateY(0);
     }
 }
-
-
 /* Enhanced Get Started button with neon effect */
-
 .brawl-login-button {
-    background: linear-gradient(45deg, var(--accent-yellow), var(--accent-yellow));
+    background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
     color: white;
     padding: 16px 38px;
     font-size: 18px;
     font-weight: bold;
     border: none;
-    border-radius: 30px;
+    border-radius: 12px;
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(255, 82, 82, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    box-shadow: 0 6px 18px rgba(245, 115, 40, 0.3),
+    0 0 0 2px rgba(245, 115, 40, 0.2);
     opacity: 0;
-    animation: fadeInUp 0.5s forwards 1s;
+    animation: fadeInUp 0.8s forwards 1s;
     letter-spacing: 0.5px;
     text-transform: uppercase;
     z-index: 1;
+    margin-top: 2px;
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
-
+/* Button glow effect */
 .brawl-login-button::before {
     content: '';
     position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, var(--accent-orange), #ff7752, var(--accent-orange));
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
     z-index: -1;
-    filter: blur(10px);
+    filter: blur(5px);
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.4s ease;
+    border-radius: 16px;
 }
-
+/* Button shine effect */
 .brawl-login-button::after {
     content: '';
     position: absolute;
     top: 0;
     left: -100%;
-    width: 100%;
+    width: 70%;
     height: 100%;
-    background: linear-gradient( to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
     transform: skewX(-25deg);
-    transition: all 0.75s ease;
+    transition: all 1.0s ease;
 }
 
 .brawl-login-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255, 82, 82, 0.5);
+    transform: translateY(-5px) scale(1.03) rotateX(10deg);
+    box-shadow: 0 10px 25px rgba(245, 115, 40, 0.5),
+                0 0 0 2px rgba(245, 115, 40, 0.4);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
 .brawl-login-button:hover::before {
@@ -384,64 +579,69 @@
 
 .brawl-login-button:hover::after {
     left: 100%;
+    transition: all 0.75s ease;
 }
-
 
 /* Button active state */
-
 .brawl-login-button:active {
-    transform: translateY(1px);
-    box-shadow: 0 2px 15px rgba(255, 82, 82, 0.4);
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 3px 10px rgba(245, 115, 40, 0.3);
 }
 
-
-/* Enhanced button press animation */
-
+/* Enhanced Button Press Animation */
 .button-pressed {
-    animation: enhancedButtonPress 0.6s ease forwards;
-}
+    animation: enhancedButtonPress 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    transform-origin: center;
+  }
 
+  
 @keyframes enhancedButtonPress {
     0% {
         transform: scale(1);
         opacity: 1;
-        box-shadow: 0 5px 15px rgba(255, 82, 82, 0.4);
+        box-shadow: 0 6px 18px rgba(245, 115, 40, 0.3);
     }
-    40% {
-        transform: scale(0.85);
-        opacity: 0.8;
-        box-shadow: 0 0 5px rgba(255, 82, 82, 0.2);
+    30% {
+        transform: scale(1.1);
+        opacity: 1;
+        box-shadow: 0 15px 30px rgba(245, 115, 40, 0.5), 0 0 30px rgba(245, 115, 40, 0.3);
     }
     100% {
         transform: scale(0);
         opacity: 0;
-        box-shadow: 0 0 0 rgba(255, 82, 82, 0);
+        box-shadow: 0 0 100px rgba(245, 115, 40, 0.7), 0 0 150px rgba(245, 115, 40, 0.5);
     }
 }
 
-
-/* Enhanced fade-out animation on whole page */
-
+/* Page transition effect */
 .fade-out {
-    animation: enhancedFadeOut 0.8s forwards;
+    animation: fadeOut 0.8s ease forwards;
 }
 
-@keyframes enhancedFadeOut {
+@keyframes fadeOut {
     0% {
         opacity: 1;
-        filter: brightness(1) saturate(1);
     }
     100% {
         opacity: 0;
-        filter: brightness(3) saturate(0);
     }
 }
 
-
-/* Enhanced slide-and-fade-in animation */
-
 .page-enter {
-    animation: enhancedSlideFadeIn 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    animation: pageEnter 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes pageEnter {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+        filter: brightness(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: brightness(1);
+    }
 }
 
 @keyframes enhancedSlideFadeIn {
@@ -457,31 +657,48 @@
     }
 }
 
-
-/* Reset basic styles */
+/* this is the BG when returning and reloading the page */
 
 html,
 body {
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    overflow:hidden;
     height: 100%;
     background: #191d36;
 }
 
 
-/* Enhanced Decorative game elements */
+/* this is the Box element on BG */
 
+/* Enhanced box decorations to complement the game's vibrant aesthetic */
+
+/* Base decoration styling with improved animation */
 .brawl-decoration {
     position: absolute;
     z-index: 1;
-    filter: drop-shadow(0 0 8px rgba(255, 82, 82, 0.4));
-    animation: float 6s infinite ease-in-out;
-    opacity: 0.35;
+    animation: float 8s infinite ease-in-out;
+    opacity: 0.70;
+    pointer-events: none;
+    filter: drop-shadow(0 0 8px rgba(255, 82, 82, 0.4)) blur(5px); /* Added blur here */
+    transition: all 0.5s ease;
 }
 
+/* Common floating animation with subtle rotation */
+@keyframes float {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(var(--float-rotation, 3deg)); }
+    100% { transform: translateY(0) rotate(0deg); }
+}
 
-/* Enhanced Game character silhouettes with improved visual effects */
+/* Pulse glow effect for all decorations */
+@keyframes pulse-glow {
+    0% { filter: brightness(1) drop-shadow(0 0 8px var(--glow-color, rgba(255, 255, 255, 0.6))); }
+    50% { filter: brightness(1.3) drop-shadow(0 0 15px var(--glow-color, rgba(255, 255, 255, 0.8))); }
+    100% { filter: brightness(1) drop-shadow(0 0 8px var(--glow-color, rgba(255, 255, 255, 0.6))); }
+}
+
+/* this is where yu customize the Box element */
 
 .deco-1 {
     top: 15%;
@@ -491,105 +708,122 @@ body {
     background: url('/public/images/Downstarsbg.png') no-repeat;
     background-size: 400px;
     background-position: -280px -150px;
-    filter: brightness(0) invert(0.8) drop-shadow(0 0 12px var(--accent-orange));
-    mask-image: linear-gradient(45deg, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+    filter: brightness(0) invert(0.8) blur(1px) drop-shadow(0 0 12px var(--accent-orange));
+    mask-image: linear-gradient(45deg,  #FFFA8D(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
 }
 
 .deco-2 {
-    bottom: 10%;
-    right: 20%;
+    bottom: 100%;
+    right: 100%;
     width: 170px;
     height: 170px;
     background: url('/public/images/Downstarsbg.png') no-repeat;
     background-size: 600px;
-    background-position: -420px -350px;
-    filter: brightness(0) invert(0.8) drop-shadow(0 0 15px var(--accent-blue));
-    mask-image: linear-gradient(-45deg, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
+    background-position: -20px -350px;
+    filter: brightness(0) invert(0.8) blur(1px) drop-shadow(0 0 15px var(--accent-blue));
+    mask-image: linear-gradient(-45deg,  #FFFA8D(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
 }
 
 .deco-3 {
     top: 25%;
     left: 10%;
-    width: 120px;
+    width: 140px;
     height: 120px;
     background: url('/public/images/Downstarsbg.png') no-repeat;
     background-size: 500px;
     background-position: -200px -200px;
-    filter: brightness(0) invert(0.8) drop-shadow(0 0 12px var(--accent-yellow));
-    mask-image: linear-gradient(135deg, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
+    filter: brightness(0) invert(0.8) blur(1px) drop-shadow(0 0 12px var(--accent-yellow));
+    mask-image: linear-gradient(135deg,  #FFFA8D(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
 }
-
-
-/* Additional character silhouettes */
 
 .deco-4 {
     bottom: 20%;
     left: 15%;
-    width: 130px;
+    width: 160px;
     height: 130px;
-    transform: rotate(-12deg);
-    animation-delay: 3s;
     background: url('/public/images/Downstarsbg.png') no-repeat;
     background-size: 600px;
-    background-position: -100px -250px;
-    filter: brightness(0) invert(0.8) drop-shadow(0 0 12px var(--accent-orange));
-    mask-image: linear-gradient(225deg, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
+    background-position: -500px -250px;
+    filter: brightness(0) invert(0.8) blur(1px) drop-shadow(0 0 12px var(--accent-orange));
+    mask-image: linear-gradient(225deg,  #FFFA8D(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
 }
 
 .deco-5 {
     top: 40%;
     right: 8%;
-    width: 110px;
-    height: 110px;
-    transform: rotate(10deg);
-    animation-delay: 2.5s;
+    width: 95px;
+    height: 100px;
     background: url('/public/images/Downstarsbg.png') no-repeat;
     background-size: 450px;
     background-position: -150px -180px;
-    filter: brightness(0) invert(0.8) drop-shadow(0 0 12px var(--accent-blue));
-    mask-image: linear-gradient(-135deg, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
+    filter: brightness(0) invert(0.8) blur(1px) drop-shadow(0 0 12px var(--accent-blue));
+    mask-image: linear-gradient(-135deg, #FFFA8D(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
 }
 
+/* Fallback styles if the image assets aren't available */
+.deco-1.fallback {
+    background: radial-gradient(circle, #FFD700 0%, rgba(255, 215, 0, 0.2) 70%);
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
 
-/* Star decorations */
+.deco-2.fallback {
+    background: radial-gradient(circle, #3A93D1 0%, rgba(58, 147, 209, 0.2) 70%);
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
 
-.star-decoration {
-    position: absolute;
-    background: radial-gradient(circle at center, rgba(252, 191, 41, 0.9) 0%, rgba(252, 191, 41, 0.1) 70%);
-    width: 26px;
-    height: 26px;
+.deco-3.fallback {
+    background: radial-gradient(circle, #FCBF29 0%, rgba(252, 191, 41,.2) 70%);
     border-radius: 50%;
-    z-index: 1;
-    opacity: 0;
-    animation: twinkle 4s infinite ease-in-out;
 }
 
-@keyframes twinkle {
-    0%,
-    100% {
-        opacity: 2;
-        transform: scale(0.5);
-    }
-    50% {
-        opacity: 0.8;
-        transform: scale(1.5);
-    }
+.deco-4.fallback {
+    background: radial-gradient(circle, #F57328 0%, rgba(245, 115, 40, 0.2) 70%);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    border-radius: 10px;
 }
 
-@keyframes float {
-    0% {
-        transform: translateY(0) rotate(var(--rotate, 0deg));
-    }
-    50% {
-        transform: translateY(-15px) rotate(var(--rotate, 0deg));
-    }
-    100% {
-        transform: translateY(0) rotate(var(--rotate, 0deg));
-    }
+.deco-5.fallback {
+    background: radial-gradient(circle, #FFDF00 0%, rgba(255, 223, 0, 0.2) 70%);
+    clip-path: polygon(25% 0%, 75% 0%, 75% 50%, 100% 50%, 50% 100%, 0% 50%, 25% 50%);
+}
+
+/* Additional sparkle effects around decorations */
+.brawl-decoration::before,
+.brawl-decoration::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+    animation: sparkle 3s infinite ease-in-out;
+}
+
+.brawl-decoration::before {
+    top: -5px;
+    right: 10px;
+    animation-delay: 0.5s;
+}
+
+.brawl-decoration::after {
+    bottom: 5px;
+    left: 0;
+    animation-delay: 1s;
+}
+
+@keyframes sparkle {
+    0%, 100% { transform: scale(0.5); opacity: 0.3; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+/* Hover effects for interactive feel */
+.brawl-decoration:hover {
+    transform: scale(1.1);
+    filter: brightness(1.3) drop-shadow(0 0 15px var(--glow-color, rgba(255, 255, 255, 0.8)));
 }
 
 
-/* Responsive styles */
+/* movement effect of the element */
 
 @media (max-width: 992px) {
     .brawl-form-wrapper {

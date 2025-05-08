@@ -1,6 +1,5 @@
-/* HomePage.css - Improved version */
+/* HomePage.css - Enhanced with animations */
 @import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Rubik:wght@400;500;700&display=swap');
-
 :root {
   /* Color variables */
   --primary-dark: #191d36;
@@ -11,7 +10,6 @@
   --text-muted: #b8bbcb;
   --danger: #f14668;
   --danger-dark: #991530;
-  
   /* Spacing variables */
   --space-xs: 5px;
   --space-sm: 10px;
@@ -19,50 +17,101 @@
   --space-lg: 20px;
   --space-xl: 25px;
   --space-xxl: 40px;
-  
   /* Border radius variables */
   --radius-sm: 5px;
   --radius-md: 8px;
   --radius-lg: 12px;
   --radius-full: 50%;
-  
   /* Animation variables */
   --transition-fast: 0.2s ease;
   --transition-medium: 0.3s ease;
 }
-
 /* Reset and base styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   font-family: 'Rubik', Arial, sans-serif;
   line-height: 1.5;
+  background-color: var(--primary-dark);
 }
-
-h1, h2, h3, h4, h5, h6, .brawl-title, .brawl-username, .brawl-button {
+h1, h2, h3, h4, h5, h6, .brawl-title, .brawl-username, .brawl-button, .logo-text {
   font-family: 'Lilita One', cursive, Arial, sans-serif;
 }
-
 button {
   cursor: pointer;
 }
-
+/* Fix for scrolling */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
 .brawl-home-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  background: url(/public/images/BGdown.jpg)no-repeat;
+  background-size: contain;
   color: var(--text-light);
   padding-bottom: var(--space-xxl);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
-
-/* Header styles - improved */
+.brawl-home-container:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+  z-index: 1;
+}
+/* Make sure content is positioned above the overlay */
+.brawl-home-container > * {
+  position: relative;
+  z-index: 2;
+}
+.brawl-home-container.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Stars background animation */
+.stars-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.star {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: twinkle 5s infinite alternate;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 0.8; transform: scale(1.2); }
+}
+/* Header styles */
 .brawl-header {
   background-color: var(--primary-dark);
   padding: var(--space-md) var(--space-lg);
   display: flex;
+  height: 80px;
   justify-content: space-between;
   align-items: center;
   border-bottom: 3px solid var(--accent-orange);
@@ -72,56 +121,20 @@ button {
   z-index: 100;
 }
 
-.brawl-logo-container {
+.brawl-logo {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
 }
 
-.brawl-logo-small {
-  width: 40px;
-  height: 40px;
-  background-color: var(--accent-yellow);
-  border-radius: var(--radius-full);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid #222;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  transition: transform var(--transition-fast);
-}
-
-.brawl-logo-small:hover {
-  transform: rotate(15deg);
-}
-
-.brawl-skull-small {
-  width: 25px;
-  height: 25px;
-  background-color: #222;
-  border-radius: 50% 50% 40% 40%;
+.logo-text {
+  font-size: 22px;
+  font-weight: bold;
+  color: var(--accent-yellow);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   position: relative;
+  animation: logoGlow 3s infinite alternate;
 }
-
-.brawl-skull-small:before, .brawl-skull-small:after {
-  content: '';
-  position: absolute;
-  width: 7px;
-  height: 7px;
-  background-color: var(--accent-yellow);
-  border-radius: var(--radius-full);
-  top: 8px;
-}
-
-.brawl-skull-small:before {
-  left: 5px;
-}
-
-.brawl-skull-small:after {
-  right: 5px;
-}
-
-/* Navigation buttons in header - NEW */
+/* Navigation buttons in header */
 .brawl-nav-buttons {
   display: flex;
   align-items: center;
@@ -140,10 +153,11 @@ button {
   font-weight: bold;
   box-shadow: 0 3px 0 #d36a0f, 0 3px 6px rgba(0, 0, 0, 0.2);
   transition: all var(--transition-fast);
+  position: relative;
 }
 
 .brawl-nav-button:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.05);
   box-shadow: 0 5px 0 #d36a0f, 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -152,104 +166,49 @@ button {
   box-shadow: 0 2px 0 #d36a0f, 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.brawl-user-info {
+/* AI Assistant button with floating animation */
+.ai-assistant-container {
+  position: relative;
+  z-index: 10;
+  margin: var(--space-lg) auto;
+  text-align: center;
+}
+.ai-assistant-button {
+  background: linear-gradient(to bottom, #6379e6, #4355b8);
+  color: var(--text-light);
+  border-radius: var(--radius-md);
+  padding: 12px 20px;
+  font-family: 'Rubik', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all var(--transition-fast);
   display: flex;
   align-items: center;
-  gap: var(--space-md);
+  justify-content: center;
+  gap: var(--space-sm);
 }
-
-.brawl-avatar {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-full);
-  background: linear-gradient(135deg, var(--accent-yellow), var(--accent-orange));
-  padding: 2px;
-  position: relative;
-  overflow: hidden;
-}
-
-.brawl-avatar-inner {
-  width: 100%;
-  height: 100%;
-  border-radius: var(--radius-full);
-  background-color: var(--primary);
-  border: 2px solid var(--accent-orange);
-  transition: transform var(--transition-medium);
-}
-
-.brawl-avatar:hover .brawl-avatar-inner {
-  transform: scale(1.1);
-}
-
-.brawl-username {
-  font-size: 18px;
-  color: var(--accent-yellow);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-/* Button styles - unified */
-.brawl-button {
-  border: none;
-  border-radius: var(--radius-sm);
-  font-weight: bold;
-  transition: all var(--transition-fast);
-  position: relative;
-  overflow: hidden;
-}
-
-.brawl-button::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.1);
-  transform: translateY(-100%);
-  transition: transform var(--transition-fast);
-}
-
-.brawl-button:hover::after {
-  transform: translateY(0);
-}
-
-.brawl-button:active {
-  transform: translateY(2px);
-}
-
-.brawl-logout-btn {
-  background: linear-gradient(to bottom, var(--danger), var(--danger-dark));
-  color: var(--text-light);
-  padding: 8px 14px;
-  font-size: 14px;
-  box-shadow: 0 3px 0 var(--danger-dark), 0 3px 6px rgba(0, 0, 0, 0.3);
-}
-
-.brawl-logout-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 0 var(--danger-dark), 0 5px 10px rgba(0, 0, 0, 0.3);
-}
-
-.brawl-logout-btn:active {
-  transform: translateY(1px);
-  box-shadow: 0 2px 0 var(--danger-dark), 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-
-/* Welcome banner styles - improved */
 .brawl-welcome-banner {
   max-width: 800px;
   margin: var(--space-xxl) auto;
   padding: var(--space-xl) var(--space-lg);
-  background: linear-gradient(135deg, rgba(243, 136, 28, 0.15), rgba(249, 203, 95, 0.15));
+  background: radial-gradient(circle, rgba(25, 40, 80, 0.9), rgba(10, 20, 40, 0.95) 100%);
   border-radius: var(--radius-lg);
   border: 2px solid var(--accent-orange);
   text-align: center;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   position: relative;
   overflow: hidden;
+  transform: perspective(500px) rotateX(0deg);
+  transition: transform 0.5s ease;
+  animation: bannerAppear 1s ease forwards;
 }
-
+@keyframes bannerAppear {
+  0% { opacity: 0; transform: perspective(500px) rotateX(10deg) translateY(50px); }
+  100% { opacity: 1; transform: perspective(500px) rotateX(0deg) translateY(0); }
+}
+.brawl-welcome-banner:hover {
+  transform: perspective(500px) rotateX(2deg);
+}
 .brawl-welcome-banner::before {
   content: '';
   position: absolute;
@@ -257,321 +216,419 @@ button {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(249, 203, 95, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(65, 105, 225, 0.1) 0%, transparent 70%);
   animation: pulse 6s ease-in-out infinite;
   z-index: -1;
 }
-
 @keyframes pulse {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.7; }
+  0% { transform: scale(0.8); opacity: 0.3; }
+  50% { transform: scale(1.2); opacity: 0.5; }
+  100% { transform: scale(0.8); opacity: 0.3; }
 }
-
-.brawl-welcome-banner h2 {
+.welcome-title {
   font-size: 32px;
   margin-bottom: var(--space-md);
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   letter-spacing: 0.5px;
+  animation: slideDown 0.8s ease forwards;
 }
-
-.brawl-highlight {
-  color: var(--accent-yellow);
-  position: relative;
-  display: inline-block;
-}
-
-.brawl-highlight::after {
-  content: '';
-  position: absolute;
-  bottom: 2px;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(to right, var(--accent-orange), var(--accent-yellow));
-  border-radius: 2px;
-  opacity: 0.6;
-}
-
-.brawl-welcome-banner p {
+.welcome-subtitle {
   font-size: 18px;
   color: var(--text-muted);
   max-width: 600px;
   margin: 0 auto;
+  animation: fadeIn 0.8s ease forwards 0.3s;
+  opacity: 0;
 }
-
-/* Gameplay showcase styles - improved */
-.brawl-gameplay-showcase {
-  max-width: 800px;
-  margin: var(--space-xxl) auto;
-  padding: 0 var(--space-lg);
+@keyframes slideDown {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
-
-.brawl-gameplay-showcase h3 {
-  font-size: 24px;
-  margin-bottom: var(--space-xl);
-  text-align: center;
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.brawl-highlight {
   color: var(--accent-yellow);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  position: relative;
+  display: inline-block;
+  animation: glowText 3s infinite alternate;
+}
+.carousel-container {
+  max-width: 900px;
+  margin: 60px auto;
+  position: relative;
+  z-index: 10;
+  padding: 0 15px;
+}
+
+.carousel-title {
+  text-align: center;
+  margin-bottom: 35px;
+  font-size: 32px;
+  color: var(--accent-yellow);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 165, 0, 0.5);
+  letter-spacing: 3px;
+  font-weight: 800;
   position: relative;
   display: inline-block;
   left: 50%;
   transform: translateX(-50%);
 }
-
-.brawl-gameplay-showcase h3::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 25%;
-  width: 50%;
-  height: 3px;
-  background: linear-gradient(to right, transparent, var(--accent-orange), transparent);
-}
-
-.brawl-gameplay-image {
+.carousel-wrapper {
   position: relative;
-  border-radius: var(--radius-lg);
-  border: 3px solid var(--accent-orange);
-  overflow: hidden;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-  transition: transform var(--transition-medium);
+  height: 450px;
+  perspective: 1600px;
+  overflow: visible;
+  margin-bottom: 50px;
 }
 
-.brawl-gameplay-image:hover {
-  transform: scale(1.02);
-}
-
-.brawl-gameplay-image img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: filter var(--transition-medium);
-}
-
-.brawl-gameplay-image:hover img {
-  filter: brightness(1.1);
-}
-
-.brawl-gameplay-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(to top, rgba(25, 29, 54, 0.9), transparent);
-  padding: var(--space-md);
-  color: var(--text-light);
-  font-size: 18px;
-  text-align: center;
-  transform: translateY(100%);
-  transition: transform var(--transition-medium);
-}
-
-.brawl-gameplay-image:hover .brawl-gameplay-caption {
-  transform: translateY(0);
-}
-
-/* Features section styles - improved */
-.brawl-features {
-  max-width: 800px;
-  margin: var(--space-xxl) auto;
-  padding: 0 var(--space-lg);
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: var(--space-xl);
-}
-
-.brawl-feature-card {
-  background-color: rgba(42, 46, 82, 0.8);
-  border-radius: var(--radius-lg);
-  padding: var(--space-xl);
-  text-align: center;
-  border: 2px solid var(--accent-orange);
-  transition: all var(--transition-medium);
+.carousel {
   position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.brawl-feature-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(243, 136, 28, 0.1), rgba(249, 203, 95, 0.1));
-  z-index: -1;
-  opacity: 0;
-  transition: opacity var(--transition-medium);
-}
-
-.brawl-feature-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-}
-
-.brawl-feature-card:hover::before {
-  opacity: 1;
-}
-
-.brawl-feature-icon {
-  width: 70px;
-  height: 70px;
-  margin: 0 auto var(--space-md);
-  background: linear-gradient(135deg, var(--accent-yellow), var(--accent-orange));
-  border-radius: var(--radius-full);
+  transform-style: preserve-3d;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 5px 10px rgba(243, 136, 28, 0.3);
-  transition: transform var(--transition-medium);
 }
 
-.brawl-feature-card:hover .brawl-feature-icon {
-  transform: scale(1.1) rotate(10deg);
+/* Card positioning & effects */
+.carousel-item {
+  position: absolute;
+  width: 200px;
+  height: 290px;
+  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.7));
+  will-change: transform, opacity, filter;
 }
 
-.brawl-feature-card h4 {
-  font-size: 20px;
-  margin-bottom: var(--space-sm);
-  color: var(--accent-yellow);
+.carousel-item.active {
+  transform: translateX(0) translateZ(300px) scale(1.15);
+  opacity: 1;
+  z-index: 15;
+  filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.7)) brightness(1.15);
+}
+
+.carousel-item.next {
+  transform: translateX(130%) translateZ(80px) rotateY(-30deg) scale(0.95);
+  opacity: 1; /* Full opacity */
+  z-index: 10;
+  filter: drop-shadow(10px 20px 25px rgba(0, 0, 0, 0.6)) brightness(0.9);
+}
+
+.carousel-item.far-next {
+  transform: translateX(220%) translateZ(-50px) rotateY(-35deg) scale(0.85);
+  opacity: 1; /* Full opacity */
+  z-index: 5;
+  filter: drop-shadow(5px 15px 20px rgba(0, 0, 0, 0.5)) brightness(0.7);
+}
+
+.carousel-item.prev {
+  transform: translateX(-130%) translateZ(80px) rotateY(30deg) scale(0.95);
+  opacity: 1; /* Full opacity */
+  z-index: 10;
+  filter: drop-shadow(-10px 20px 25px rgba(0, 0, 0, 0.6)) brightness(0.9);
+}
+
+.carousel-item.far-prev {
+  transform: translateX(-220%) translateZ(-50px) rotateY(35deg) scale(0.85);
+  opacity: 1; /* Full opacity */
+  z-index: 5;
+  filter: drop-shadow(-5px 15px 20px rgba(0, 0, 0, 0.5)) brightness(0.7);
+}
+
+.carousel-item.hidden {
+  transform: translateX(0) translateZ(-400px) scale(0.3);
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Card design */
+.carousel-card {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #0c1023; /* Solid background */
+  border: 3px solid var(--accent-orange);
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.8),
+    0 0 15px rgba(255, 140, 0, 0.4),
+    inset 0 2px 2px rgba(255, 255, 255, 0.1),
+    inset 0 -2px 2px rgba(0, 0, 0, 0.5);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: translateY(0);
   position: relative;
-  padding-bottom: var(--space-sm);
 }
 
-.brawl-feature-card h4::after {
+/* Creating a highlight effect on the top edge */
+.carousel-card::before {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40px;
-  height: 2px;
-  background-color: var(--accent-orange);
-  border-radius: 1px;
+  top: 0;
+  left: 5%;
+  right: 5%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  border-radius: 3px;
+  z-index: 5;
 }
 
-.brawl-feature-card p {
-  font-size: 15px;
-  color: var(--text-muted);
-  margin-top: var(--space-sm);
-  line-height: 1.6;
+/* Subtle glow around card */
+.carousel-card::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 18px;
+  background: transparent;
+  z-index: -1;
+  box-shadow: 0 0 20px rgba(255, 165, 0, 0.3);
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
-/* Footer - added */
-.brawl-footer {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: var(--space-xxl) var(--space-lg) var(--space-lg);
+.carousel-item:hover .carousel-card {
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.8),
+    0 0 30px rgba(255, 140, 0, 0.6),
+    inset 0 2px 3px rgba(255, 255, 255, 0.2),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.6);
+  transform: translateY(-12px) scale(1.03);
+  border-color: #ffb700;
+}
+
+.carousel-item:hover .carousel-card::after {
+  opacity: 1;
+}
+
+.carousel-item.active .carousel-card {
+  border: 3px solid #ffb700;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.8),
+    0 0 40px rgba(255, 165, 0, 0.7),
+    inset 0 2px 5px rgba(255, 255, 255, 0.3);
+}
+
+/* Card image */
+.carousel-card img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  border-bottom: 3px solid var(--accent-orange);
+  transition: all 0.4s ease;
+  display: block; /* Ensures no gap below image */
+}
+/* Card content area */
+.carousel-card-content {
+  padding: 15px;
   text-align: center;
-  color: var(--text-muted);
-  font-size: 14px;
-  border-top: 1px solid rgba(243, 136, 28, 0.3);
+  background: linear-gradient(to bottom, rgba(12, 16, 35, 1), rgba(8, 12, 25, 1)); /* Solid background */
+  height: calc(100% - 230px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
-
-.brawl-footer-links {
+/* Add a subtle glow around the text */
+.carousel-card-content h4::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 25%;
+  width: 50%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 183, 0, 0.6), transparent);
+}
+/* Navigation dots */
+.carousel-dots {
   display: flex;
   justify-content: center;
+  gap: 12px;
+  margin-top: 15px;
+  position: relative;
+  z-index: 20;
+}
+
+.carousel-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #333;
+  opacity: 0.6;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  position: relative;
+  margin-top: 20px;
+}
+
+/* Add shine effect to dots */
+.carousel-dot::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.carousel-dot:hover {
+  opacity: 0.9;
+  transform: scale(1.2);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.6), 0 0 5px rgba(255, 165, 0, 0.3);
+}
+
+.carousel-dot:hover::after {
+  opacity: 1;
+}
+
+.carousel-dot.active {
+  background: linear-gradient(135deg, #ffaa00, #ff7b00);
+  opacity: 1;
+  transform: scale(1.3);
+  box-shadow: 
+    0 3px 8px rgba(0, 0, 0, 0.6), 
+    0 0 10px rgba(255, 165, 0, 0.6);
+}
+
+.carousel-dot.active::after {
+  opacity: 1;
+}
+
+/* Add 3D lighting effect to entire carousel */
+.carousel-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 100px;
+  background: radial-gradient(ellipse at center, rgba(255, 165, 0, 0.2), transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Add a subtle reflection below the active card */
+.carousel::after {
+  content: '';
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 40px;
+  background: radial-gradient(ellipse at center, rgba(255, 165, 0, 0.15), transparent 70%);
+  filter: blur(5px);
+  pointer-events: none;
+}
+
+/* Add metallic trim effect */
+.carousel-item::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(255, 165, 0, 0.7), rgba(255, 120, 0, 0.7));
+  z-index: -2;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.carousel-item.active::before {
+  opacity: 0.8;
+}
+
+.carousel-item.active .carousel-card {
+  animation: activeCardPulse 3s infinite;
+}
+/* Responsive styles */
+@media (max-width: 768px) {
+  .brawl-header {
+    flex-direction: column;
+    height: auto;
+    padding-bottom: var(--space-md);
+  }
+  
+  .brawl-logo {
+    margin-bottom: var(--space-sm);
+  }
+  
+  .brawl-nav-buttons {
+    margin-left: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .features-section {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .carousel-item.active {
+    transform: translateX(-50%) translateZ(100px) scale(1.1);
+  }
+  
+  .carousel-item.next {
+    transform: translateX(25%) translateZ(0) rotateY(-15deg) scale(0.85);
+  }
+  
+  .carousel-item.prev {
+    transform: translateX(-125%) translateZ(0) rotateY(15deg) scale(0.85);
+  }
+  
+  .carousel-wrapper {
+    height: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+  .brawl-nav-button {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+  .welcome-title {
+    font-size: 24px;
+  }
+  .welcome-subtitle {
+    font-size: 16px;
+  }
+  .carousel-wrapper {
+    height: 300px;
+  }
+  .carousel-item.active {
+    transform: translateX(-50%) translateZ(50px) scale(1);
+  }
+  .carousel-item {
+    width: 160px;
+    height: 240px;
+  }
+  .brawl-footer-links {
   gap: var(--space-xl);
   margin-bottom: var(--space-md);
 }
-
 .brawl-footer-link {
   color: var(--accent-yellow);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
-
 .brawl-footer-link:hover {
   color: var(--accent-orange);
 }
-
-/* Media queries for responsiveness - improved */
-@media (max-width: 768px) {
-  :root {
-    --space-xxl: 30px;
-  }
-  
-  .brawl-header {
-    padding: var(--space-sm) var(--space-md);
-  }
-  
-  .brawl-nav-buttons {
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-left: var(--space-sm);
-    gap: var(--space-sm);
-  }
-  
-  .brawl-nav-button {
-    padding: 6px 10px;
-    font-size: 12px;
-  }
-  
-  .brawl-search-container {
-    flex-direction: column;
-  }
-  
-  .brawl-welcome-banner h2 {
-    font-size: 28px;
-  }
-  
-  .brawl-gameplay-showcase h3 {
-    font-size: 22px;
-  }
-  
-  .brawl-feature-card {
-    padding: var(--space-lg);
-  }
-}
-
-@media (max-width: 480px) {
-  .brawl-header {
-    flex-direction: column;
-    gap: var(--space-sm);
-    padding: var(--space-sm);
-    text-align: center;
-  }
-  
-  .brawl-logo-container {
-    margin-bottom: var(--space-sm);
-  }
-  
-  .brawl-nav-buttons {
-    margin: var(--space-sm) 0;
-  }
-  
-  .brawl-user-info {
-    flex-direction: column;
-    gap: var(--space-sm);
-  }
-  
-  .brawl-search-input, .brawl-search-btn {
-    padding: 10px;
-  }
-  
-  .brawl-welcome-banner {
-    padding: var(--space-lg) var(--space-md);
-  }
-  
-  .brawl-welcome-banner h2 {
-    font-size: 24px;
-  }
-  
-  .brawl-welcome-banner p {
-    font-size: 16px;
-  }
-  
-  .brawl-features {
-    grid-template-columns: 1fr;
-  }
-  
-  .brawl-footer-links {
-    flex-direction: column;
-    gap: var(--space-sm);
-  }
-}
-
 /* Accessibility improvements */
 @media (prefers-reduced-motion: reduce) {
   * {
@@ -581,7 +638,6 @@ button {
     scroll-behavior: auto !important;
   }
 }
-
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -593,28 +649,4 @@ button {
   white-space: nowrap;
   border: 0;
 }
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary-dark: #191d36;
-    --primary: #2a2e52;
-  }
-}
-
-/* Print styles */
-@media print {
-  .brawl-home-container {
-    background: white;
-    color: black;
-  }
-  
-  .brawl-header, .brawl-search-container, .brawl-logout-btn {
-    display: none;
-  }
-  
-  .brawl-welcome-banner, .brawl-feature-card {
-    border: 1px solid #ccc;
-    box-shadow: none;
-  }
 }

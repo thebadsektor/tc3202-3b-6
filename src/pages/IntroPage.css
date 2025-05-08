@@ -1,10 +1,11 @@
 /* Enhanced Fullscreen Background Container */
-.brawl-login-container {
+.intro-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(135deg, #1a1b41, #232659);
+  background: url('/public/images/Downstarsbg.png')no-repeat;
+  background-size: cover;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   position: relative;
   overflow: hidden;
@@ -14,51 +15,8 @@
   --accent-blue: #3A93D1;
 }
 
-/* Logo and Website Name Container */
-.brawl-logo-container {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  display: flex;
-  align-items: center;
-  z-index: 10;
-  animation: fadeInLeft 0.8s ease-out forwards;
-  opacity: 0;
-}
-
-.brawl-logo {
-  width: 100px;
-  height: 100px;
-  margin-right: 10px;
-  filter: drop-shadow(0 0 8px rgba(58, 147, 209, 0.6));
-}
-
-.brawl-website-name {
-  font-size: 24px;
-  font-weight: 1000;
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  background: linear-gradient(45deg, #fff, var(--accent-blue));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 15px rgba(58, 147, 209, 0.5);
-}
-
-@keyframes fadeInLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* Animated Background Elements */
-.brawl-background {
+/* Animated Background with Brawl Stars Style */
+.intro-background {
   position: absolute;
   top: 0;
   left: 0;
@@ -67,265 +25,343 @@
   background: url('/public/images/Downstarsbg.png');
   background-size: cover;
   background-position: center;
-  filter: brightness(0.5) saturate(1.3);
+  filter: brightness(0.4) saturate(1.5);
   z-index: -1;
-  animation: backgroundPulse 15s infinite alternate;
+  animation: backgroundZoom 25s infinite alternate;
 }
 
-@keyframes backgroundPulse {
+@keyframes backgroundZoom {
   0% {
-    filter: brightness(0.5) saturate(1.3) hue-rotate(0deg);
-    transform: scale(1);
+    transform: scale(1) rotate(0deg);
+    filter: brightness(0.4) saturate(1.5) hue-rotate(0deg);
   }
   50% {
-    filter: brightness(0.6) saturate(1.5) hue-rotate(5deg);
-    transform: scale(1.03);
+    transform: scale(1.05) rotate(1deg);
+    filter: brightness(0.5) saturate(1.7) hue-rotate(5deg);
   }
   100% {
-    filter: brightness(0.5) saturate(1.3) hue-rotate(0deg);
-    transform: scale(1);
+    transform: scale(1) rotate(0deg);
+    filter: brightness(0.4) saturate(1.5) hue-rotate(0deg);
   }
 }
 
-/* Particle effects */
-.particles {
+/* Dynamic Battle Arena */
+.battle-arena {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Floating Gems Animation */
+.floating-gem {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  transform: rotate(45deg);
+  opacity: 0;
+  z-index: 1;
+  animation: floatGem 15s linear infinite;
+}
+
+.gem-blue {
+  background: radial-gradient(circle at 30% 30%, #6ac5ff, #3A93D1);
+  box-shadow: 0 0 15px #3A93D1, 0 0 8px rgba(58, 147, 209, 0.8) inset;
+}
+
+.gem-orange {
+  background: radial-gradient(circle at 30% 30%, #ffb280, #F57328);
+  box-shadow: 0 0 15px #F57328, 0 0 8px rgba(245, 115, 40, 0.8) inset;
+}
+
+.gem-yellow {
+  background: radial-gradient(circle at 30% 30%, #ffdf7e, #FCBF29);
+  box-shadow: 0 0 15px #FCBF29, 0 0 8px rgba(252, 191, 41, 0.8) inset;
+}
+
+@keyframes floatGem {
+  0% {
+    bottom: -50px;
+    opacity: 0;
+    transform: rotate(45deg) translateX(0);
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    bottom: 120%;
+    opacity: 0;
+    transform: rotate(90deg) translateX(var(--float-x));
+  }
+}
+
+/* Energy Orbs */
+.energy-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(1px);
+  opacity: 0;
+  z-index: 0;
+  animation: orbFloat 8s ease-in-out infinite;
+}
+
+@keyframes orbFloat {
+  0% {
+    transform: translateY(0) translateX(0) scale(0.8);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  80% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-80px) translateX(var(--float-x)) scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* Battle Lines - diagonal light traces */
+.battle-line {
+  position: absolute;
+  height: 1px;
+  width: 100px;
+  background: linear-gradient(to right, rgba(252, 191, 41, 0), rgba(252, 191, 41, 0.8), rgba(252, 191, 41, 0));
+  opacity: 0;
+  transform-origin: center;
+  animation: lineMove 4s ease-out infinite;
+}
+
+@keyframes lineMove {
+  0% {
+    opacity: 0;
+    width: 0;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    width: 300px;
+  }
+}
+
+/* Main content wrapper to hold carousel and form side by side */
+.intro-content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  width: 90%;
+  max-width: 1400px;
+  position: relative;
+  z-index: 5;
+}
+
+
+/* Enhanced form wrapper with gamecard style glassmorphism */
+.intro-form-wrapper {
+  width: 45%;
+  max-width: 6000px;
+  background: linear-gradient(to left, rgba(30, 47, 65, 0.5), rgba(20, 30, 60, 0) 100%);
+  padding: 40px 30px;
+  border-radius: 8px; 
+  text-align: end;
+  margin-left: 680px;
+  position: relative;
+  z-index: 2;
+  transform: translateZ(0);
+  animation: cardAppear 1s ease-out forwards;
+  border: none;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+/* extremely intensified blur effect */
+.intro-form-wrapper::before {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.particle {
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0;
-}
-
-/* Different particle types with game themed colors */
-.particle:nth-child(3n) {
-  background: radial-gradient(circle, rgba(58, 147, 209, 0.9) 0%, rgba(58, 147, 209, 0) 70%);
-  box-shadow: 0 0 10px rgba(58, 147, 209, 0.5);
-}
-
-.particle:nth-child(3n+1) {
-  background: radial-gradient(circle, rgba(245, 115, 40, 0.9) 0%, rgba(245, 115, 40, 0) 70%);
-  box-shadow: 0 0 10px rgba(245, 115, 40, 0.5);
-}
-
-.particle:nth-child(3n+2) {
-  background: radial-gradient(circle, rgba(252, 191, 41, 0.9) 0%, rgba(252, 191, 41, 0) 70%);
-  box-shadow: 0 0 10px rgba(252, 191, 41, 0.5);
-}
-
-/* Generate 20 random particles with animations */
-@keyframes floatUp {
-  0% {
-    transform: translateY(100vh) scale(0);
-    opacity: 0;
-  }
-  10% {
-    opacity: var(--particle-opacity);
-  }
-  90% {
-    opacity: var(--particle-opacity);
-  }
-  100% {
-    transform: translateY(-100px) scale(1);
-    opacity: 0;
-  }
-}
-
-/* Enhanced form wrapper with gamecard style glassmorphism */
-.brawl-form-wrapper {
-  margin-right: 53%;
-  background: rgba(25, 35, 80, 0.7);
-  padding: 40px 30px;
-  border-radius: 20px;
-  backdrop-filter: blur(1px);
-  text-align: center;
-  max-width: 400px;
-  width: 100%; /* Ensure it takes full width up to max-width */
-  position: relative;
-  z-index: 2;
-  transform: translateZ(0);
-  animation: cardAppear 1s ease-out forwards;
-  border: 1px solid rgba(58, 147, 209, 0.3);
-  overflow: hidden;
-}
-
-/* Animated gradient border effect with game style colors */
-.brawl-form-wrapper::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
+  background: transparent;
+  backdrop-filter: blur(50px); 
+  border-radius: 12px;
   z-index: -1;
-}
-
-@keyframes borderRotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+  pointer-events: none;
+  mask-image: linear-gradient(to left, 
+               rgba(0, 0, 0, 1) 60%, 
+               rgba(0, 0, 0, 0) 90%);
+  -webkit-mask-image: linear-gradient(to left, 
+                      rgba(0, 0, 0, 1) 60%, 
+                      rgba(0, 0, 0, 0) 90%);
 }
 
 @keyframes cardAppear {
   0% {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(60px) scale(0.8);
+  }
+  60% {
+    transform: translateY(-15px) scale(1.05);
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
 /* Container inside the form wrapper */
-.brawl-form-container {
+.intro-form-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Change from center to flex-start to align content left */
-  width: 100%; /* Ensure it takes full width */
+  align-items: end;
+  width: 100%;
   position: relative;
   z-index: 3;
 }
 
-
-/* Main title with gaming style glow effect - expanded for full display */
-.brawl-login-title {
-  color: #EEF1FF;
-  text-align: start;
-  font-size: 32px;
-  font-weight: 200;
-  margin-bottom: 15px;
-  text-shadow: 0 0 15px var(--accent-blue);
-  position: relative;
-  animation: titlePulse 2s infinite alternate;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  width: 100%; /* Ensure it takes full width */
-  max-width: 340px; /* Increase from 100% to accommodate the full text */
-  white-space: normal; /* allow wrapping */
-  overflow: visible;   /* show full content */
-  text-overflow: unset; /* don't show ellipsis */
+/* Main title with gaming style glow effect */
+.intro-login-title {
+   color: #EEF1FF;
+    text-align: end;
+    font-size: 30px;
+    font-weight: 200;
+    margin-bottom: 15px;
+    text-shadow: 0 0 15px var(--accent-blue);
+    position: relative;
+    animation: titlePulse 2s infinite alternate;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    width: 100%;
+    overflow: visible;
+    text-overflow: unset;
 }
 
-.brawl-login-title::after {
+.intro-login-title::after {
   content: '';
   position: absolute;
   bottom: -8px;
-  left: 20%; /* Change from 50% to align with text-align: start */
-  transform: translateX(0); /* Remove translateX(-50%) to align with left position */
-  width: 80px;
-  height: 3px;
+  right: 0;
+  width: 90px;
+  height: 4px;
+  margin-right: 28px;
   background: linear-gradient(to right, var(--accent-orange), var(--accent-yellow));
-  border-radius: 3px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(157, 101, 201, 0.7);
   animation: lineWidth 3s infinite alternate;
 }
 
-@keyframes titlePulse {
+@keyframes titleEntrance {
   0% {
-    text-shadow: 0 0 10px rgba(58, 147, 209, 0.6);
-  }
-  50% {
-    text-shadow: 0 0 15px rgba(58, 147, 209, 0.8), 0 0 25px rgba(58, 147, 209, 0.5);
+    opacity: 0;
+    transform: translateY(-20px);
+    letter-spacing: 5px;
+    filter: blur(10px);
   }
   100% {
-    text-shadow: 0 0 20px rgba(58, 147, 209, 0.9), 0 0 30px rgba(58, 147, 209, 0.6);
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: 1px;
+    filter: blur(0);
   }
 }
 
 @keyframes lineWidth {
   0% {
-    width: 40px;
-    opacity: 0.7;
+      width: 30px;
+      opacity: 0.7;
+      transform: translateX(0);
   }
   100% {
-    width: 120px;
-    opacity: 1;
+      width: 100%;
+      max-width: 300px;
+      opacity: 1;
+      transform: translateX(10px);
   }
 }
 
-/* Taglines with staggered animation - fixed for full display */
-.tagline-container {
-  margin-bottom: 30px;
-  width: 100%; /* Take full width of parent */
-  max-width: 340px; /* Increase from 300px */
-  opacity: 0;
-  animation: fadeInUp 0.5s forwards 0.5s;
-}
-
-.brawl-tagline {
-  color: #F5F5F5;
-  text-align: start;
-  font-weight: 200;
-  font-size: 20px;
+/* Tagline text styling with game-like animation */
+.intro-text1 {
+  color: #d9e6ff;
+  text-shadow: 0 0 20px rgba(58, 147, 209, 0.2);
+  text-align: end;
+  font-weight: 600;
+  font-size: 19px;
   line-height: 1.5;
-  margin-bottom: 10px;
-  width: 100%; /* Full width */
-  min-height: calc(1.5em * 2); /* For two lines */
+  margin-bottom: 25px;
+  margin-top: 10px;
+  width: 830px;
+  /* Full width */
+  min-height: calc(1.5em * 2);
+  /* For two lines */
   /* Fix line clamping */
   display: -webkit-box;
   -line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  white-space: normal;
 }
 
 @keyframes fadeInUp {
   0% {
-    opacity: 0;
-    transform: translateY(10px);
+      opacity: 0;
+      transform: translateY(15px);
   }
   100% {
-    opacity: 1;
-    transform: translateY(0);
+      opacity: 1;
+      transform: translateY(0);
   }
 }
 
 /* Enhanced Get Started button with neon effect */
-.brawl-login-button {
-  background: linear-gradient(45deg, var(--accent-yellow), var(--accent-yellow));
+.intro-login-button {
+  background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
   color: white;
   padding: 16px 38px;
   font-size: 18px;
   font-weight: bold;
   border: none;
-  border-radius: 30px;
+  border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(255, 82, 82, 0.4),
-              0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  box-shadow: 0 6px 18px rgba(245, 115, 40, 0.3),
+    0 0 0 2px rgba(245, 115, 40, 0.2);
   opacity: 0;
-  animation: fadeInUp 0.5s forwards 1s;
+  animation: fadeInUp 0.8s forwards 1s;
   letter-spacing: 0.5px;
   text-transform: uppercase;
   z-index: 1;
+  margin-top: 10px;
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 
-.brawl-login-button::before {
+.intro-login-button::before {
   content: '';
   position: absolute;
   top: -2px;
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(45deg, var(--accent-orange), #ff7752, var(--accent-orange));
+  background: linear-gradient(45deg, var(--accent-orange), #ff7752, var(--accent-yellow));
   z-index: -1;
-  filter: blur(10px);
+  filter: blur(15px);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
-.brawl-login-button::after {
+.intro-login-button::after {
   content: '';
   position: absolute;
   top: 0;
@@ -335,30 +371,44 @@
   background: linear-gradient(
     to right,
     rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0.4) 50%,
     rgba(255, 255, 255, 0) 100%
   );
   transform: skewX(-25deg);
   transition: all 0.75s ease;
 }
 
-.brawl-login-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(255, 82, 82, 0.5);
+.intro-login-button:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(252, 191, 41, 0.6);
 }
 
-.brawl-login-button:hover::before {
+.intro-login-button:hover::before {
   opacity: 0.8;
 }
 
-.brawl-login-button:hover::after {
+.intro-login-button:hover::after {
   left: 100%;
 }
 
 /* Button active state */
-.brawl-login-button:active {
+.intro-login-button:active {
   transform: translateY(1px);
-  box-shadow: 0 2px 15px rgba(255, 82, 82, 0.4);
+  box-shadow: 0 5px 15px rgba(252, 191, 41, 0.4);
+}
+
+@keyframes buttonAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+  }
+  60% {
+    transform: translateY(-10px) scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* Enhanced button press animation */
@@ -370,23 +420,23 @@
   0% {
     transform: scale(1);
     opacity: 1;
-    box-shadow: 0 5px 15px rgba(255, 82, 82, 0.4);
+    box-shadow: 0 8px 25px rgba(252, 191, 41, 0.5);
   }
   40% {
     transform: scale(0.85);
     opacity: 0.8;
-    box-shadow: 0 0 5px rgba(255, 82, 82, 0.2);
+    box-shadow: 0 0 5px rgba(252, 191, 41, 0.2);
   }
   100% {
     transform: scale(0);
     opacity: 0;
-    box-shadow: 0 0 0 rgba(255, 82, 82, 0);
+    box-shadow: 0 0 0 rgba(252, 191, 41, 0);
   }
 }
 
 /* Enhanced fade-out animation on whole page */
 .fade-out {
-  animation: enhancedFadeOut 0.8s forwards;
+  animation: enhancedFadeOut 0.6s forwards;
 }
 
 @keyframes enhancedFadeOut {
@@ -394,199 +444,101 @@
     opacity: 1;
     filter: brightness(1) saturate(1);
   }
+  50% {
+    opacity: 0.5;
+    filter: brightness(2) saturate(0.5);
+  }
   100% {
     opacity: 0;
     filter: brightness(3) saturate(0);
   }
 }
 
-/* Enhanced slide-and-fade-in animation */
-.page-enter {
-  animation: enhancedSlideFadeIn 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-}
-
-@keyframes enhancedSlideFadeIn {
-  0% {
-    opacity: 0;
-    transform: translateX(60px) scale(0.95);
-    filter: blur(5px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-    filter: blur(0);
-  }
-}
-
-/* Reset basic styles */
-html, body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  height: 100%;
-  background: #191d36;
-}
-
-/* Enhanced Decorative game elements */
-.brawl-decoration {
+/* Power Cubes Animation */
+.power-cube {
   position: absolute;
-  z-index: 1;
-  filter: drop-shadow(0 0 8px rgba(255, 82, 82, 0.4));
-  animation: float 6s infinite ease-in-out;
-  opacity: 0.35;
-}
-
-/* Enhanced Game character silhouettes with improved visual effects */
-.deco-1 {
-  top: 15%;
-  right: 12%;
-  width: 140px;
-  height: 140px;
-  background: url('/public/images/Downstarsbg.png') no-repeat;
-  background-size: 400px;
-  background-position: -280px -150px;
-  filter: brightness(0) invert(0.8) drop-shadow(0 0 12px var(--accent-orange));
-  mask-image: linear-gradient(45deg, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
-}
-
-.deco-2 {
-  bottom: 10%;
-  right: 20%;
-  width: 170px;
-  height: 170px;
-  background: url('/public/images/Downstarsbg.png') no-repeat;
-  background-size: 600px;
-  background-position: -420px -350px;
-  filter: brightness(0) invert(0.8) drop-shadow(0 0 15px var(--accent-blue));
-  mask-image: linear-gradient(-45deg, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
-}
-
-.deco-3 {
-  top: 25%;
-  left: 10%;
-  width: 120px;
-  height: 120px;
-  background: url('/public/images/Downstarsbg.png') no-repeat;
-  background-size: 500px;
-  background-position: -200px -200px;
-  filter: brightness(0) invert(0.8) drop-shadow(0 0 12px var(--accent-yellow));
-  mask-image: linear-gradient(135deg, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
-}
-
-/* Additional character silhouettes */
-.deco-4 {
-  bottom: 20%;
-  left: 15%;
-  width: 130px;
-  height: 130px;
-  transform: rotate(-12deg);
-  animation-delay: 3s;
-  background: url('/public/images/Downstarsbg.png') no-repeat;
-  background-size: 600px;
-  background-position: -100px -250px;
-  filter: brightness(0) invert(0.8) drop-shadow(0 0 12px var(--accent-orange));
-  mask-image: linear-gradient(225deg, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
-}
-
-.deco-5 {
-  top: 40%;
-  right: 8%;
-  width: 110px;
-  height: 110px;
-  transform: rotate(10deg);
-  animation-delay: 2.5s;
-  background: url('/public/images/Downstarsbg.png') no-repeat;
-  background-size: 450px;
-  background-position: -150px -180px;
-  filter: brightness(0) invert(0.8) drop-shadow(0 0 12px var(--accent-blue));
-  mask-image: linear-gradient(-135deg, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
-}
-
-/* Star decorations */
-.star-decoration {
-  position: absolute;
-  background: radial-gradient(circle at center, rgba(252, 191, 41, 0.9) 0%, rgba(252, 191, 41, 0.1) 70%);
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  z-index: 1;
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle at 30% 30%, #77ff8a, #22cc44);
+  border-radius: 6px;
+  box-shadow: 
+    0 0 15px #22cc44,
+    0 0 8px rgba(34, 204, 68, 0.8) inset;
   opacity: 0;
-  animation: twinkle 4s infinite ease-in-out;
+  z-index: 2;
+  animation: cubeFloat 12s linear infinite;
 }
 
-@keyframes twinkle {
-  0%, 100% { 
-    opacity: 2;
-    transform: scale(0.5);
-  }
-  50% { 
-    opacity: 0.8;
-    transform: scale(1.5);
-  }
-}
-
-@keyframes float {
+@keyframes cubeFloat {
   0% {
-    transform: translateY(0) rotate(var(--rotate, 0deg));
+    transform: rotate(0deg) translateY(100vh) scale(0.6);
+    opacity: 0;
   }
-  50% {
-    transform: translateY(-15px) rotate(var(--rotate, 0deg));
+  10% {
+    opacity: 0.7;
+    transform: rotate(45deg) translateY(80vh) scale(0.7);
+  }
+  90% {
+    opacity: 0.7;
+    transform: rotate(315deg) translateY(20vh) scale(0.9);
   }
   100% {
-    transform: translateY(0) rotate(var(--rotate, 0deg));
+    transform: rotate(360deg) translateY(0vh) scale(1);
+    opacity: 0;
   }
 }
 
 /* Responsive styles */
-@media (max-width: 992px) {
-  .brawl-form-wrapper {
-    margin-right: 0;
+@media (max-width: 1200px) {
+  .intro-content-wrapper {
+    width: 95%;
+    flex-direction: column;
+    gap: 30px;
   }
   
-  .deco-1, .deco-2, .deco-3, .deco-4, .deco-5 {
-    opacity: 0.1;
+  .intro-form-wrapper {
+    width: 80%;
+    max-width: 600px;
   }
+}
 
-  .brawl-logo-container {
-    top: 10px;
-    left: 10px;
+@media (max-width: 992px) {
+  .intro-form-wrapper {
+    width: 90%;
   }
-
-  .brawl-logo {
-    width: 40px;
-    height: 40px;
+  
+  .intro-login-title {
+    font-size: 28px;
   }
+  
+  .intro-text1 {
+    font-size: 16px;
+  }
+}
 
-  .brawl-website-name {
-    font-size: 20px;
+@media (max-width: 768px) {
+  .intro-form-wrapper {
+    width: 95%;
+  }
+  
+  .intro-login-button {
+    padding: 14px 30px;
+    font-size: 16px;
   }
 }
 
 @media (max-width: 576px) {
-  .brawl-form-wrapper {
-    padding: 30px 20px;
-    max-width: 320px;
+  .intro-content-wrapper {
+    padding: 20px 10px;
   }
   
-  .brawl-login-title {
-    font-size: 26px;
+  .intro-form-wrapper {
+    padding: 25px 15px;
+    width: 100%;
   }
   
-  .brawl-tagline {
-    font-size: 14px;
-  }
-  
-  .brawl-login-button {
-    padding: 14px 30px;
-    font-size: 16px;
-  }
-
-  .brawl-logo {
-    width: 30px;
-    height: 30px;
-  }
-
-  .brawl-website-name {
-    font-size: 16px;
+  .intro-login-title {
+    font-size: 24px;
   }
 }
+

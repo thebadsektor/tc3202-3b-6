@@ -2,11 +2,9 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import TeamCompositionPage from "./pages/TeamCompositionPage";
-import PredictionPage from './pages/PredictionPage';
 import BrawlerDetail from './pages/BrawlerDetail';
 import BrawlerTable from "./pages/BrawlerTable";
 import LuminaPage from "./pages/LuminaPage";
-import PredictPage from "./pages/PredictPage";
 import IntroPage from "./pages/IntroPage";
 import GetStartedPage from "./pages/GetStartedPage";
 
@@ -16,10 +14,8 @@ function App() {
       <Routes>
         <Route path="/" element={<GetStartedPage />} />
         <Route path="/intro" element={<IntroPage />} />
-        <Route path="/predict" element={<PredictPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/team-composition" element={<TeamCompositionPage />} />
-        <Route path="/prediction" element={<PredictionPage />} />
         <Route path="/brawler/:name" element={<BrawlerDetail />} />
         <Route path="/brawler" element={<BrawlerTable />} />
         <Route path="/lumina" element={<LuminaPage />} /> 
