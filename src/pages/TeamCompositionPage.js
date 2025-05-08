@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
+import axios from "axios";
 import "./TeamCompositionPage.css";
 
 // Replace lucide-react icons with custom SVG components
@@ -82,15 +83,16 @@ const TeamCompositionPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
 
-  // Simulate fetching brawlers without actual API call for demo
   useEffect(() => {
-    // Demo brawler list
-    const demoBrawlers = [
-      "Shelly", "Colt", "Bull", "Brock", "Rico", "Spike", 
-      "Crow", "Poco", "El Primo", "Barley", "Jessie", "Nita", 
-      "Dynamike", "Bo", "Tick", "Leon", "Sandy", "Amber"
-    ];
-    setBrawlers(demoBrawlers);
+    const fetchBrawlers = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/brawlers");
+        setBrawlers(res.data.brawlers);
+      } catch (err) {
+        console.error("Error fetching brawlers:", err);
+      }
+    };
+    fetchBrawlers();
   }, []);
 
   useEffect(() => {
@@ -100,6 +102,20 @@ const TeamCompositionPage = () => {
     }
   }, [mode, modeMapOptions]);
 
+  // Reset confetti effect when result changes
+  useEffect(() => {
+    if (result && result.result.includes("Team")) {
+      setShowConfetti(true);
+      
+      // Hide confetti after 5 seconds
+      const timer = setTimeout(() => {
+        setShowConfetti(false);
+      }, 5000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [result]);
+
   const handleChange = (index, team, value) => {
     const updated = [...(team === "team1" ? team1 : team2)];
     updated[index] = value;
@@ -107,6 +123,7 @@ const TeamCompositionPage = () => {
   };
 
   const predict = async () => {
+    // Basic validation
     if (!mode || !map) {
       setError("Please select both a game mode and a map.");
       return;
@@ -117,25 +134,26 @@ const TeamCompositionPage = () => {
       return;
     }
 
-    setError("");
-    setIsLoading(true);
+    setError(""); // Clear previous error
+    setResult(null); // Clear previous result
+    setIsLoading(true); // Start loading state
 
-    // Simulate API call
-    setTimeout(() => {
-      const randomWin = Math.random() > 0.5;
-      const randomPercentage = Math.floor(Math.random() * 30) + 60; // 60-90%
-      
-      setResult({
-        result: randomWin ? "Team 1 is likely to win!" : "Team 2 is likely to win!",
-        win_percentage: randomPercentage
+    try {
+      const res = await axios.post("http://localhost:5000/predict", {
+        team1,
+        team2,
+        mode,
+        map,
       });
-      
-      setIsLoading(false);
+      setResult(res.data);
+      // Show confetti when we get a positive result
       setShowConfetti(true);
-      
-      // Hide confetti after a few seconds
-      setTimeout(() => setShowConfetti(false), 3000);
-    }, 1500);
+    } catch (err) {
+      console.error("Prediction error:", err);
+      setError("Something went wrong with the prediction.");
+    } finally {
+      setIsLoading(false); // End loading state
+    }
   };
 
   // Background floating elements
