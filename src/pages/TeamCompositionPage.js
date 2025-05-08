@@ -2,7 +2,15 @@ import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import "./TeamCompositionPage.css";
 
-// Replace lucide-react icons with custom SVG components
+// Add ArrowLeftIcon for back button
+const ArrowLeftIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon">
+    <line x1="19" y1="12" x2="5" y2="12"></line>
+    <polyline points="12 19 5 12 12 5"></polyline>
+  </svg>
+);
+
+// Other icon components remain the same
 const ShieldIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon">
     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
@@ -116,6 +124,18 @@ const TeamCompositionPage = () => {
     }
   }, [result]);
 
+  // Handle back button click
+  const handleBack = () => {
+    // You can implement navigation logic here
+    // For example, using history.goBack() if you're using react-router
+    // Or any other navigation logic as needed
+    console.log("Back button clicked");
+    // Placeholder for actual navigation
+    if (window.history && window.history.length > 1) {
+      window.history.back();
+    }
+  };
+
   const handleChange = (index, team, value) => {
     const updated = [...(team === "team1" ? team1 : team2)];
     updated[index] = value;
@@ -219,6 +239,12 @@ const TeamCompositionPage = () => {
       <Confetti />
       
       <div className="content-container">
+        {/* Back button */}
+        <button className="back-button" onClick={handleBack}>
+          <ArrowLeftIcon />
+          <span>Back</span>
+        </button>
+        
         <div className="header">
           <h1 className="title">Smart Brawl</h1>
           <h2 className="subtitle">Predict na tanga</h2>
