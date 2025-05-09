@@ -27,7 +27,7 @@ function BrawlerDetail() {
         const statsData = XLSX.utils.sheet_to_json(statsWorksheet);
         const foundBrawler = statsData.find(b => b.Brawler === name);
 
-        const descResponse = await fetch('/BrawlDescription124.csv');
+        const descResponse = await fetch('/BrawlDescription125.csv');
         const descArrayBuffer = await descResponse.arrayBuffer();
         const descWorkbook = XLSX.read(descArrayBuffer, { type: 'array' });
         const descWorksheet = descWorkbook.Sheets[descWorkbook.SheetNames[0]];
