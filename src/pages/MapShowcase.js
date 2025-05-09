@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './MapShowcase.css';
 
 const MapShowcase = () => {
 
@@ -52,78 +53,29 @@ const MapShowcase = () => {
   };
 
   const renderMapRow = (maps, title, bgColor, iconPath = null) => (
-    <div style={{ marginBottom: '40px' }}>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          backgroundColor: bgColor,
-          padding: '10px',
-          borderRadius: '8px',
-          marginBottom: '10px',
-        }}
-      >
+    <div className="map-row">
+      <div className="map-header" style={{ backgroundColor: bgColor }}>
         {iconPath && (
           <img
             src={iconPath}
             alt={`${title} Icon`}
-            style={{ width: '30px', height: '30px', marginRight: '10px' }}
+            className="map-icon"
           />
         )}
-        <h2
-          style={{
-            fontSize: '24px',
-            color: 'white',
-            margin: 0,
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-          }}
-        >
+        <h2 className="map-title">
           {title}
-          <span
-            style={{
-              color: '#bdbdbd',
-              fontWeight: 'bold',
-              textShadow: '2px 2px 0px #000',
-            }}
-          >
-            ({maps.length})
-          </span>
+          <span className="map-count">({maps.length})</span>
         </h2>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: '10px',
-          justifyContent: 'flex-start',
-        }}
-      >
+      <div className="map-grid">
         {maps.map((mapName, index) => (
           <Link
             key={index}
             to={`/map/${encodeURIComponent(mapName)}`}
-            style={{
-              textDecoration: 'none',
-              flex: '1 1 calc(20% - 10px)',
-              maxWidth: 'calc(20% - 10px)',
-              background: '#1e1e1e',
-              borderRadius: '10px',
-              overflow: 'hidden',
-              textAlign: 'center',
-            }}
+            className="map-card"
           >
-            <div
-              style={{
-                backgroundColor: '#1e1e1e',
-                height: '360px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
+            <div className="map-image-container">
               <img
                 src={getImagePath(mapName)}
                 onError={(e) => {
@@ -131,25 +83,10 @@ const MapShowcase = () => {
                   e.target.src = '/maps/default.png';
                 }}
                 alt={mapName}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  border: '1px solid #333',
-                }}
+                className="map-image"
               />
             </div>
-            <span
-              style={{
-                display: 'block',
-                padding: '8px',
-                fontSize: '14px',
-                fontWeight: 'bold',
-                color: '#f0f0f0',
-              }}
-            >
-              {mapName}
-            </span>
+            <span className="map-name">{mapName}</span>
           </Link>
           
         ))}
@@ -158,8 +95,12 @@ const MapShowcase = () => {
   );
 
   return (
-    <div style={{ backgroundColor: '#121212', padding: '20px', minHeight: '100vh',  overflowY: 'auto', }}>
-      <div style={{ flex: 1, maxWidth: '1200px', margin: 'auto' }}>
+    <div className="map-showcase">
+      <Link to="/" className="back-button">
+        Back to Home
+      </Link>
+      
+      <div className="map-content">
         {renderMapRow(gemGrabMaps, 'Gem Grab', '#b839ec', '/map-icon/GemGrabIcon.png')}
         {renderMapRow(heistMaps, 'Heist', '#e33be1', '/map-icon/HeistIcon.png')}
         {renderMapRow(bountyMaps, 'Bounty', '#e7dc34', '/map-icon/BountyIcon.png')}

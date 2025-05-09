@@ -369,3 +369,42 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
+
+  /* bak buton sabi ni kuya mo leader */
+.back-button {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  margin-left: -440px;
+  margin-top: -20px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  backdrop-filter: blur(8px);
+  z-index: 20;
+}
+
+.back-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateX(-2px);
+}
+
+.back-button span {
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.content-container {
+  max-width: 64rem;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  padding-top: 1rem; 
+}

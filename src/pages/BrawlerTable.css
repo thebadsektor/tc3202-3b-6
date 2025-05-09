@@ -1,0 +1,265 @@
+/* General Layout */
+.outer-container {
+    background-color: #121212;
+    color: white;
+    width: 100%;
+    position: static;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .header {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-size: 50px;
+  }
+  
+  /* Navigation Section */
+  .nav-section {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  /* Back Button */
+  .back-button {
+    padding: 12px 18px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: top;;
+    gap: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .back-button:hover {
+    background-color: #555;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  }
+  
+  .back-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .back-arrow {
+    font-size: 22px;
+    margin-right: 4px;
+  }
+
+  /* Bottom Navigation */
+  .bottom-nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+  
+  .bottom-back-button {
+    padding: 15px 25px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .bottom-back-button:hover {
+    background-color: #555;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  }
+  
+  .bottom-back-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Table Styling */
+  .table-container {
+    width: 100%;
+    margin-bottom: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px #000;
+  }
+  
+  .table-scroll {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  .brawler-table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
+  }
+  
+  .thead-row {
+    background-color: #1f1f1f;
+    font-size: 20px;
+  }
+  
+  .table-row {
+    font-size: 18px;
+    height: 70px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .table-row.even {
+    background-color: #1e1e1e;
+  }
+  
+  .table-row.odd {
+    background-color: #2a2a2a;
+  }
+  
+  .table-row:hover {
+    background-color: #333;
+  }
+  
+  .brawler-table th {
+    padding: 20px;
+    font-size: 25px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    background-color: #1f1f1f;
+    z-index: 1;
+  }
+  
+  .brawler-table td {
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .brawler-cell {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+  }
+  
+  .brawler-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  
+  .class-image {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+  
+  /* Tier colors */
+  .tier-s { color: red; font-weight: bold; }
+  .tier-a { color: orange; font-weight: bold; }
+  .tier-b { color: yellow; font-weight: bold; }
+  .tier-c { color: yellowgreen; font-weight: bold; }
+  .tier-d { color: green; font-weight: bold; }
+  .tier-f { color: blue; font-weight: bold; }
+  .tier-default { color: white; font-weight: bold; }
+  
+  /* Pagination */
+  .pagination-container {
+    text-align: center;
+    margin: 30px 0;
+    width: 100%;
+  }
+  
+  .pagination-button {
+    padding: 15px 25px;
+    margin: 0 15px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 18px;
+    transition: background-color 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .pagination-button:hover {
+    background-color: #555;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  }
+  
+  .pagination-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .pagination-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .page-indicator {
+    font-weight: bold;
+    margin: 0 15px;
+  }
+  
+  /* Loading and Error States */
+  .loading, .error {
+    background-color: #121212;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+  }
+  
+  .loading {
+    color: white;
+  }
+  
+  .error {
+    color: red;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .header {
+      font-size: 40px;
+      margin-top: 60px;
+    }
+    
+    .nav-section {
+      margin-bottom: 10px;
+    }
+    
+    .back-button, .home-button {
+      font-size: 16px;
+      padding: 10px 15px;
+    }
+    
+    .bottom-back-button {
+      font-size: 18px;
+      padding: 12px 20px;
+    }
+    
+    .pagination-button {
+      padding: 12px 20px;
+      font-size: 16px;
+    }
+  }

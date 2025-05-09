@@ -6,10 +6,10 @@ function LuminaPage() {
 
   return (
     <div style={{ padding: "20px", textAlign: "center" }}>
-      <h2>AI Assistant (Lumina)</h2>
+      <h2>AI Assistant (Smart Brawl)</h2>
       <iframe
         src="http://localhost:5173"
-        title="Lumina AI"
+        title="Brawl AI"
         width="100%"
         height="600px"
         style={{ border: "1px solid #ccc", borderRadius: "8px" }}
