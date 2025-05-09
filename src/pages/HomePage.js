@@ -9,13 +9,13 @@ function HomePage() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const brawlers = [
-    { id: 1, name: "Lee Panot", image: "/images/leee.jpg" },
-    { id: 2, name: "James Bayag", image: "/images/james.jpg" },
-    { id: 3, name: "Kinn-antot", image: "/images/kinn.jpg" },
-    { id: 4, name: "Batusay", image: "/images/eyyy.jpg" },
-    { id: 5, name: "Ed Primo", image: "/images/edd.jpg" },
-    { id: 6, name: "No ones Property", image: "/images/Argie.jpg" },
-    { id: 7, name: "Predator", image: "/images/karlito.jpg" },
+    { id: 1, name: "NAPAGALITAN NG NANAY NI KINN", image: "/images/leee.jpg" },
+    { id: 2, name: "TINGININGINING", image: "/images/james.jpg" },
+    { id: 3, name: "MAMA'S BOY", image: "/images/kinn.jpg" },
+    { id: 4, name: "TIGER KAMOTE", image: "/images/eyyy.jpg" },
+    { id: 5, name: "CHINESE", image: "/images/edd.jpg" },
+    { id: 6, name: "VOTE BUYER", image: "/images/Argie.jpg" },
+    { id: 7, name: "PINAGALITAN NG NANAY", image: "/images/Karlito.jpg" },
   ];
 
   useEffect(() => {
@@ -84,6 +84,7 @@ function HomePage() {
 
       <div className="brawl-header">
         <div className="brawl-logo">
+        <img src="/public/james.jpg" alt="Brawl Logo" style={{ width: '100%', height: 'auto', borderRadius: '50%' }} />
           <div className="logo-text">Smart Brawl</div>
         </div>
         <div className="brawl-nav-buttons">
@@ -97,12 +98,13 @@ function HomePage() {
             ALL BRAWLERS
           </button>
         </div>
+        
       </div>
 
       <div className="ai-assistant-container">
         <button className="ai-assistant-button" onClick={() => navigate("/lumina")}>
           <span className="ai-icon">./.</span>
-          <span>Lumina ni ed</span>
+          <span> </span>
         </button>
       </div>
 

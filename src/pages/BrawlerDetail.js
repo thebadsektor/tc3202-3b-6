@@ -226,7 +226,7 @@ function BrawlerDetail() {
     {/* Text Section */}
     <div>
       <h1 style={{ fontSize: '48px', marginTop: '100px' }}>{brawler.Brawler.toUpperCase()}</h1>
-      <p style={{ maxWidth: '700px', lineHeight: '1.6', fontSize: '25px' }}>
+      <p style={{ maxWidth: '600px', lineHeight: '1.6', fontSize: '25px' }}>
         {description}
       </p>
     </div>
@@ -237,7 +237,7 @@ function BrawlerDetail() {
       src={`/Icon/${brawler.Brawler}.png`}
       onError={(e) => { e.target.onerror = null; e.target.src = '/Icon/default.png'; }}
       alt={brawler.Brawler}
-      style={{ width: '250px', height: '400px', borderRadius: '20px', objectFit: 'cover', marginLeft:'220px' }}
+      style={{ width: '250px', height: 'auto', borderRadius: '20px', objectFit: 'cover', marginLeft:'20px' }}
     />
   </div>
 

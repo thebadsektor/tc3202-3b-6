@@ -538,6 +538,7 @@
     top: 50%;
     transform: translateY(-50%);
     display: flex;
+    display: none;
     flex-direction: column;
     gap: 0.5rem;
   }
