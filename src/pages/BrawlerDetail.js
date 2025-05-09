@@ -16,6 +16,12 @@ function BrawlerDetail() {
 
 
   useEffect(() => {
+
+    document.body.style.overflow = 'auto';
+  document.documentElement.style.overflow = 'auto';
+  document.body.style.height = 'auto';
+  document.documentElement.style.height = 'auto';
+
     async function fetchData() {
       try {
         const statsResponse = await fetch('/modified_brawler_data.xlsx');
@@ -25,7 +31,7 @@ function BrawlerDetail() {
         const statsData = XLSX.utils.sheet_to_json(statsWorksheet);
         const foundBrawler = statsData.find(b => b.Brawler === name);
 
-        const descResponse = await fetch('/BrawlDescription124.xlsx');
+        const descResponse = await fetch('/BrawlDescription124.csv');
         const descArrayBuffer = await descResponse.arrayBuffer();
         const descWorkbook = XLSX.read(descArrayBuffer, { type: 'array' });
         const descWorksheet = descWorkbook.Sheets[descWorkbook.SheetNames[0]];
@@ -77,6 +83,12 @@ function BrawlerDetail() {
       } finally {
         setLoading(false);
       }
+      return () => {
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+        document.body.style.height = '';
+        document.documentElement.style.height = '';
+      };
     }
 
     fetchData();
@@ -258,8 +270,8 @@ function BrawlerDetail() {
   }}
   alt={brawler.Brawler}
   style={{
-    width: '200px',
-    height: '200px',
+    width: '300px',
+    height: '300px',
     borderRadius: '20px',
     objectFit: 'cover',
     marginTop: '20px'
@@ -267,8 +279,8 @@ function BrawlerDetail() {
 />
     {/* Text Section */}
     <div>
-      <h1 style={{ fontSize: '32px', marginTop: '60px' }}>{brawler.Brawler.toUpperCase()}</h1>
-      <p style={{ maxWidth: '400px', lineHeight: '1.6', fontSize: '20px' }}>
+      <h1 style={{ fontSize: '60px', marginTop: '60px' }}>{brawler.Brawler.toUpperCase()}</h1>
+      <p style={{ maxWidth: '600px', lineHeight: '1.6', fontSize: '25px' }}>
         {description}
       </p>
     </div>
@@ -279,7 +291,7 @@ function BrawlerDetail() {
       src={`/Icon/${brawler.Brawler}.png`}
       onError={(e) => { e.target.onerror = null; e.target.src = '/Icon/default.png'; }}
       alt={brawler.Brawler}
-      style={{ width: '200px', height: '350px', borderRadius: '20px', objectFit: 'cover', marginLeft:'20px' }}
+      style={{ width: '100%', height: '350px', borderRadius: '20px', objectFit: 'cover', marginLeft:'50px' }}
     />
   </div>
 
@@ -376,7 +388,8 @@ function BrawlerDetail() {
     backgroundColor: '#1c1c1c',
     padding: '30px',
     width: '400px',
-    borderRadius: '15px',
+    
+    borderRadius: '14px',
   }}>
     <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
       <img
@@ -388,7 +401,7 @@ function BrawlerDetail() {
       <h2 style={{ fontSize: '30px' }}>Statistics</h2>
     </div>
 
-    <div style={{ display: 'grid', marginTop:'50px', gridTemplateColumns: '1fr 1fr', rowGap: '15px', columnGap: '20px',fontSize: '18px' }}>
+    <div style={{ display: 'grid', marginTop:'130px', gridTemplateColumns: '1fr 1fr', rowGap: '15px', columnGap: '20px',fontSize: '18px' }}>
       <div style={{ color: '#bbb' }}>Level</div>
       <div>
         <select
@@ -446,7 +459,7 @@ function BrawlerDetail() {
         <h2 style={{ fontSize: '30px' }}>{attackStats.Passive || 'Attack Info'}</h2>
       </div>
 
-      <p style={{ fontStyle: 'italic', marginBottom: '20px', color: '#ccc',fontSize: '22px', marginTop: '50px' }}>
+      <p style={{ fontStyle: 'italic', marginBottom: '20px', color: '#ccc',fontSize: '20px', marginTop: '50px' }}>
         {attackStats.Description || 'No attack description available.'}
       </p>
 
@@ -493,7 +506,7 @@ function BrawlerDetail() {
 
       </div>
 
-      <p style={{ fontStyle: 'italic', marginBottom: '20px', color: '#ccc',fontSize: '18spx' }}>
+      <p style={{ fontStyle: 'italic', marginBottom: '20px', color: '#ccc',fontSize: '16px' }}>
         {passiveAttacks.Description || 'No passive description available.'}
       </p>
 

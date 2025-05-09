@@ -2,9 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const MapShowcase = () => {
+
+  document.body.style.overflow = 'auto';
+  document.documentElement.style.overflow = 'auto';
+  document.body.style.height = 'auto';
+  document.documentElement.style.height = 'auto';
+
+  
+  
   const gemGrabMaps = [
     "Hard Rock Mine", "Crystal Arcade", "Deathcap Trap", "Gem Fort",
-    "Double Swoosh", "Minecart Madness", "Undermine", "Flooded Mine"
+     "Double Swoosh", "Undermine",  
+    "Last Stop", "Lilygear Lake", "Local Restaurants", "On A Roll",
+     "Open Space", "Rustic Arcade", "Storage Sector"
   ];
 
   const heistMaps = [
@@ -13,23 +23,28 @@ const MapShowcase = () => {
   ];
 
   const bountyMaps = [
-    "Layer Cake", "Shooting Star", "Canal Grande", "Dry Season",
-    "Mortis Mortuary", "Overgrown Canyon", "Hideout"
+    "Layer Cake", "Shooting Star", "Brace for Impact", "Dry Season",
+    "No excuses", "Hideout"
   ];
 
   const brawlBallMaps = [
-    "Super Stadium", "Backyard Bowl", "Sneaky Fields", "Pinball Dreams",
-    "Center Stage", "Galaxy Arena", "Pinhole Punt"
+    "Backyard Bowl", "Sneaky Fields", "Pinball Dreams",
+    "Pinhole Punt", "Beach Ball", "Grass Knot", 
+    "Priceless Cactus", "Second Try", "Spiraling Out", 
+    "Sunny Soccer", "Super Beach", "Trickey", "Triple Dribble"
   ];
 
   const knockoutMaps = [
-    "Goldarm Gulch", "Belle's Rock", "Out in the Open", "New Perspective",
-    "Flaring Phoenix", "High Stakes", "Flowing Springs"
+    "Goldarm Gulch", "Belles Rock", "Out in the Open", "New Perspective",
+   "Flowing Springs", "Close Quarters", 
+    "Deep End", "Double Decker", "Flowing Springs", "Four Levels", "H For...",
+     "Healthy Middle Ground", "Mossy Crossing", "New Horizons", "Streets with no Name"
   ];
 
   const hotZoneMaps = [
-    "Parallel Plays", "Dueling Beetles", "Split", "Open Zone",
-    "Ring of Fire", "Zone Zero", "Arcade Assembly"
+    "Dueling Beetles", "Open Zone",
+    "Ring of Fire", "Bejeweled", "Abracadabra", 
+    "Fishing Red", "In the Liminal", "Open Business"
   ];
 
   const getImagePath = (mapName) => {
@@ -136,13 +151,14 @@ const MapShowcase = () => {
               {mapName}
             </span>
           </Link>
+          
         ))}
       </div>
     </div>
   );
 
   return (
-    <div style={{ backgroundColor: '#121212', padding: '20px', minHeight: '100vh' }}>
+    <div style={{ backgroundColor: '#121212', padding: '20px', minHeight: '100vh',  overflowY: 'auto', }}>
       <div style={{ flex: 1, maxWidth: '1200px', margin: 'auto' }}>
         {renderMapRow(gemGrabMaps, 'Gem Grab', '#b839ec', '/map-icon/GemGrabIcon.png')}
         {renderMapRow(heistMaps, 'Heist', '#e33be1', '/map-icon/HeistIcon.png')}
@@ -153,6 +169,7 @@ const MapShowcase = () => {
       </div>
     </div>
   );
+  
 };
 
 export default MapShowcase;

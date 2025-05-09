@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Papa from 'papaparse';
 
 const ProgressBar = ({ value, color }) => (
+  
   <div style={{ backgroundColor: '#333', borderRadius: '8px', overflow: 'hidden', height: '6px', marginTop: '4px' }}>
     <div
       style={{
@@ -10,11 +11,17 @@ const ProgressBar = ({ value, color }) => (
         height: '100%',
         backgroundColor: color,
         transition: 'width 0.3s ease',
+      
       }}
     />
   </div>
 );
 
+document.body.style.overflow = 'auto';
+  document.documentElement.style.overflow = 'auto';
+  document.body.style.height = 'auto';
+  document.documentElement.style.height = 'auto';
+  
 const MapDetail = () => {
   const { mapName } = useParams();
   const [brawlers, setBrawlers] = useState([]);
