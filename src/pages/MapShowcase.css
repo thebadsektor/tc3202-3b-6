@@ -1,57 +1,73 @@
+/* Overall page layout */
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll;
+}
 .map-showcase {
   background-color: #121212;
-  padding: 20px;
+  padding: 0;
   min-height: 100vh;
-  max-height: 100vh;
-  overflow-y: auto;
+  position: relative;
 }
-
-.container {
+.map-content {
   flex: 1;
   max-width: 1200px;
-  margin: auto;
-  position: relative;
-  padding-bottom: 40px; /* Add padding at the bottom for better scrolling */
+  margin: 0 auto;
+  padding: 20px;
+  padding-top: 70px; /* Space for the fixed header */
 }
 
+/* Back button styling */
 .back-button {
-  display: inline-block;
-  background-color: #2a2a2a;
-  color: white;
-  padding: 8px 16px;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 10px 20px;
   border-radius: 8px;
-  text-decoration: none;
   font-weight: bold;
-  margin-bottom: 20px;
-  margin-left: -340px;
-  transition: background-color 0.3s;
-  position: relative;
-  left: 0;
-  top: 0;
+  font-size: 16px;
+  color: #121212;
+  text-decoration: none;
+  background: linear-gradient(to right, #ffcc00, #ff9500);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .back-button:hover {
-  background-color: #444;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(to right, #ffdd44, #ff8800);
 }
 
+.back-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Map row styling */
 .map-row {
   margin-bottom: 40px;
 }
-
-.map-title-container {
+.map-header {
   display: flex;
   align-items: center;
   padding: 10px;
   border-radius: 8px;
   margin-bottom: 10px;
 }
-
 .map-icon {
   width: 30px;
   height: 30px;
   margin-right: 10px;
 }
-
 .map-title {
   font-size: 24px;
   color: white;
@@ -60,92 +76,47 @@
   align-items: center;
   gap: 8px;
 }
-
 .map-count {
   color: #bdbdbd;
   font-weight: bold;
   text-shadow: 2px 2px 0px #000;
 }
-
-/* Updated map-grid for horizontal scrolling */
+/* Map grid layout */
 .map-grid {
   display: flex;
-  overflow-x: auto;
-  padding-bottom: 15px; /* Space for scrollbar */
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  gap: 15px;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-start;
 }
-
-/* Styling for horizontal scrollbars in map grid */
-.map-grid::-webkit-scrollbar {
-  height: 8px;
-}
-
-.map-grid::-webkit-scrollbar-track {
-  background: #2a2a2a;
-  border-radius: 4px;
-}
-
-.map-grid::-webkit-scrollbar-thumb {
-  background: #555;
-  border-radius: 4px;
-}
-
-.map-grid::-webkit-scrollbar-thumb:hover {
-  background: #777;
-}
-
-/* Styling for vertical scrollbar of the entire page */
-.map-showcase::-webkit-scrollbar {
-  width: 10px;
-}
-
-.map-showcase::-webkit-scrollbar-track {
-  background: #1a1a1a;
-}
-
-.map-showcase::-webkit-scrollbar-thumb {
-  background: #555;
-  border-radius: 5px;
-}
-
-.map-showcase::-webkit-scrollbar-thumb:hover {
-  background: #777;
-}
-
-/* Updated map-card for horizontal scrolling */
+/* Map card styling */
 .map-card {
   text-decoration: none;
-  min-width: 220px; /* Fixed minimum width */
-  flex: 0 0 auto; /* Don't grow or shrink */
+  flex: 1 1 calc(20% - 10px);
+  max-width: calc(20% - 10px);
   background: #1e1e1e;
   border-radius: 10px;
   overflow: hidden;
   text-align: center;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 15px;
 }
-
 .map-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
-
 .map-image-container {
   background-color: #1e1e1e;
-  height: 280px; /* Slightly reduced height */
+  height: 360px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 .map-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border: 1px solid #333;
 }
-
 .map-name {
   display: block;
   padding: 8px;
@@ -153,52 +124,33 @@
   font-weight: bold;
   color: #f0f0f0;
 }
-
-.scroll-buttons {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 10px;
-  gap: 8px;
+/* Responsive design */
+@media (max-width: 1200px) {
+  .map-card {
+    flex: 1 1 calc(25% - 10px);
+    max-width: calc(25% - 10px);
+  }
 }
-
-.scroll-button {
-  background-color: #333;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background-color 0.2s;
+@media (max-width: 992px) {
+  .map-card {
+    flex: 1 1 calc(33.333% - 10px);
+    max-width: calc(33.333% - 10px);
+  }
 }
-
-.scroll-button:hover {
-  background-color: #555;
-}
-
 @media (max-width: 768px) {
   .map-card {
-    min-width: 180px;
+    flex: 1 1 calc(50% - 10px);
+    max-width: calc(50% - 10px);
   }
   
   .map-image-container {
-    height: 220px;
-  }
-  
-  .back-button {
-    margin-left: 0;
+    height: 280px;
   }
 }
-
 @media (max-width: 480px) {
   .map-card {
-    min-width: 160px;
+    flex: 1 1 100%;
+    max-width: 100%;
   }
   
-  .map-image-container {
-    height: 180px;
-  }
 }
