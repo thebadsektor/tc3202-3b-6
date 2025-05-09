@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Papa from 'papaparse';
+import './MapDetail.css';
 
 const ProgressBar = ({ value, color }) => (
-  <div style={{ backgroundColor: '#333', borderRadius: '8px', overflow: 'hidden', height: '6px', marginTop: '4px' }}>
+  <div className="progress-bar-container">
     <div
+      className="progress-bar-fill"
       style={{
         width: `${value}%`,
-        height: '100%',
         backgroundColor: color,
-        transition: 'width 0.3s ease',
       }}
     />
   </div>
@@ -17,6 +17,7 @@ const ProgressBar = ({ value, color }) => (
 
 const MapDetail = () => {
   const { mapName } = useParams();
+  const navigate = useNavigate();
   const [brawlers, setBrawlers] = useState([]);
 
   useEffect(() => {
@@ -45,74 +46,71 @@ const MapDetail = () => {
     fetchCsv();
   }, [mapName]);
 
+  const handleBackClick = () => {
+    navigate(-1);
+  };
+
   return (
-    <div style={{ backgroundColor: '#111', color: '#fff', padding: '40px' }}>
-      <h1 style={{ fontSize: '32px', marginBottom: '10px', textAlign: 'center' }}>
-        {decodeURIComponent(mapName)}
-      </h1>
+    <div className="page-container">
+      <div className="map-detail-container">
+        <button className="back-button" onClick={handleBackClick}>
+          &larr; Back
+        </button>
+        
+        <h1 className="map-title">
+          {decodeURIComponent(mapName)}
+        </h1>
 
-      <div style={{ textAlign: 'center', marginBottom: '30px' }}>
-        <img
-          src={`/maps/${mapName.toLowerCase().replace(/ /g, '-').replace(/[']/g, '')}.png`}
-          alt={mapName}
-          style={{
-            maxWidth: '100%',
-            height: 'auto',
-            border: '2px solid #444',
-            borderRadius: '12px',
-          }}
-          onError={(e) => {
-            e.target.onerror = null;
-            e.target.src = '/maps/default.png';
-          }}
-        />
-      </div>
-
-      <h2 style={{ fontSize: '20px', marginBottom: '30px', color: '#ccc', textAlign: 'center' }}>
-        Top Brawlers for this map
-      </h2>
-
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', justifyContent: 'center' }}>
-        {brawlers.map((brawler, index) => (
-          <div
-            key={index}
-            style={{
-              width: '140px',
-              backgroundColor: '#1e1e1e',
-              borderRadius: '10px',
-              padding: '10px',
-              boxShadow: '0 0 6px rgba(0,0,0,0.5)',
-              textAlign: 'center',
-              fontSize: '12px',
+        <div className="map-image-container">
+          <img
+            src={`/maps/${mapName.toLowerCase().replace(/ /g, '-').replace(/[']/g, '')}.png`}
+            alt={mapName}
+            className="map-image"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = '/maps/default.png';
             }}
-          >
-            <img
-              src={`/Images1/${(brawler.name || '')
-                .toLowerCase()
-                .replace(/&/g, 'and')
-                .replace(/[^a-z0-9\s-]/g, '')
-                .replace(/\s+/g, '-')
-                .replace(/-+/g, '-')}.png`}
-              alt={brawler.name}
-              style={{ width: '60px', height: '60px', borderRadius: '6px', marginBottom: '6px' }}
-              onError={(e) => (e.target.src = '/Images1/default.png')}
-            />
-            <div style={{ fontWeight: 'bold', marginBottom: '6px' }}>{brawler.name}</div>
+          />
+        </div>
 
-            <div style={{ color: '#66ffcc' }}>Win {brawler.winRate.toFixed(1)}%</div>
-            <ProgressBar value={brawler.winRate} color="#66ffcc" />
+        <h2 className="brawlers-heading">
+          Top Brawlers for this map
+        </h2>
 
-            <div style={{ color: '#4dabf7', marginTop: '6px' }}>
-              Usage {brawler.pickRate.toFixed(1)}%
+        <div className="brawlers-grid">
+          {brawlers.map((brawler, index) => (
+            <div
+              key={index}
+              className="brawler-card"
+            >
+              <img
+                src={`/Images1/${(brawler.name || '')
+                  .toLowerCase()
+                  .replace(/&/g, 'and')
+                  .replace(/[^a-z0-9\s-]/g, '')
+                  .replace(/\s+/g, '-')
+                  .replace(/-+/g, '-')}.png`}
+                alt={brawler.name}
+                className="brawler-image"
+                onError={(e) => (e.target.src = '/Images1/default.png')}
+              />
+              <div className="brawler-name">{brawler.name}</div>
+
+              <div className="stat win-rate">Win {brawler.winRate.toFixed(1)}%</div>
+              <ProgressBar value={brawler.winRate} color="#66ffcc" />
+
+              <div className="stat pick-rate">
+                Usage {brawler.pickRate.toFixed(1)}%
+              </div>
+              <ProgressBar value={brawler.pickRate} color="#4dabf7" />
+
+              <div className="stat star-rate">
+                Star {brawler.starRate.toFixed(1)}%
+              </div>
+              <ProgressBar value={brawler.starRate} color="#f7b731" />
             </div>
-            <ProgressBar value={brawler.pickRate} color="#4dabf7" />
-
-            <div style={{ color: '#f7b731', marginTop: '6px' }}>
-              Star {brawler.starRate.toFixed(1)}%
-            </div>
-            <ProgressBar value={brawler.starRate} color="#f7b731" />
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

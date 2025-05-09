@@ -126,11 +126,7 @@ const TeamCompositionPage = () => {
 
   // Handle back button click
   const handleBack = () => {
-    // You can implement navigation logic here
-    // For example, using history.goBack() if you're using react-router
-    // Or any other navigation logic as needed
     console.log("Back button clicked");
-    // Placeholder for actual navigation
     if (window.history && window.history.length > 1) {
       window.history.back();
     }
