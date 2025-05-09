@@ -25,7 +25,7 @@ function BrawlerDetail() {
         const statsData = XLSX.utils.sheet_to_json(statsWorksheet);
         const foundBrawler = statsData.find(b => b.Brawler === name);
 
-        const descResponse = await fetch('/BrawlDescription12.xlsx');
+        const descResponse = await fetch('/BrawlDescription124.xlsx');
         const descArrayBuffer = await descResponse.arrayBuffer();
         const descWorkbook = XLSX.read(descArrayBuffer, { type: 'array' });
         const descWorksheet = descWorkbook.Sheets[descWorkbook.SheetNames[0]];
@@ -33,7 +33,7 @@ function BrawlerDetail() {
         const foundDesc = descData.find(b => b.Brawler === name);
         const found = descData.find(b => b.Brawler === name);
 
-        const statsBrawlResponse = await fetch('/StatisticsBrawl.xlsx');
+        const statsBrawlResponse = await fetch('/StatisticsBrawl1.csv');
         const statsBrawlArrayBuffer = await statsBrawlResponse.arrayBuffer();
         const statsBrawlWorkbook = XLSX.read(statsBrawlArrayBuffer, { type: 'array' });
         const statsBrawlWorksheet = statsBrawlWorkbook.Sheets[statsBrawlWorkbook.SheetNames[0]];
@@ -198,74 +198,82 @@ function BrawlerDetail() {
         ← Back to Brawler Stats
       </Link>
 
-      <div className="brawler-header">
-        {/* Main Brawler Image */}
-        <img
-          src={`/Images1/${brawler.Brawler}.png`}
-          onError={(e) => {
-            e.target.onerror = null;
-            e.target.src = '/images1/default.png';
-          }}
-          alt={brawler.Brawler}
-          className="brawler-main-image"
-        />
-        
-        {/* Text Section */}
-        <div className="brawler-info">
-          <h1 className="brawler-name">{brawler.Brawler.toUpperCase()}</h1>
-          <p className="brawler-description">{description}</p>
-        </div>
-        
-        {/* Icon Image */}
-        <div className="brawler-icon-container">
-          <img 
-            src={`/Icon/${brawler.Brawler}.png`}
-            onError={(e) => { e.target.onerror = null; e.target.src = '/Icon/default.png'; }}
-            alt={brawler.Brawler}
-            className="brawler-icon-image"
-          />
-        </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '30px', flexWrap: 'wrap' }}>
+  {/* Main Brawler Image */}
+  <img
+  src={`/Images1/${brawler.Brawler}.png`}
+  onError={(e) => {
+    e.target.onerror = null;
+    e.target.src = '/images1/default.png';
+  }}
+  alt={brawler.Brawler}
+  style={{
+    width: '300px',
+    height: '300px',
+    borderRadius: '20px',
+    objectFit: 'cover',
+    marginTop: '60px'
+  }}
+/>
+    {/* Text Section */}
+    <div>
+      <h1 style={{ fontSize: '48px', marginTop: '100px' }}>{brawler.Brawler.toUpperCase()}</h1>
+      <p style={{ maxWidth: '700px', lineHeight: '1.6', fontSize: '25px' }}>
+        {description}
+      </p>
+    </div>
+    {/* Description Section */}
+  <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+    {/* OLLIE Image on the side */}
+    <img 
+      src={`/Icon/${brawler.Brawler}.png`}
+      onError={(e) => { e.target.onerror = null; e.target.src = '/Icon/default.png'; }}
+      alt={brawler.Brawler}
+      style={{ width: '250px', height: '400px', borderRadius: '20px', objectFit: 'cover', marginLeft:'220px' }}
+    />
+  </div>
 
-        {foundDesc && (
-          <div className="brawler-matchups">
-            {/* Loses Against Most */}
-            <div className="matchup-section">
-              <h2 className="matchup-title">Lose against most - According to statistics</h2>
-              <div className="matchup-icons">
-                {foundDesc.LoseAgainstMost && foundDesc.LoseAgainstMost.split(',').map((opponent, index) => (
-                  <div key={index} className="matchup-icon-container">
-                    <img 
-                      src={`/images1/${opponent.trim()}.png`} 
-                      onError={(e) => { e.target.onerror = null; e.target.src = '/images1/default.png'; }}
-                      alt={opponent.trim()}
-                      className="matchup-icon"
-                    />
-                    <span className="matchup-index">{index + 1}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Wins Against Most */}
-            <div className="matchup-section">
-              <h2 className="matchup-title">Win against most - According to statistics</h2>
-              <div className="matchup-icons">
-                {foundDesc.WinAgainstMost && foundDesc.WinAgainstMost.split(',').map((opponent, index) => (
-                  <div key={index} className="matchup-icon-container">
-                    <img 
-                      src={`/images1/${opponent.trim()}.png`} 
-                      onError={(e) => { e.target.onerror = null; e.target.src = '/images1/default.png'; }}
-                      alt={opponent.trim()}
-                      className="matchup-icon"
-                    />
-                    <span className="matchup-index">{index + 1}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+  {foundDesc && (
+  <div style={{ marginTop: '30px', display: 'flex', flexDirection: 'column', gap: '40px', marginLeft:'50px'}}>
+    {/* Loses Against Most */}
+    <div style={{ flex: '1' }}>
+      <h2 style={{ fontSize: '24px', marginBottom: '10px' }}>Lose against most - According to statistics</h2>
+      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '10px' }}>
+        {foundDesc.LoseAgainstMost && foundDesc.LoseAgainstMost.split(',').map((opponent, index) => (
+          <div key={index} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <img 
+              src={`/images1/${opponent.trim()}.png`} 
+              onError={(e) => { e.target.onerror = null; e.target.src = '/images1/default.png'; }}
+              alt={opponent.trim()}
+              style={{ width: '60px', height: '60px', borderRadius: '10px', objectFit: 'cover' }}
+            />
+            <span style={{ fontSize: '14px', marginTop: '5px' }}>{index + 1}</span>
           </div>
-        )}
+        ))}
       </div>
+    </div>
+
+    {/* Wins Against Most */}
+    <div style={{ flex: '1', marginTop: '10px' }}>
+      <h2 style={{ fontSize: '24px', marginBottom: '10px' }}>Win against most - According to statistics</h2>
+      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '10px' }}>
+        {foundDesc.WinAgainstMost && foundDesc.WinAgainstMost.split(',').map((opponent, index) => (
+          <div key={index} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <img 
+              src={`/images1/${opponent.trim()}.png`} 
+              onError={(e) => { e.target.onerror = null; e.target.src = '/images1/default.png'; }}
+              alt={opponent.trim()}
+              style={{ width: '60px', height: '60px', borderRadius: '10px', objectFit: 'cover' }}
+            />
+            <span style={{ fontSize: '14px', marginTop: '5px' }}>{index + 1}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+)}
+
+</div>
      
       <div className="stats-banner">
         <Stat title="Win Rate" value={`${(brawler['Win Rate'] * 100).toFixed(2)}%`} />
