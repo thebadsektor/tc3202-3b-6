@@ -17,10 +17,6 @@ function BrawlerDetail() {
 
   useEffect(() => {
 
-    document.body.style.overflow = 'auto';
-  document.documentElement.style.overflow = 'auto';
-  document.body.style.height = 'auto';
-  document.documentElement.style.height = 'auto';
 
     async function fetchData() {
       try {

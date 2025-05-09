@@ -14,11 +14,6 @@ const ProgressBar = ({ value, color }) => (
     />
   </div>
 );
-
-document.body.style.overflow = 'auto';
-  document.documentElement.style.overflow = 'auto';
-  document.body.style.height = 'auto';
-  document.documentElement.style.height = 'auto';
   
 const MapDetail = () => {
   const { mapName } = useParams();

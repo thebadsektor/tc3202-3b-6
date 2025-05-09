@@ -38,11 +38,7 @@ function BrawlerTable() {
   const rowsPerPage = 15;
 
   useEffect(() => {
-    // Add global styles to ensure the body and html can scroll
-    document.body.style.overflow = 'auto';
-    document.documentElement.style.overflow = 'auto';
-    document.body.style.height = 'auto';
-    document.documentElement.style.height = 'auto';
+  
     
     fetch('/modified_brawler_data.xlsx')
       .then(res => {

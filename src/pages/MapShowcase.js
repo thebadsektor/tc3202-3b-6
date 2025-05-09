@@ -3,12 +3,6 @@ import { Link } from 'react-router-dom';
 import './MapShowcase.css';
 
 const MapShowcase = () => {
-
-  document.body.style.overflow = 'auto';
-  document.documentElement.style.overflow = 'auto';
-  document.body.style.height = 'auto';
-  document.documentElement.style.height = 'auto';
-
   
   
   const gemGrabMaps = [
