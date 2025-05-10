@@ -550,18 +550,26 @@ const TeamCompositionPage = () => {
           )}
         </button>
         
-        {result && (
-          <div className="result-container">
-            <h3 className="result-title">{result.result}</h3>
-            <div className="progress-bar-container">
-              <div 
-                className={`progress-bar ${result.result.includes("Team 1") ? "team1-bar" : "team2-bar"}`}
-                style={{ width: `${result.win_percentage}%` }}
-              ></div>
-            </div>
-            <p className="result-percentage">Win probability: <span className="percentage-value">{result.win_percentage}%</span></p>
-          </div>
-        )}
+         {result && (
+      <div className="result-container">
+        <h3 className="result-title">{result.result}</h3>
+
+        <div className="progress-bar-container">
+          <div 
+            className={`progress-bar ${result.result.includes("Team 1") ? "team1-bar" : "team2-bar"}`}
+            style={{ width: `${result.win_percentage}%` }}
+         ></div>
+       </div>
+
+       <p className="result-percentage">
+         Win probability: <span className="percentage-value">{result.win_percentage}%</span>
+        </p>
+
+        <p className="result-percentage">
+         Loss probability: <span className="percentage-value">{(100 - result.win_percentage).toFixed(2)}%</span>
+        </p>
+      </div>
+      )}
       </div>
     </div>
   );

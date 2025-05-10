@@ -15,6 +15,25 @@ DATA_FOLDER = os.path.dirname(__file__)
 model = joblib.load(os.path.join(DATA_FOLDER, "BuhayNgaNaman.pkl"))
 counter_matrix = pd.read_csv(os.path.join(DATA_FOLDER, "CounterBrawler.csv"), index_col=0)
 
+# Add the BrawlCOUNTER.csv data
+brawl_counter_data = pd.read_csv(os.path.join(DATA_FOLDER, "BrawlCOUNTER.csv"), encoding="latin1")
+# Create dictionaries for easy lookup
+win_against_dict = {}
+lose_against_dict = {}
+
+for _, row in brawl_counter_data.iterrows():
+    brawler = row['Brawler']
+    
+    # Store Win Against data
+    if pd.notna(row['WinAgainstMost']):
+        win_against = [enemy.strip() for enemy in str(row['WinAgainstMost']).split(',')]
+        win_against_dict[brawler.upper()] = win_against
+    
+    # Store Lose Against data
+    if pd.notna(row['LoseAgainstMost']):
+        lose_against = [enemy.strip() for enemy in str(row['LoseAgainstMost']).split(',')]
+        lose_against_dict[brawler.upper()] = lose_against
+
 with open(os.path.join(DATA_FOLDER, "AllMapBrawlerWinrate (1).pkl"), "rb") as f:
     all_map_brawler_winrate = pickle.load(f)
 
@@ -225,39 +244,80 @@ def analyze_synergy(team1, team2, winning_team):
     }
 
 def analyze_counters(team1, team2, counter_matrix, winning_team):
-    # Identify direct counters between teams
+    # Modified to use BrawlCOUNTER data
     team1_counters = []  # Team 1 brawlers that counter Team 2 brawlers
     team2_counters = []  # Team 2 brawlers that counter Team 1 brawlers
     
-    counter_threshold = 0.55  # Threshold to consider a brawler a counter
-    
+    # Check for direct counters using the LoseAgainstMost and WinAgainstMost data
     for brawler1 in team1:
-        for brawler2 in team2:
-            counter_score = get_counter(brawler1, brawler2, counter_matrix)
-            if counter_score > counter_threshold:
-                team1_counters.append((brawler1, brawler2, counter_score))
+        # Check if Team 1 brawler counters any Team 2 brawler
+        if brawler1.upper() in win_against_dict:
+            for brawler2 in team2:
+                if brawler2.upper() in win_against_dict[brawler1.upper()]:
+                    team1_counters.append((brawler1, brawler2, 0.75))  # Assign a high counter score
+        
+        # Check if any Team 2 brawler counters Team 1 brawler
+        if brawler1.upper() in lose_against_dict:
+            for brawler2 in team2:
+                if brawler2.upper() in lose_against_dict[brawler1.upper()]:
+                    team2_counters.append((brawler2, brawler1, 0.75))  # Assign a high counter score
+    
+    # Use the original counter matrix as a fallback
+    counter_threshold = 0.55
+    if not team1_counters and not team2_counters:
+        for brawler1 in team1:
+            for brawler2 in team2:
+                counter_score = get_counter(brawler1, brawler2, counter_matrix)
+                if counter_score > counter_threshold:
+                    team1_counters.append((brawler1, brawler2, counter_score))
+                
+                reverse_counter_score = get_counter(brawler2, brawler1, counter_matrix)
+                if reverse_counter_score > counter_threshold:
+                    team2_counters.append((brawler2, brawler1, reverse_counter_score))
+    
+    # Determine the team with the counter advantage (number of counters)
+    team1_counter_strength = len(team1_counters)
+    team2_counter_strength = len(team2_counters)
+    
+    if team1_counter_strength > 0 and (team1_counter_strength > team2_counter_strength or winning_team == "Team 1"):
+        advantage = "Team 1"
+        
+        # Find specific counter examples
+        counter_examples = []
+        for counter in team1_counters[:2]:  # Limit to top 2 counters for readability
+            counter_examples.append(f"{counter[0]} counters {counter[1]}")
+        
+        if counter_examples:
+            reason = f"Team 1 has counter advantage: {' and '.join(counter_examples)}"
+        else:
+            reason = "Team 1 has better matchups overall"
             
-            reverse_counter_score = get_counter(brawler2, brawler1, counter_matrix)
-            if reverse_counter_score > counter_threshold:
-                team2_counters.append((brawler2, brawler1, reverse_counter_score))
-    
-    # Use the winning team as the one with counter advantage
-    advantage = winning_team
-    
-    if advantage == "Team 1" and team1_counters:
-        strongest_counter = max(team1_counters, key=lambda x: x[2])
-        reason = f"Team 1's {strongest_counter[0]} is a direct counter to Team 2's {strongest_counter[1]}"
-    elif advantage == "Team 2" and team2_counters:
-        strongest_counter = max(team2_counters, key=lambda x: x[2])
-        reason = f"Team 2's {strongest_counter[0]} is a direct counter to Team 1's {strongest_counter[1]}"
+    elif team2_counter_strength > 0 and (team2_counter_strength >= team1_counter_strength or winning_team == "Team 2"):
+        advantage = "Team 2"
+        
+        # Find specific counter examples
+        counter_examples = []
+        for counter in team2_counters[:2]:  # Limit to top 2 counters for readability
+            counter_examples.append(f"{counter[0]} counters {counter[1]}")
+        
+        if counter_examples:
+            reason = f"Team 2 has counter advantage: {' and '.join(counter_examples)}"
+        else:
+            reason = "Team 2 has better matchups overall"
     else:
+        # Fallback to the winning team prediction
+        advantage = winning_team
         reason = f"{advantage} has more favorable matchups"
     
-    # Get the strength based on the number of counters for the winning team
+    # Calculate the strength based on counter advantage
     if advantage == "Team 1":
-        strength = min(100, len(team1_counters) * 33)
+        strength = min(100, team1_counter_strength * 33)
     else:
-        strength = min(100, len(team2_counters) * 33)
+        strength = min(100, team2_counter_strength * 33)
+    
+    # Ensure minimum strength for UI purposes
+    if strength == 0:
+        strength = 25
     
     return {
         "advantage": advantage,
@@ -266,6 +326,7 @@ def analyze_counters(team1, team2, counter_matrix, winning_team):
     }
 
 def analyze_team_composition(team1, team2, winning_team):
+    # existing code, unchanged
     team1_roles = [brawler_roles.get(b.lower(), "generalist") for b in team1]
     team2_roles = [brawler_roles.get(b.lower(), "generalist") for b in team2]
     
