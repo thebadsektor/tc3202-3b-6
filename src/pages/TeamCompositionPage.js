@@ -1,8 +1,13 @@
 import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import "./TeamCompositionPage.css";
+<<<<<<< HEAD
 
 // Add ArrowLeftIcon for back button
+=======
+import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
+
+>>>>>>> 492ef3e (TeamCompositionPage di ko na alam)
 const ArrowLeftIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon">
     <line x1="19" y1="12" x2="5" y2="12"></line>
@@ -10,7 +15,10 @@ const ArrowLeftIcon = () => (
   </svg>
 );
 
+<<<<<<< HEAD
 // Other icon components remain the same
+=======
+>>>>>>> 492ef3e (TeamCompositionPage di ko na alam)
 const ShieldIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon">
     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
@@ -68,6 +76,105 @@ const SparklesIcon = () => (
   </svg>
 );
 
+<<<<<<< HEAD
+=======
+const UsersThreeIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon">
+    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+    <circle cx="9" cy="7" r="4"></circle>
+    <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+  </svg>
+);
+
+const FightIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon">
+    <path d="M4 20v-6a8 8 0 0 1 16 0v6"></path>
+    <path d="m9 12 2 2 4-4"></path>
+  </svg>
+);
+
+const BalanceIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon">
+    <path d="M12 3v18"></path>
+    <rect x="5" y="8" width="5" height="12" rx="2"></rect>
+    <rect x="14" y="4" width="5" height="12" rx="2"></rect>
+  </svg>
+);
+
+// InsightsPanel is now just a rendering component without hooks
+const InsightsPanel = ({ insights, expandedInsight, setExpandedInsight }) => {
+  if (!insights) return null;
+
+  const renderInsightItem = (item, title, icon) => {
+    const isExpanded = expandedInsight === title;
+    const advantageTeam = item.advantage;
+    const teamClass = advantageTeam === "Team 1" ? "team1-advantage" : advantageTeam === "Team 2" ? "team2-advantage" : "neutral-advantage";
+    
+    return (
+      <div className={`insight-item ${isExpanded ? 'expanded' : ''}`}>
+        <div 
+          className="insight-header" 
+          onClick={() => setExpandedInsight(isExpanded ? null : title)}
+        >
+          <div className="insight-icon-container">
+            {icon}
+          </div>
+          <div className="insight-title-container">
+            <h4 className="insight-title">{title}</h4>
+            <div className="insight-strength-bar-container">
+              <div 
+                className={`insight-strength-bar ${teamClass}`}
+                style={{ width: `${item.strength}%` }}
+              ></div>
+            </div>
+          </div>
+          <div className="expand-icon">
+            {isExpanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
+          </div>
+        </div>
+        
+        {isExpanded && (
+          <div className="insight-details">
+            <p>{item.reason}</p>
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  return (
+    <div className="insights-container">
+      <h3 className="insights-title">Match Analysis</h3>
+      
+      {renderInsightItem(
+        insights.map_advantage, 
+        "Map Advantage", 
+        <MapIcon />
+      )}
+      
+      {renderInsightItem(
+        insights.brawler_synergy, 
+        "Brawler Synergy", 
+        <UsersThreeIcon />
+      )}
+      
+      {renderInsightItem(
+        insights.counter_picks, 
+        "Counter Picks", 
+        <FightIcon />
+      )}
+      
+      {renderInsightItem(
+        insights.team_composition, 
+        "Team Composition Balance", 
+        <BalanceIcon />
+      )}
+    </div>
+  );
+};
+
+>>>>>>> 492ef3e (TeamCompositionPage di ko na alam)
 const TeamCompositionPage = () => {
   // Use useMemo to prevent modeMapOptions from being recreated on every render
   const modeMapOptions = useMemo(() => ({
@@ -90,7 +197,13 @@ const TeamCompositionPage = () => {
   const [activeTab, setActiveTab] = useState("team1");
   const [isLoading, setIsLoading] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
+<<<<<<< HEAD
 
+=======
+  const [expandedInsight, setExpandedInsight] = useState(null);
+
+  // All useEffect hooks are now at the top level of the component
+>>>>>>> 492ef3e (TeamCompositionPage di ko na alam)
   useEffect(() => {
     const fetchBrawlers = async () => {
       try {
@@ -110,12 +223,18 @@ const TeamCompositionPage = () => {
     }
   }, [mode, modeMapOptions]);
 
+<<<<<<< HEAD
   // Reset confetti effect when result changes
+=======
+>>>>>>> 492ef3e (TeamCompositionPage di ko na alam)
   useEffect(() => {
     if (result && result.result.includes("Team")) {
       setShowConfetti(true);
       
+<<<<<<< HEAD
       // Hide confetti after 5 seconds
+=======
+>>>>>>> 492ef3e (TeamCompositionPage di ko na alam)
       const timer = setTimeout(() => {
         setShowConfetti(false);
       }, 5000);
@@ -124,7 +243,10 @@ const TeamCompositionPage = () => {
     }
   }, [result]);
 
+<<<<<<< HEAD
   // Handle back button click
+=======
+>>>>>>> 492ef3e (TeamCompositionPage di ko na alam)
   const handleBack = () => {
     console.log("Back button clicked");
     if (window.history && window.history.length > 1) {
@@ -135,11 +257,41 @@ const TeamCompositionPage = () => {
   const handleChange = (index, team, value) => {
     const updated = [...(team === "team1" ? team1 : team2)];
     updated[index] = value;
+<<<<<<< HEAD
     team === "team1" ? setTeam1(updated) : setTeam2(updated);
   };
 
   const predict = async () => {
     // Basic validation
+=======
+
+    // Update the state
+    if (team === "team1") {
+      setTeam1(updated);
+    } else {
+      setTeam2(updated);
+    }
+
+    // Validate uniqueness within the same team
+    const filtered = updated.filter(b => b);
+    const uniqueSet = new Set(filtered);
+    if (uniqueSet.size < filtered.length) {
+      setError(`Each brawler in ${team.toUpperCase().replace("TEAM", "TEAM ")} must be unique.`);
+      return;
+    }
+
+    // Validate that no brawler is in both teams
+    const otherTeam = team === "team1" ? team2 : team1;
+    if (value && otherTeam.includes(value)) {
+      setError(`"${value}" is already selected in the other team.`);
+      return;
+    }
+
+    setError("");
+  };
+
+  const predict = async () => {
+>>>>>>> 492ef3e (TeamCompositionPage di ko na alam)
     if (!mode || !map) {
       setError("Please select both a game mode and a map.");
       return;
@@ -150,9 +302,15 @@ const TeamCompositionPage = () => {
       return;
     }
 
+<<<<<<< HEAD
     setError(""); // Clear previous error
     setResult(null); // Clear previous result
     setIsLoading(true); // Start loading state
+=======
+    setError("");
+    setResult(null); 
+    setIsLoading(true); 
+>>>>>>> 492ef3e (TeamCompositionPage di ko na alam)
 
     try {
       const res = await axios.post("http://localhost:5000/predict", {
@@ -162,17 +320,28 @@ const TeamCompositionPage = () => {
         map,
       });
       setResult(res.data);
+<<<<<<< HEAD
       // Show confetti when we get a positive result
+=======
+    
+>>>>>>> 492ef3e (TeamCompositionPage di ko na alam)
       setShowConfetti(true);
     } catch (err) {
       console.error("Prediction error:", err);
       setError("Something went wrong with the prediction.");
     } finally {
+<<<<<<< HEAD
       setIsLoading(false); // End loading state
     }
   };
 
   // Background floating elements
+=======
+      setIsLoading(false); 
+    }
+  };
+
+>>>>>>> 492ef3e (TeamCompositionPage di ko na alam)
   const FloatingElements = () => {
     return (
       <div className="floating-elements">
@@ -194,7 +363,10 @@ const TeamCompositionPage = () => {
     );
   };
 
+<<<<<<< HEAD
   // Confetti effect
+=======
+>>>>>>> 492ef3e (TeamCompositionPage di ko na alam)
   const Confetti = () => {
     if (!showConfetti) return null;
     
@@ -243,7 +415,11 @@ const TeamCompositionPage = () => {
         
         <div className="header">
           <h1 className="title">Smart Brawl</h1>
+<<<<<<< HEAD
           <h2 className="subtitle">Predict na tanga</h2>
+=======
+          <h2 className="subtitle">Predict now</h2>
+>>>>>>> 492ef3e (TeamCompositionPage di ko na alam)
         </div>
         
         <div className="game-selection">
@@ -343,6 +519,18 @@ const TeamCompositionPage = () => {
             </p>
           </div>
         )}
+<<<<<<< HEAD
+=======
+
+        {/* Render insights only if result has insights */}
+        {result && result.insights && (
+          <InsightsPanel 
+            insights={result.insights} 
+            expandedInsight={expandedInsight} 
+            setExpandedInsight={setExpandedInsight}
+          />
+        )}
+>>>>>>> 492ef3e (TeamCompositionPage di ko na alam)
         
         <button
           onClick={predict}
