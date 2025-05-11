@@ -273,6 +273,7 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     position: relative;
     overflow: hidden;
+    
   }
   
   .stats-banner::before {
@@ -324,7 +325,7 @@
   }
   
   .stat-value {
-    font-size: 1.5rem;
+    font-size: 1.0rem;
     font-weight: bold;
   }
   
@@ -337,7 +338,7 @@
   /* Section titles */
   .section-title {
     font-size: 2.2rem;
-    margin: 3rem 0 1.5rem;
+    margin: 5px 0 1.5rem;
     color: var(--text-light);
     position: relative;
     display: inline-block;
@@ -358,8 +359,9 @@
   /* Overview cards */
   .overview-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 44px;
+    justify-content: center;
     margin-bottom: 3rem;
   }
   
@@ -409,13 +411,13 @@
   }
   
   .card-title {
-    font-size: 1.5rem;
+    font-size: 30px;
     color: var(--secondary-color);
     margin: 0;
   }
   
   .attack-description {
-    font-size: 1rem;
+    font-size: 20px;
     line-height: 1.6;
     color: #bdbdbd;
     margin-bottom: 1.5rem;
@@ -425,11 +427,12 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.8rem 2rem;
+    
   }
   
   .stat-label {
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 22px;
   }
   
   .level-select {
@@ -440,12 +443,16 @@
     padding: 0.3rem 0.5rem;
     width: 80px;
     cursor: pointer;
+    position: relative;
+    z-index: 10;
+
   }
   
   /* Star powers and gadgets */
   .star-powers-container {
     grid-column: 1 / -1;
     margin-top: 2rem;
+    max-width: 100%;
   }
   
   .star-powers-title {
@@ -520,13 +527,13 @@
   }
   
   .star-gadget-name {
-    font-size: 1.2rem;
+    font-size: 26px;
     margin: 0;
     color: var(--accent-color);
   }
   
   .star-gadget-description {
-    font-size: 0.95rem;
+    font-size: 20px;
     line-height: 1.6;
     color: #bdbdbd;
   }
@@ -658,14 +665,18 @@
   /* Special glowing effects for specific elements */
   .statistics-card {
     border-left: 4px solid var(--primary-color);
+    margin-left: 50px;
   }
   
   .attack-card {
     border-left: 4px solid var(--secondary-color);
+     margin-right: 25px;
+     margin-left: 25px;
   }
   
   .passive-card {
     border-left: 4px solid var(--accent-color);
+     margin-right: 50px;
   }
   
   /* Animated background patterns */

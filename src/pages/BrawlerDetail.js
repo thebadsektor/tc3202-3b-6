@@ -20,14 +20,14 @@ function BrawlerDetail() {
 
     async function fetchData() {
       try {
-        const statsResponse = await fetch('/modified_brawler_data.xlsx');
+        const statsResponse = await fetch('/BrawlerData.xlsx');
         const statsArrayBuffer = await statsResponse.arrayBuffer();
         const statsWorkbook = XLSX.read(statsArrayBuffer, { type: 'array' });
         const statsWorksheet = statsWorkbook.Sheets[statsWorkbook.SheetNames[0]];
         const statsData = XLSX.utils.sheet_to_json(statsWorksheet);
         const foundBrawler = statsData.find(b => b.Brawler === name);
 
-        const descResponse = await fetch('/BrawlDescription125.csv');
+        const descResponse = await fetch('/BrawlerDescription.csv');
         const descArrayBuffer = await descResponse.arrayBuffer();
         const descWorkbook = XLSX.read(descArrayBuffer, { type: 'array' });
         const descWorksheet = descWorkbook.Sheets[descWorkbook.SheetNames[0]];
@@ -35,28 +35,28 @@ function BrawlerDetail() {
         const foundDesc = descData.find(b => b.Brawler === name);
         const found = descData.find(b => b.Brawler === name);
 
-        const statsBrawlResponse = await fetch('/StatisticsBrawl1.csv');
+        const statsBrawlResponse = await fetch('/BrawlerStatistics.csv');
         const statsBrawlArrayBuffer = await statsBrawlResponse.arrayBuffer();
         const statsBrawlWorkbook = XLSX.read(statsBrawlArrayBuffer, { type: 'array' });
         const statsBrawlWorksheet = statsBrawlWorkbook.Sheets[statsBrawlWorkbook.SheetNames[0]];
         const statsBrawlData = XLSX.utils.sheet_to_json(statsBrawlWorksheet);
         const foundStatsBrawl = statsBrawlData.find(b => b.Brawler === name);
 
-        const attackStatsResponse = await fetch('/BrawlerAttackData_fixed.xlsx');
+        const attackStatsResponse = await fetch('/BrawlerAttack.csv');
         const attackStatsArrayBuffer = await attackStatsResponse.arrayBuffer();
         const attackStatsWorkbook = XLSX.read(attackStatsArrayBuffer, { type: 'array' });
         const attackStatsWorksheet = attackStatsWorkbook.Sheets[attackStatsWorkbook.SheetNames[0]];
         const attackStatsData = XLSX.utils.sheet_to_json(attackStatsWorksheet);
         const foundAttackStats = attackStatsData.find(b => b.Brawler === name);
         
-        const passiveAttacksResponse = await fetch('/PassiveBrawler.xlsx');
+        const passiveAttacksResponse = await fetch('/BrawlerSuper.csv');
         const passiveAttacksArrayBuffer = await passiveAttacksResponse.arrayBuffer();
         const passiveAttacksWorkbook = XLSX.read(passiveAttacksArrayBuffer, { type: 'array' });
         const passiveAttacksWorksheet = passiveAttacksWorkbook.Sheets[passiveAttacksWorkbook.SheetNames[0]];
         const passiveAttacksData = XLSX.utils.sheet_to_json(passiveAttacksWorksheet);
         const foundPassiveAttack = passiveAttacksData.find(b => b.Brawler === name);
 
-        const starGadgetResponse = await fetch('/GadgetsAndStarPoser.xlsx');
+        const starGadgetResponse = await fetch('/BrawlerGadgets.csv');
         const starGadgetArrayBuffer = await starGadgetResponse.arrayBuffer();
         const starGadgetWorkbook = XLSX.read(starGadgetArrayBuffer, { type: 'array' });
         const starGadgetWorksheet = starGadgetWorkbook.Sheets[starGadgetWorkbook.SheetNames[0]];
@@ -206,7 +206,7 @@ function BrawlerDetail() {
         ← Back to Brawler Stats
       </Link>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: '30px', flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '30px', flexWrap: 'wrap', marginTop: '50px' }}>
   {/* Main Brawler Image */}
   <img
   src={`/Images1/${brawler.Brawler}.png`}
@@ -237,47 +237,54 @@ function BrawlerDetail() {
       src={`/Icon/${brawler.Brawler}.png`}
       onError={(e) => { e.target.onerror = null; e.target.src = '/Icon/default.png'; }}
       alt={brawler.Brawler}
-      style={{ width: '250px', height: 'auto', borderRadius: '20px', objectFit: 'cover', marginLeft:'20px' }}
+      style={{ width: '250px', height: 'auto', borderRadius: '20px', objectFit: 'cover', marginLeft:'80px' }}
     />
   </div>
 
   {foundDesc && (
   <div style={{ marginTop: '30px', display: 'flex', flexDirection: 'column', gap: '40px', marginLeft:'50px'}}>
     {/* Loses Against Most */}
-    <div style={{ flex: '1' }}>
-      <h2 style={{ fontSize: '24px', marginBottom: '10px' }}>Lose against most - According to statistics</h2>
-      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '10px' }}>
-        {foundDesc.LoseAgainstMost && foundDesc.LoseAgainstMost.split(',').map((opponent, index) => (
-          <div key={index} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <img 
-              src={`/images1/${opponent.trim()}.png`} 
-              onError={(e) => { e.target.onerror = null; e.target.src = '/images1/default.png'; }}
-              alt={opponent.trim()}
-              style={{ width: '60px', height: '60px', borderRadius: '10px', objectFit: 'cover' }}
-            />
-            <span style={{ fontSize: '14px', marginTop: '5px' }}>{index + 1}</span>
-          </div>
-        ))}
-      </div>
-    </div>
+<div style={{ flex: '1' }}>
+  <h2 style={{ fontSize: '25px', marginBottom: '8px' }}>Lose against most Brawlers</h2>
+  <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '10px' }}>
+    {foundDesc.LoseAgainstMost && foundDesc.LoseAgainstMost.split(',')
+      .map(opponent => opponent.trim())
+      .filter(opponent => opponent !== 'N/A')
+      .map((opponent, index) => (
+        <div key={index} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <img 
+            src={`/images1/${opponent}.png`} 
+            onError={(e) => { e.target.onerror = null; e.target.src = '/images1/default.png'; }}
+            alt={opponent}
+            style={{ width: '60px', height: '60px', borderRadius: '10px', objectFit: 'cover' }}
+          />
+          <span style={{ fontSize: '14px', marginTop: '5px' }}>{index + 1}</span>
+        </div>
+    ))}
+  </div>
+</div>
 
-    {/* Wins Against Most */}
-    <div style={{ flex: '1', marginTop: '10px' }}>
-      <h2 style={{ fontSize: '24px', marginBottom: '10px' }}>Win against most - According to statistics</h2>
-      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '10px' }}>
-        {foundDesc.WinAgainstMost && foundDesc.WinAgainstMost.split(',').map((opponent, index) => (
-          <div key={index} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <img 
-              src={`/images1/${opponent.trim()}.png`} 
-              onError={(e) => { e.target.onerror = null; e.target.src = '/images1/default.png'; }}
-              alt={opponent.trim()}
-              style={{ width: '60px', height: '60px', borderRadius: '10px', objectFit: 'cover' }}
-            />
-            <span style={{ fontSize: '14px', marginTop: '5px' }}>{index + 1}</span>
-          </div>
-        ))}
-      </div>
-    </div>
+{/* Wins Against Most */}
+<div style={{ flex: '1', marginTop: '10px' }}>
+  <h2 style={{ fontSize: '25px', marginBottom: '10px' }}>Win against most Brawlers</h2>
+  <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '10px' }}>
+    {foundDesc.WinAgainstMost && foundDesc.WinAgainstMost.split(',')
+      .map(opponent => opponent.trim())
+      .filter(opponent => opponent !== 'N/A')
+      .map((opponent, index) => (
+        <div key={index} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <img 
+            src={`/images1/${opponent}.png`} 
+            onError={(e) => { e.target.onerror = null; e.target.src = '/images1/default.png'; }}
+            alt={opponent}
+            style={{ width: '60px', height: '60px', borderRadius: '10px', objectFit: 'cover' }}
+          />
+          <span style={{ fontSize: '14px', marginTop: '5px' }}>{index + 1}</span>
+        </div>
+    ))}
+  </div>
+</div>
+
   </div>
 )}
 
@@ -376,14 +383,15 @@ function BrawlerDetail() {
               <div className="stat-label">Reload</div>
               <div className="stat-value">{attackStats.Reload || 'N/A'}</div>
 
+              <div className="stat-label">Attack Size</div>
+              <div className="stat-value">{attackStats['Attack Size'] ? `${attackStats['Attack Size']}%` : 'N/A'}</div>
+
               <div className="stat-label">Super Charge</div>
-              <div className="stat-value">{attackStats['Super Charge'] ? `${attackStats['Super Charge']}%` : 'N/A'}</div>
+              <div className="stat-value">{passiveAttacks['Super Charge Rate'] != null && !isNaN(passiveAttacks['Super Charge Rate'])? `${parseFloat(passiveAttacks['Super Charge Rate']).toFixed(2)}%`: 'N/A'}</div>
 
-              <div className="stat-label">Spread</div>
-              <div className="stat-value">{attackStats.Spread || 'N/A'}</div>
+              <div className="stat-label">Hyper Charge</div>
+              <div className="stat-value">{attackStats['Hyper Charge Rate'] != null && !isNaN(attackStats['Hyper Charge Rate'])? `${parseFloat(attackStats['Hyper Charge Rate']).toFixed(2)}%`: 'N/A'}</div>
 
-              <div className="stat-label">Speed</div>
-              <div className="stat-value">{attackStats.Speed || 'N/A'}</div>
             </div>
           </div>
         )}
@@ -413,10 +421,10 @@ function BrawlerDetail() {
               <div className="stat-value">{passiveAttacks.Range || 'N/A'}</div>
 
               <div className="stat-label">Super Charge</div>
-              <div className="stat-value">{passiveAttacks['Super Charge'] ? `${passiveAttacks['Super Charge']}%` : 'N/A'}</div>
+              <div className="stat-value">{passiveAttacks['Super Charge Rate'] != null && !isNaN(passiveAttacks['Super Charge Rate'])? `${parseFloat(passiveAttacks['Super Charge Rate']).toFixed(2)}%`: 'N/A'}</div>
 
-              <div className="stat-label">Spread</div>
-              <div className="stat-value">{passiveAttacks.Spread || 'N/A'}</div>
+              <div className="stat-label">Hyper Charge</div>
+              <div className="stat-value">{passiveAttacks['HyperCharge Charge Rate'] != null && !isNaN(passiveAttacks['HyperCharge Charge Rate'])? `${parseFloat(passiveAttacks['HyperCharge Charge Rate']).toFixed(2)}%`: 'N/A'}</div>
 
               {passiveAttacks.Duration && (
                 <>

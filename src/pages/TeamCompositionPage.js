@@ -1,13 +1,8 @@
 import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import "./TeamCompositionPage.css";
-<<<<<<< HEAD
-
-// Add ArrowLeftIcon for back button
-=======
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 
->>>>>>> 492ef3e (TeamCompositionPage di ko na alam)
 const ArrowLeftIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon">
     <line x1="19" y1="12" x2="5" y2="12"></line>
@@ -15,10 +10,6 @@ const ArrowLeftIcon = () => (
   </svg>
 );
 
-<<<<<<< HEAD
-// Other icon components remain the same
-=======
->>>>>>> 492ef3e (TeamCompositionPage di ko na alam)
 const ShieldIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon">
     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
@@ -76,8 +67,6 @@ const SparklesIcon = () => (
   </svg>
 );
 
-<<<<<<< HEAD
-=======
 const UsersThreeIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon">
     <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
@@ -174,7 +163,6 @@ const InsightsPanel = ({ insights, expandedInsight, setExpandedInsight }) => {
   );
 };
 
->>>>>>> 492ef3e (TeamCompositionPage di ko na alam)
 const TeamCompositionPage = () => {
   // Use useMemo to prevent modeMapOptions from being recreated on every render
   const modeMapOptions = useMemo(() => ({
@@ -197,13 +185,9 @@ const TeamCompositionPage = () => {
   const [activeTab, setActiveTab] = useState("team1");
   const [isLoading, setIsLoading] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
-<<<<<<< HEAD
-
-=======
   const [expandedInsight, setExpandedInsight] = useState(null);
 
   // All useEffect hooks are now at the top level of the component
->>>>>>> 492ef3e (TeamCompositionPage di ko na alam)
   useEffect(() => {
     const fetchBrawlers = async () => {
       try {
@@ -223,18 +207,10 @@ const TeamCompositionPage = () => {
     }
   }, [mode, modeMapOptions]);
 
-<<<<<<< HEAD
-  // Reset confetti effect when result changes
-=======
->>>>>>> 492ef3e (TeamCompositionPage di ko na alam)
   useEffect(() => {
     if (result && result.result.includes("Team")) {
       setShowConfetti(true);
       
-<<<<<<< HEAD
-      // Hide confetti after 5 seconds
-=======
->>>>>>> 492ef3e (TeamCompositionPage di ko na alam)
       const timer = setTimeout(() => {
         setShowConfetti(false);
       }, 5000);
@@ -243,10 +219,6 @@ const TeamCompositionPage = () => {
     }
   }, [result]);
 
-<<<<<<< HEAD
-  // Handle back button click
-=======
->>>>>>> 492ef3e (TeamCompositionPage di ko na alam)
   const handleBack = () => {
     console.log("Back button clicked");
     if (window.history && window.history.length > 1) {
@@ -257,13 +229,6 @@ const TeamCompositionPage = () => {
   const handleChange = (index, team, value) => {
     const updated = [...(team === "team1" ? team1 : team2)];
     updated[index] = value;
-<<<<<<< HEAD
-    team === "team1" ? setTeam1(updated) : setTeam2(updated);
-  };
-
-  const predict = async () => {
-    // Basic validation
-=======
 
     // Update the state
     if (team === "team1") {
@@ -291,7 +256,6 @@ const TeamCompositionPage = () => {
   };
 
   const predict = async () => {
->>>>>>> 492ef3e (TeamCompositionPage di ko na alam)
     if (!mode || !map) {
       setError("Please select both a game mode and a map.");
       return;
@@ -302,15 +266,9 @@ const TeamCompositionPage = () => {
       return;
     }
 
-<<<<<<< HEAD
-    setError(""); // Clear previous error
-    setResult(null); // Clear previous result
-    setIsLoading(true); // Start loading state
-=======
     setError("");
     setResult(null); 
     setIsLoading(true); 
->>>>>>> 492ef3e (TeamCompositionPage di ko na alam)
 
     try {
       const res = await axios.post("http://localhost:5000/predict", {
@@ -320,28 +278,16 @@ const TeamCompositionPage = () => {
         map,
       });
       setResult(res.data);
-<<<<<<< HEAD
-      // Show confetti when we get a positive result
-=======
     
->>>>>>> 492ef3e (TeamCompositionPage di ko na alam)
       setShowConfetti(true);
     } catch (err) {
       console.error("Prediction error:", err);
       setError("Something went wrong with the prediction.");
     } finally {
-<<<<<<< HEAD
-      setIsLoading(false); // End loading state
-    }
-  };
-
-  // Background floating elements
-=======
       setIsLoading(false); 
     }
   };
 
->>>>>>> 492ef3e (TeamCompositionPage di ko na alam)
   const FloatingElements = () => {
     return (
       <div className="floating-elements">
@@ -363,10 +309,6 @@ const TeamCompositionPage = () => {
     );
   };
 
-<<<<<<< HEAD
-  // Confetti effect
-=======
->>>>>>> 492ef3e (TeamCompositionPage di ko na alam)
   const Confetti = () => {
     if (!showConfetti) return null;
     
@@ -415,11 +357,7 @@ const TeamCompositionPage = () => {
         
         <div className="header">
           <h1 className="title">Smart Brawl</h1>
-<<<<<<< HEAD
-          <h2 className="subtitle">Predict na tanga</h2>
-=======
           <h2 className="subtitle">Predict now</h2>
->>>>>>> 492ef3e (TeamCompositionPage di ko na alam)
         </div>
         
         <div className="game-selection">
@@ -519,8 +457,6 @@ const TeamCompositionPage = () => {
             </p>
           </div>
         )}
-<<<<<<< HEAD
-=======
 
         {/* Render insights only if result has insights */}
         {result && result.insights && (
@@ -530,7 +466,6 @@ const TeamCompositionPage = () => {
             setExpandedInsight={setExpandedInsight}
           />
         )}
->>>>>>> 492ef3e (TeamCompositionPage di ko na alam)
         
         <button
           onClick={predict}

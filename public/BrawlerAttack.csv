@@ -1,0 +1,100 @@
+Brawler,Attack,Description,Damage,Range,Reload,Attack Size,Super Charge,Hyper Charge Rate
+SHELLY,Buckshot,"Shelly's boomstick fires a wide spread of pellets to a medium range. The more pellets hit, the greater the damage.",1500,7.67 (Long),1.5 seconds (Normal),30°,10.05%,3.02%
+COLT,Six-Shooters,Colt shoots six straight long-range shots out of his revolvers.,2160,9 (Long),1.4 seconds (Fast),0.67,8.37%,2.93%
+BULL,Double Barrel,"Bull's double-barreled shotgun deals heavy damage. It has very short range, so Bull likes to get up close and personal.",2000,5.33 (Normal),1.5 seconds (Normal),30,11%,3.85%
+BROCK,Rockin Rocket,Brock lets fly with a single Rockin' Rocket that really goes the distance.,1040,8.33 (Long),2.1 seconds (Slow),0.67,20.01%,3.85%
+RICO,Bouncy Bullets,"Rico's bullets bounce off walls, gaining range. They can hit enemies behind cover.",1600,9.67 (Very Long),1.2 seconds (Very Fast),0.67,8.40%,9%
+SPIKE,Needle Grenade,"Spike fires off a small cactus that explodes, shooting spikes in different directions.",5600,7.67 (Long),2 seconds (Slow),1,14.31%,5%
+BARLEY,Undiluted,"Barley lobs a bottle, breaking it on the ground. Enemies take damage from the splash, and more damage over time if they stay in the puddle",800,7.33 (Long),2 seconds (Slow),N/A,18%,5.40%
+JESSIE,Shock Rifle,"Jessie fires off an energy orb. After hitting a target the orb bounces to the next target in range, hitting up to three enemies. Each bounce deals 25% less damage.",1060,9 (Long),1.8 seconds (Normal),1,16.70%,10.02%
+NITA,Rupture,"Nita sends forth a shockwave, damaging enemies caught in the tremor.",960,6 (Normal),1.1 seconds (Very Fast),1.67,20.90%,10.02%
+DYNAMIKE,Short Fuse,"Mike tosses two sticks of dynamite, passing over any obstacles in the way. The fuses are cut as short as Mike's explosive temper!",1600,7.33 (Long),1.6 seconds (Normal),N/A,25.00%,7.50%
+EL PRIMO,Fist of Fury,El Primo fires off a furious flurry of four fiery fists. That's a spicy jalapeno knuckle sandwich!,2050,3 (Short),0.8 seconds (Very Fast),1.33,8.46%,10.45%
+MORTIS,Shovel Swing,"Mortis dashes forward with a sharp swing of his shovel, creating business opportunities for himself. When he has all three dashes ready, he'll gain a longer dash after a short delay.",1000,2.67 (Short)/4.67 (with dash bar charged),2.4 seconds (Very Slow),N/A,21.25%,6.38%
+CROW,Switchblade,Crow throws a triple threat of daggers. Enemies hit by the poisoned blades will take damage over time and have all healing effects reduced for the duration,320,7.33 (Long),0.9 (Very Fast),30°,12.33%,10.02%
+POCO,Power Chord,"Poco strums his guitarrón, sending forward bone-jarring sound waves. Enemies hit by the waves take damage.",760,7.33 (Long),1.6 (Normal),50°,14.45%,10.02%
+BO,Eagle-Eyed,"Bo releases a trio of exploding arrows, tearing up enemies like an eagle's talons.",3050,7.33 (Long),1.6 (Normal),30°,12.33%,7.50%
+PIPER,Gunbrella,Piper fires a sniper shot from the tip of her parasol. The shot gains more oompf the farther it flies!,360,13.25 (Very Long),2.4 (Very Slow),1.33,21.25%,10.45%
+PAM,Scrapstorm,Pam sprays a large area with bursts of scrap metal. Safety goggles advised!,7000,7.33 (Long),0.9 (Very Fast),25°,12.33%,N/A
+TARA,Triple Tarot,"Tara flicks her wrist, snapping off three tarot cards that pierce through enemies. Quite a trick!",1349,7.33 (Long),2 (Slow),30°,12.33%,1.44%
+DARRYL,Double Deuce,Darryl's double barrel shotguns fire two staggered blasts of heavy close-range damage.,2302,5.33 (Normal),1.6 (Normal),30°,12.33%,9.36%
+PENNY,Plunderbuss,"Shoots out a pouch of fool's gold. If the pouch hits an enemy, it bursts and coins pepper targets behind the first enemy.",980,9.33 (Long),2 (Slow),1.33,12.33%,9.36%
+FRANK,Hammer Hit,"Frank takes a while to wind up his hammer blow, but the hit is so hard it sends a shockwave. His attack speed goes up when his health goes down.",1160,7.33 (Long),0.9 (Very Fast),30°,10.05%,12.60%
+GENE,Smoke Blast,"Gene shoots a solid ball of magical smoke from his lamp. If the ball doesn't hit a target, it splits up and spreads the damage in a cone",1000,13.25 (Very Long),2 (Slow),1.33,14.45%,3.31%
+TICK,Minimines,"Tick lobs a cluster of mines that separate before landing. The mines explode on contact with a target, or after a few seconds.",2640,7.33 (Long),2.4 (Very Slow),N/A,12.33%,4.38%
+LEON,Spinner Blades,Leon flicks his wrist and fires four Spinner Blades. The blades deal less damage the farther they travel.,2300,11.44 (Very Long),1.6 (Normal),25°,12.33%,4.44%
+ROSA,Hands of Stone,"""Rosa throws a flurry of powerful punches with perfect technique!",3400,3 (Short),0.9 (Very Fast),25°,10.05%,4.44%
+CARL, Pickaxe,"Carl throws his Pickaxe like a boomerang. After he catches the returning Pickaxe, he can throw it again",1600,7.33 (Long),2 (Slow),1.33,12.33%,5%
+BIBI,3 strikes,"Bibi bats a bouncing ball of bubble gum that can go through enemies, and even hit the same target multiple times!",1120,3 (Short),2.4 (Very Slow),180°,16.70%,1.44%
+8-BIT,Blaster beams,Shoots a burst of Blaster Beams that damage any opponent they hit. The beams have a slight spread.,5000,11.44 (Very Long),1.6 (Normal),1,10.05%,9.36%
+SANDY,Pebble Blast,"Sandy pelts enemies with sharp, piercing pebbles. Ouch!",900,7.33 (Long),1.6 (Normal),90°,16.70%,9.36%
+BEA,Big Sting,"Bea sends out a long range shot that, upon landing, Supercharges her next shot to deal epic damage!",2200,11.44 (Very Long),0.9 (Very Fast),1,20.01%,12.60%
+EMZ,Spray,"""Emz gives you a blast of her hair spray! It's strong enough to melt your face.",520,7.33 (Long),2 (Slow),40°,10.05%,3.31%
+MR. P,Your Suitcase Sir!,"Mr. P throws a heavy suitcase with angry intent. If the suitcase hits an obstacle or reaching maximum range, it bounces over them, lands with a bang and deals area damage.""",720,7.33 (Long),1.6 (Normal),1.33,16.70%,4.38%
+MAX,Faster Blaster!,"Max's blaster shoots a bunch of projectiles fast! It holds a lot of rounds, and Max is quick with the reload.",640,7.33 (Long),0.9 (Very Fast),1,10.05%,4.44%
+JACKY,Ground Breaker,Jacky hops on her Jackhammer to shake the ground all around. Enemies caught too close will get a pounding!,1120,3 (Short),1.6 (Normal),2,16.70%,4.44%
+GALE,Polar-Vortex,Gale blasts a large snow ball wall at his enemies!,2300,7.33 (Long),0.9 (Very Fast),2.67,10.05%,5%
+NANI,Trigger-Nometry,Nani shoots 3 light orbs that move at different angles and converge towards aimed targets.,2300,13.25 (Very Long),1.6 (Normal),40°,12.33%,15.02%
+SPROUT,Seed Bomb,"Sprout uses its Super Seed to grow a thick vine hedge, creating an impassable though temporary obstacle.",1040,5.33 (Normal),1.6 (Normal),N/A,17.00%,9%
+SURGE,Juice of Justice,Surge serves a shot of Juice that splits in two on contact with enemies.,1240,7.33 (Long),2 (Slow),1.33,33.33%,9.05%
+COLETTE,Taxing Shot,"Colette fires a shot that takes what you owe! And the more you have, the more you owe.",640,9.33 (Long),1.6 (Normal),1.33,16.00%,4%
+AMBER,Dragon's Breath ,"Amber blows a flaming inferno at her opponents. It looks awesome, but watch out or you'll get seared!",2100,9.33 (Long),0.9 (Very Fast),15°,10.05%,N/A
+LOU,Brain Freeze,"Barraging opponents with snow cones, Lou can eventually freeze them in place for 1.5 seconds.",4000,11.44 (Very Long),0.9 (Very Fast),0.67,9%,5%
+BYRON,Careful Dose,Shoots a long range dart that can hit both opponents and friendlies. Opponents will take damage over time and friendlies will heal over time.,360,9.33 (Long),1.4 (Fast),1.5,10.05%,1.44%
+EDGAR,Fight Club,"Hits enemies with quick punches from his scarf, healing himself for each landed punch.",2030,3 (Short),0.9 (Very Fast),1.33,12.33%,9.36%
+RUFFS,Double-Barrel Laser,Ruffs' twin-laser bounces off walls multiple times. They can hit opponents behind cover.,5060,9.33 (Long),1.4 (Fast),1,8%,9.36%
+STU,Razzle Dazzle,Stu fires out two pyrotechnic shots that pack quite a wallop.,1600,7.33 (Long),1.6 (Normal),1,100%,12.60%
+BELLE,Shocker,"Belle shoots a long range Electro-Bolt, dealing damage to any target hit. After a short delay, the bolt will jump to any nearby target, deal damage and jump to the next one.",1080,11.44 (Very Long),1.4 (Fast),1,14%,3.31%
+SQUEAK,Sticky Blomb,"Squeak's sticky blobs of goo are unstable, and blow up with a big splash and an ouch! They attach to any opponent they hit outright.",1080,7.33 (Long),2 (Slow),1.33,18%,4.38%
+GROM,Bud Go Boom!,"Grom hurls Bud, his exploding walkie-talkie! The blast moves in the shape of a cross, hurting enemies caught in its path.",6000,9.33 (Long),1.6 (Normal),N/A,17%,4.44%
+BUZZ,Buzz Off,"Buzz blows on his lifeguard whistle, piercing nearby ears five times in an arc",2020,3 (Short),0.9 (Very Fast),90°,10.05%,4.44%
+GRIFF,Coin Toss,Angry Griff pelts opponents with coins. He throws three salvos that spread out in a cone.,3000,7.33 (Long),1.6 (Normal),25°,10.05%,N/A
+ASH,Clean up,Ash angrily smashes down with his broom. Get out of the way or you might bite the dust!,800,5.33 (Normal),1.4 (Fast),1.5,16%,1.44%
+MEG,Target Acquired/Crowd Control,Meg fires a short burst from her blaster that pokes at her enemies' patience./A strong barrage of bullets that leaves nothing to chance. It's the quickest way to make crowds disperse,1430,7.33 (Long),0.9 (Very Fast),2.67,16%,9.36%
+LOLA,Diamond Eyes,Lola's favorite accessory is also her favorite weapon! It shoots from the eyes in short bursts and with plenty of panache.,4530,7.33 (Long),1.6 (Normal),1.5,10.05%,9.36%
+FANG,Wu-Shoe,"Fang unleashes a swift kick with a hidden trick. If the kick misses the target, his shoe will fly off his foot!",1360,11.44 (Very Long),0.9 (Very Fast),0.67,15%,12.60%
+EVE,Egg Shooter,"Eve shoots three eggs in a row, with each one being bigger and dealing more damage than the previous egg.",640,11.44 (Very Long),1.6 (Normal),1,16.70%,3.31%
+JANET,High Note,"Janet sings a loud note. The longer she holds the note, the more focus it will become and the farther it will fly.",1000,11.44 (Very Long),1.6 (Normal),60°/15°,16.70%,4.38%
+BONNIE,Loose Tooth/Bomber Jacket,Bonnie shoots a HUGE tooth from Clyde towards her enemies./Bonnie flings a cluster of small grenades from her sleeves.,1120,7.33 (Long),0.9 (Very Fast),1,14%,4.44%
+OTIS,Inky Art,Otis squirts a burst of ink drops from his spray gun arm.,10200,7.33 (Long),1.6 (Normal),15°,10.05%,4.44%
+SAM,Heavy Heymakers,"Sam unleashes a double dose of hard-hitting punches. With his gloves on, he deals a lot more damage.",2300,3 (Short),1.6 (Normal),25°,10.05%,5%
+GUS,Loony Balloons,"Gus shoots balloons at enemies. After several hits, a spirit will drop. Collected spirits will restore some health to Gus or his teammates.",1080,11.44 (Very Long),1.6 (Normal),1.33,27%,15.02%
+BUSTER,Lenses Flare,"Buster shoots a cone of light from his projector, damaging all enemies within range.",1380,5.33 (Normal),1.6 (Normal),30°,20.01%,9%
+CHESTER,Cap and Bells,"Chester shoots a sequence of bells from his cap, first one, then two, then three, and lastly four bells",640,7.33 (Long),1.6 (Normal),Varies,12.33%,9.05%
+GRAY,Finger Pistol,Are the bullets even real?,1120,9.33 (Long),1.4 (Fast),0.67,15%,4%
+MANDY,Candy Dispenser,"Mandy shoots candy from her Candy Dispenser and while staying still she gains Focus, increasing her attack range.",1300,13.25 (Very Long),1.6 (Normal),1,20.01%,14%
+R-T,Tap Target/Eat Static,"R-T fires a single projectile, that upon impact with a brawler marks them. Any damage dealt to a marked target consumes the mark and deals extra damage./R-T and his legs blast a strong signal, damaging all targets around them.",700,9.33 (Long),1.6 (Normal),0.67,20.01%,N/A
+WILLOW,Lanterns's Curse,"Willow lobs her lantern, dealing damage over time to enemies hit",400,7.33 (Long),1.6 (Normal),N/A,20.01%,N/A
+MAISIE,Pressure Rocket,"The further you run, the faster Maisie's rocket will reach you.",1500,11.44 (Very Long),1.6 (Normal),1,16%,4.38%
+HANK,Balloon Blast!,"The longer you hold, the deadlier the blast.",2300,5.33 (Normal),0.9 (Very Fast),N/A,21%,4.44%
+CORDELIUS,Mushrooms,"Cordelius shoots two mushrooms with his gardening tool, damaging enemies on hit.",2300,5.33 (Normal),0.9 (Very Fast),0.67,14.45%,4.44%
+DOUG,Snack Attack,"Fresh food for friends, expired for others. Heals allies and damages enemies.",900,3 (Short),1.6 (Normal),N/A,19%,N/A
+PEARL,Hot Cookies,"Rapid fire hot cookies directly out from the oven, slightly cooling the oven while damaging enemies on hit. The higher the Heat the higher the damage.",2300,7.33 (Long),1.6 (Normal),25°,10.05%,
+CHUCK,Steam Engine,"Shoots a cloud of steam from Chuck's hat, piercing and damaging enemies.",2700,7.33 (Long),2.4 (Very Slow),1.33,10.05%,N/A
+CHARLIE,Yo-yo,"Charlie slings her yo-yo forward, damaging the first enemy hit and then returning back to her.",800,11.44 (Very Long),2.4 (Very Slow),1.33,15%,4.38%
+MICO,Mic BOOM!,Mico jumps forward for a short distance attacking with his mic boom and damaging nearby enemies after landing.,1000,7.33 (Long),2.4 (Very Slow),N/A,14.45%,4.44%
+KIT,Claws/Balls,"Claw nearby enemies in a cone./Kit throws yarn balls while attached to a friendly Brawler, dealing damage in an area.",1200,3 (Short),0.9 (Very Fast),30°,23.45%,N/A
+LARRY & LAWRIE,Ticket Dispenser,"Shoot a ticket bundle over obstacles that explodes twice after landing, damaging nearby enemies.",1800,7.33 (Long),2.4 (Very Slow),N/A,19%,9.36%
+MELODIE,Monster Notes,"Melodie shoots tiny monster notes from her mic, damaging enemies and spawning orbiting notes around her on hit.",340,7.33 (Long),1.4 (Fast),1.33,23.45%,12.60%
+ANGELO,Take Aim,Hold the aim to charge up your shots.,2231,11.44 (Very Long),0.9 (Very Fast),1.5,23.45%,3.31%
+DRACO,Lance Stab,"Draco thrusts his lance forward, piercing and damaging enemies in front of him, dealing more damage at max range.",1400,5.33 (Normal),0.9 (Very Fast),1.33,17%,N/A
+LILY,Thorn in the Side,"Lily stabs in front of her with her thorns, dealing damage",1000,3 (Short),0.9 (Very Fast),1.33,16%,4.38%
+BERRY,Meltdown,"Berry throws melted ice cream at a targeted area, damage enemies and healing allies on impact and over time.",660,5.33 (Normal),2.4 (Very Slow),N/A,12.33%,4.44%
+CLANCY,Power Wash,"""Clancy's attacks upgrade each stage.
+STAGE 1: Clancy fires one paintball.
+STAGE 2: Clancy fires a second paintball each attack!
+STAGE 3: Clancy fires 2 additional paintballs diagonally each attack!""",660,7.33 (Long),2 (Slow),1,14.45%,4.44%
+MOE,Shovel Slinger/Giga Drill Break,"Moe throws a rock that bounces once, breaking into a smaller rock. Each rock smashes into stones on impact. Rocks and stones both deal damage./Moe starts drilling in front of him, gaining movement speed and dealing damage to enemies in front of him.",2400,7.33 (Long),1.6 (Normal),1.33,14.45%,5%
+KENJI,Dash n' Slash,Kenji's basic attacks alternate between a Dash and a Slash. Dash deals damages to all enemies in a straight line and Slash deals damage to all enemies in a wide area in front of him.,800,3 (Short),0.9 (Very Fast),1.33/180°,23.45%,15.02%
+SHADE,Haunted Hug,"Shade hugs its opponents with a wide embrace, accidentally dealing damage, and doing more damage to those caught in the center of the hug. It can also hug enemies through walls!",1200,3 (Short),0.9 (Very Fast),180°,20.01%,N/A
+JUJU,Elemental Energy,"Juju throws projectiles empowered by the environment she is standing on, giving them different properties!
+Ground: More damage
+Grass: More range
+Water: Has a slowing effect",800,5.33 (Normal),1.6 (Normal),N/A,20.01%,N/A
+MEEPLE,Boom Haven,Meeple shoots a powerful projectile that will slightly home towards the nearest enemy.,1240,7.33 (Long),2 (Slow),1,14.45%,N/A
+OLLIE,Bring the Ruckus,Ollie's hoverboard fires soundwave which deal damage and go through enemies,1000,7.33 (Long),1.4 (Fast),1.33,20.01%,N/A
+LUMI,Good Morning... Star,"Lumi throws one of her morning stars. She can throw both of her weapons, with her third attack recalling them, dealing damage to any enemies caught in their path!",900,7.33 (Long),N/A,1.33,12.33%,N/A
+FINX, Chronocast,"Finx fires 3 long range projectiles, with the outer ones dealing 50% of the damage of the center projectile.",900,7.33 (Long),1.4 (Fast),1.33/0.67,12.33%,N/A
+JAE YONG,"Work Hard, Play Hard","""Fires a piercing projectile, with different effects depending on Jae-yong's mode.
+WORK: Deals less damage, but creates slipstreams with projectiles that give speed boosts to teammates and himself
+PARTY: Heals teammates with a piercing, damaging projectile.""",750,7.33 (Long),1.4 (Fast),1.33,21.25%,N/A

@@ -1,0 +1,100 @@
+Brawler,Super Name,Description,Damage,Duration,Range,Attack Size,Super Charge Rate,HyperCharge Charge Rate
+SHELLY,Super Shell,Shelly's Super Shell obliterates both cover and enemies. Any survivors get knocked back,1500,N/A,7.67 (Long),50°,4.80%,1.44%
+COLT,Bullet Storm,Colt rattles off a massive burst of bullets that shoot extra far and destroy cover.,2160,N/A,11 (Very Long),1.01,30.15%,9.36%
+BULL,Bulldozer,Bull puts his head down and bulldozes through opponents and obstacles. He's always been headstrong!,2000,N/A,11 (Very long),N/A,20.80%,9.36%
+BROCK,RocketRain,Brock fires a rocket barrage that takes out enemies and obstacles. He only wants to see you bathing in the Rocket Rain!,1040,N/A,8.33 (Long),N/A,36%,12.60%
+RICO,Trick Shot,"Rico fires a long burst of bullets that pierce through enemies and bounce off walls, gaining range.",1600,N/A,13.33 (Very Long),0.67,9.45%,3.31%
+SPIKE,Stick Around,Spike lobs a thorny grenade. Enemies caught in the blast area take damage and are slowed down,5600,4.5 seconds,7.67 (Long),2.67,12.50%,4.38%
+BARLEY,Last Call,"Barley hurls a flurry of fiery bottles, covering a huge area in flames. This one's on the house!",800,2 seconds,9.33 (Very Long),N/A,14.80%,4.44%
+JESSIE,Scrappy!,Jessie deploys a gun turret that automatically shoots at enemies. It's made of 100% recycled materials!,1060,N/A,5/9 (Scrappy),15° ,6.31%,4.44%
+NITA,Overbearing,Nita summons the spirit of Big Baby Bear to hunt down her enemies.,960,N/A,5/2(bear),N/A,10%,5%
+DYNAMIKE,Big Barrel o' Boom,A big-bada-barrel of dynamite blows up cover. Any surviving enemies get knocked back on impact!,1600,N/A,7.33 (Long),2.67,50.05%,15.02%
+EL PRIMO,Flying Elbow drop,"Leaping high, El Primo drops an Intergalactic Elbow that knocks around enemies and destroys cover!",2050,N/A,9 (Long),N/A,30%,9%
+MORTIS,Lifeblood,Mortis calls forth a swarm of vampire bats that drain the health of his enemies while restoring his. Creepy!,1000,N/A,10 (Very Long),2.67,30.15%,9.05%
+CROW, Swoop,"Crow takes to the skies, throwing a ring of poisoned daggers around him both on take-off and landing.",320,N/A,9.33 ( Long),N/A,2%,4%
+POCO, Encore,Poco heals himself and all friends he can reach with his uplifting melody. Does not affect enemies.,760,N/A,9.33 (Long),150,N/A,N/A
+BO,Catch a Fox,"Bo hides explosive traps in the ground. When triggered by an enemy, the traps explode after a short delay, knocking back and damaging enemies",3050,N/A,7.33 (Long),N/A,14%,
+PIPER,Poppin',Piper fires a sniper shot from the tip of her parasol. The shot gains more oompf the farther it flies!,360,N/A,11.44 (Very Long),N/A,17%,
+PAM,Mama's Kiss,Pam's healing turret will fix up her and teammates who stay in its area of effect.,7000,N/A,7.33 (Long),N/A,N/A,N/A
+TARA,Gravity,"Tara conjures up a mind-boggling gravity well! Enemies in the area of effect get pulled in, crashing together painfully hard.",1349,N/A,7.33 (Long),4,16.00%,1.44%
+DARRYL,Barrel Roll,"Darryl rolls forward inside his barrel, knocking back enemies, reducing incoming damage and bouncing off walls. His Super recharges over time!",2302,N/A,7.33 (Long),N/A,10.05%,9.36%
+PENNY,Old Lobber,"Penny sets up her cannon! It can shoot at enemies at a long range, over cover and setting the ground on fire.",980,N/A,7.33 (Long),N/A,9%,9.36%
+FRANK,Stunning Blow,Frank's greatest hit sends a shockwave that destroys environment and stuns enemies for a while.,1160,2 seconds,11.44 (Very Long),50°,10.05%,12.60%
+GENE,Magic hand,"Gene launches a magical hand from his lamp. If the hand hits an enemy, they get pulled back to Gene's location!",1000,N/A,9.33 (Long),1.33,12.33%,3.31%
+TICK,Head First,"Tick detaches and launches his head. After landing, the head hops toward the nearest target and explodes on contact!",2640,N/A,3 (Short),N/A,8%,9.36%
+LEON,SmokeBomb,"Leon becomes invisible for 6 seconds. If he attacks, he will be revealed. Enemies close to Leon will be able to spot him.",2300,6 seconds,N/A,N/A,N/A,N/A
+ROSA,Strong Stuff,"Rosa gets a second skin of tough vine for 3 seconds, decreasing all damage received by 70% for the duration.",3400,3 seconds,N/A,N/A,N/A,N/A
+CARL,Tailspin,"Carl goes into a crazy spin for a few seconds, flailing around and damaging nearby opponents.",1600,4 seconds,N/A,N/A,20.01%,15.02%
+BIBI,Spitball,"Bibi bats a bouncing ball of bubble gum that can go through enemies, and even hit the same target multiple times!",1120,4 seconds,Very long,2.67,14.45%,9%
+8-BIT,Damage Booster,Deploys a turret that increases the damage output of all friendly Brawlers in its area of effect.,5000,N/A,4,N/A,N/A,N/A
+SANDY,SandStorm,Sandy summons a sandstorm that lasts for 9 seconds and hides friendly Brawlers inside it.,900,8 seconds,7.33 (Long),8.33,N/A,N/A
+BEA,Iron Hive,Bea deploys a swarm of drones that move and turn like jets. They slow down any opponents caught in their path.,2200,N/A,13.25 (Very Long),25°,12.33%,4.44%
+EMZ,Caustic Charisma,"Emz creates a cloud of toxicity around herself, slowing down the movement of enemies and damaging them.",520,5 seconds,5,5,16.70%,5%
+MR. P,Porters!Attack!,Mr. P deploys the home base for his robo-porters. He has reprogrammed the small penguin-head robots to attack and harass opponents (and unruly guests).,720,N/A,5.33 (Normal)(Porters),N/A,10.05%,15.02%
+MAX,Let's go!,Max momentarily boosts up her movement speed and that of nearby allies. Gotta go fast!,640,4 seconds,4,4,N/A,N/A
+JACKY,Holey Moley!,"Jacky drills a hole in the ground, pulling in foes to introduce them to her Jackhammer! ",1120,N/A,4,4,N/A,N/A
+GALE,Gale Force!,"Gale delivers an almighty gust of wind and snow, pushing back all enemies caught in its path.",2300,N/A,13.25 (Very Long),7.33,10.05%,4.44%
+NANI,Manual Override,"Nani takes control of Peep and can steer him remotely into enemies, exploding on contact",2300,N/A,Very long,1.33,9%,5%
+SPROUT,Hedge,"Sprout uses its Super Seed to grow a thick vine hedge, creating an impassable though temporary obstacle.",1040,N/A,N/A,N/A,N/A,N/A
+SURGE,Party Tricks,"With each Super, Surge gets upgraded (MAX 3). Upgrades are lost when Surge is defeated.
+STAGE 1: Boosted movement speed
+STAGE 2: Increased weapon range
+STAGE 3: Main attack splits into 6 (instead of 2)",1240,N/A,3 (Short),N/A,33.33,12.60%
+COLETTE,Time To Collect,"Colette makes a dash forth and back, dealing taxing damage to everyone in her path, based on their maximum health.",640,N/A,11.44 (Very Long),N/A,16.00%,3.31%
+AMBER,Torch' Em,Amber throws a flask of her fire fluid that she can then light up with her firebreathing. Bushes and opposing Brawlers will be toast! (One flask at a time!),2100,N/A,9.33 (Long),N/A,10.05%,N/A
+LOU,Can-Do,"Lou lobs a can of freezing cold syrup that creates an icy, slippery area on the ground that also slowly freezes and damages enemies. Very tough for his opponents' fancy footwork!",4000,4 seconds,9.33 (Long),5,9%,
+BYRON,Full Treatment,Shoots a long range dart that can hit both opponents and friendlies. Opponents will take damage over time and friendlies will heal over time.,360,N/A,7.33 (Long),N/A,10.05%,N/A
+EDGAR,Vault,Throws a vial that heals friendlies and damages opponents.,2030,N/A,9.33 (Long),N/A,12.33%,1.44%
+RUFFS,Supply Drop,"Ruffs calls down a supply drop that damages any opponent it hits, and leaves a power-up for friendly Brawlers to pick up. The power-up increases health and damage. Multiple power-ups do not stack, and you lose the power-up if defeated.""",5060,N/A,7.33 (Long),N/A,8%,9.36%
+STU,Nitro Boost,"""Hitting an opponent with Razzle Dazzle charges up Stu's Nitro Boost, a short dash that leaves a trail of burning rubber on the ground. The trail will set fire to any opponents that touch it.",1600,N/A,3 (Short),1,10%,9.36%
+BELLE,Spotter,Belle fires a spotting shot that marks any opponent it hits. The marked opponent takes extra damage from any source. Only one target can be marked at a time.,1080,N/A,11.44 (Very Long),1.33,17%,12.60%
+SQUEAK,Big Blob,Squeak lobs a blob that blows up with aplomb! The explosion of goo sends six smaller Sticky Blombs in all directions.,1080,N/A,7.33(Long),N/A,19%,12.60%
+GROM,Grom Bomb,"Grom launches a devastating bomb with Bud's help! The Grom Bomb inflicts huge damage, breaks walls and the force from its blast pushes all enemies backwards.",6000,N/A,11.44 (Very Long),N,17%,3.31%
+BUZZ,Torpedo Throw,"Buzz throws out his torpedo buoy. If it hits an opponent or a wall, Buzz hauls himself over there, stunning nearby opponents where he lands. The stun time increases based on distance travelled.",2020,0.5-1 seconds,7.33(Long),N/A,N/A,N/A
+GRIFF,Cash Back,"Griff throws a bunch of sharp-edged banknotes in a wide cone. Too valuable to just give away, they return to him, and may cause paper cuts twice to the same target. Opponents further away take more damage.",3000,N/A,7.33(Long),150°,10.05%,N/A
+ASH,Little helpers,"Robotic rats for cleaning up? That's right, they explode on contact, dealing damage to opponents and greatly increasing Ash's Rage level.",800,N/A,7.33 (Long),N/A,16%,1.44%
+MEG,Mecha Machina/Feel The Steel,Meg jumps into her Mecha for some colossal carnage!/The Mecha swings a formidable forearm that enemies will see and feel.,1430,N/A,5.33 (Normal),N/A,16%,9.36%
+LOLA,MegaloManiac,"Lola releases her Ego that mimics her every move. If it's too close to Lola though, it will deal less damage.",4530,N/A,N/A,N/A,10.05%,9.36%
+FANG,Sneak Ahead,"Fang flies into a nasty kick that upon contact, can chain a further 3 consecutive kicks to near by enemies.",1360,N/A,11.44 (Very Long),N/A,15%,12.60%
+EVE,Baby Boom,"Eve releases a big egg, which incubates a group of hatchlings. Hatchlings attach to enemies and deal damage over time.",640,5 seconds,7.33 (Long),N/A,16.70%,9.36%
+JANET,Crescendo,"Janet uses her jetpack to take to the skies for a moment, where she attacks opponents from above for a full duration.",1000,6 Seconds,N/A,N/A,16.70%,12.60%
+BONNIE,Star Launcher/Clyde,"Clyde launches Bonnie into the air. She can fly over obstacles and deals damage to nearby enemies on landing./Bonnie calls Clyde and jumps into it, taking control of the cannon.",1120,N/A,11.44 (Very Long),2.67,14%,N/A
+OTIS,Silent Seabed,Otis flings Cil who grabs onto the first enemy hit and prevents them from attacking for a short while.,10200,3 seconds,7.33 (Long),1,10.05%,1.44%
+SAM,Knuckle Busters,Sam throws his Knuckle Busters dealing damage to all enemies hit before landing on the ground. His next Super will return them back to his hands and also deals damage,2300,N/A,7.33 (Long),1.33,10.05%,9.36%
+GUS,Spooky Boy,"Gus uses Spooky (a balloon creation and also his best friend), to create a shield around himself or one of his teammates and pushes nearby enemies back.",1080,5 seconds ,11.44 (Very Long),1.33,27%,9.36%
+BUSTER,Montage,"Buster projects a shield in front of him, blocking all enemy projectiles and reflecting the energy back towards enemies.",1380,3 seconds,5.33 (Normal),30°,20.01%,12.60%
+CHESTER,Jack in the Box,Chester will have 1 random Supers out of his 5 Supers,640,N/A,Varies,varies,12.33%,3.31%
+GRAY,Dimensional Doors,"Gray creates a set of doors for him and his teammates, useful for quick escapes and sneaky attacks!",1120,N/A,9.33 (Long),N/A,N/A,N/A
+MANDY,Sugar Ray,"Mandy shoots a long ray of sugar passing through enemies and the environment, dealing massive damage.",1300,N/A,5.33 (Normal),3,10.05%,
+R-T,Hide And Seek/ Eat Static,"R-T splits into two. R-T's legs are left behind while both R-T and his legs gain a short ranged, powerful attack that marks enemies. R-T moves faster while split./R-T instantly teleports to his legs and becomes whole again, healing for 1000.",700,N/A,3 (Short),N/A,15%,N/A
+WILLOW,Hex,"Willow fires a single tadpole towards an enemy Brawler, fully healing them and taking control over their mind if it hits. Willow can use the basic attack of the enemy Brawler and move them as she pleases. Mind control breaks after 4 seconds or when the Brawler reaches 30% HP.",400,3 seconds,7.33 (Long),1,14.45%,4.44%
+MAISIE,ShockWave,Don't get too close or a personal space will be created for you.,1500,N/A,5,N/A,23.45%,5%
+HANK,Fish Torpedos,"Hank launches Fish Torpedoes in all directions, and he heals for a part of his missing health.",2300,N/A,9.33 (Long),1,19%,15.02%
+CORDELIUS,This is my Domain,Cordelius shoots a Shadow Mushroom that passes through walls and on hit transfers the target and him to the Shadow Realm for 8 seconds. Cordelius has 20% higher movement speed and 30% faster reload speed in the Shadow Realm.,2300,8 seconds,7.33 (Long),0.67,N/A,N/A
+DOUG,Second Serving,A special spiced up hot dog for a target ally or Doug himself. When a buffed Brawler is defeated they will come back with 100% health after a short delay.,900,5 seconds,7.33 (Long),1,20.01%,N/A
+PEARL,Let Out Some Steam,"Consume and release all the built up Heat in an explosion, damaging all nearby enemies. The higher the Heat the higher the damage.",2300,N/A,3,N/A,14.45%,9.36%
+CHUCK,Choo-Choo!,"Dash to the nearest Post in line of sight, damaging enemies on the way. While no Posts are in line of sight, throw a new Post to the ground.",2700,N/A,11.44 (Very Long),N/A,20.01%,N/A
+CHARLIE,Cocoon,"Charlie throws forward a bundle of hair wrapping around an enemy on hit, disabling them until the hairy cocoon is destroyed.",800,5 seconds,9.33 (Long),1.33,N/A,N/A
+MICO,Out of Frame,"Mico jumps out of frame, becoming invulnerable while controlling his landing position and damaging nearby enemies while landing.",1000,N/A,Very Long,6,10.05%,9.36%
+KIT,Carry Me,Jump and attach to the back of another Brawler. Heals allies and damages enemies over time.,1200,10 seconds,7.33(Long),N/A,14.45%,N/A
+LARRY & LAWRIE,Call for Backup,Throw a signal to summon your twin Lawrie for help. He will seek out any trouble makers and serve justice with his taser gun.,1800,N/A,7.33 (Long)(Lawrie),N/A,12.33%,N/A
+MELODIE,Catchy Chorus,Melodie can dash forward multiple times to catch her enemies.,340,N/A,7.33 (Long),N/A,N/A,N/A
+ANGELO,Welcome to the Swamp,"Angelo creates a poison cloud that lasts for 8 seconds and damages enemies. While in the cloud, Angelo's arrows become poisoned, dealing extra damage over time.",2231,10 Seconds,N/A,2,23.45%,9.36%
+DRACO,Dragon Solo,"Draco mounts up on his fire breathing dragon, gaining increased movement speed and damage reduction.",1400,10 seconds,N/A,N/A,17%,12.60%
+LILY,Flourish,"Throw a seed in a straight line. If it hits an enemy, Lily teleports behind them",1000,N/A,9.33 (Long),1.33,16%,N/A
+BERRY,Sweet Swirl,"Berry dashes forward, spinning and dropping melted ice cream around him, damage enemies and healing allies on impact and over time.",660,N/A,9.33 (Long),3.33,12.33%,5%
+CLANCY,Torrent,"Clancy's Super upgrades each stage.
+STAGE 1: Clancy fires a torrent of paintballs in a cone in front of him.
+STAGE 2: Paintballs travel further.
+STAGE 3: Paintballs deal 16% additional damage!",660,N/A,9.33 (Long),150°,14.45%,15.02%
+MOE,Moe's Machine,"Moe gets into his trusty Driller, drilling to targeted location, dealing damage and knocking Brawlers up at the destination. He gains a new attack in his Driller form.",2400,N/A,9.33 (Long),2.67,14.45%,N/A
+KENJI,Slashimi,"Kenji targets an area with precise slices, dealing heavy damage and gaining invulnerability for the duration of the Super.",800,N/A,9.33 (Long),6,23.45%,9.36%
+SHADE,Incorporeal form,Shade leaves the physical world and can move directly through the environment. It also gains a movement speed boost.,1200,6 seconds,3 (Short),N/A,20.01%,12.60%
+JUJU,From The Other Side,Juju summons Gris-Gris. This spooky voodoo doll drags itself to the nearest enemy and throws needles at them.,800,N/A,7.33(Long),N/A,20.01%,N/A
+MEEPLE,Critcial Success!!,"Meeple cheats, somehow rolling a NAT21 on a d20, allowing all team projectiles in the Super area to pierce through environment for 10 seconds",1240,N/A,4,N/A,14.45%,N/A
+OLLIE,Hypnotized,"Ollie dashes forward with a gnarly hoverboard trick and starts charging a music blast, dealing 1600 damage and hypnotizing all enemies around him for 2.5 seconds. While charging the music blast, Ollie will use up to 50% of his max ammo. Enemies will move towards Ollie and cannot be controlled while being hypnotized.",1000,2 seconds,5.33 (Normal),4,20.01%,N/A
+LUMI,Blast Beat,"Lumi pounds the ground three times, causing explosions that deal area damage. The third explosion briefly snares enemies, making them unable to move but still able to attack.",900,N/A,11.44 (Very Long),180°,12.33%,N/A
+FINX,Time Warp,"Finx warps time in an area, decreasing the projectile speed of enemy Brawlers caught in the Super, while increasing the projectile speed of any teammates and himself. Finx's projectiles will also get a damage buff.",900,N/A,4,N/A,12.33%,N/A
+JAE YONG,Mix It Up!,Switch between Jae-yong's Work & Party modes! Switching modes changes Jae-yong's main attack and activates the matching ability.,750,N/A,4,N/A,21.25%,N/A
+,,WORK: Gives all nearby teammates a temporary movement speed boost.,,,,,,N/A
+,,PARTY: Heals all nearby teammates.,,,,,,

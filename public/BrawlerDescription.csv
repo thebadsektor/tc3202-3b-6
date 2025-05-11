@@ -1,15 +1,15 @@
 Brawler,Description,LoseAgainstMost,WinAgainstMost
 SHELLY,"Shelly's the perfect ranger: reliable, tough, and terrific with her shotgun. She never understood why Colt got to steal the limelight…","LUMI, PIPER, GUS, EDGAR, MORTIS, RICO, CHESTER, TARA","TARA, CHESTER, RICO, MORTIS, EDGAR, GUS, PIPER, LUMI"
 COLT,"Colt is the star attraction at Starr Park! His good looks, charisma and gun twirling tricks win over any audience, except maybe Shelly.","PIPER, EDGAR,BEA,BELLE,LEON,MORTIS,DARRYL","EL PRIMO,BULL"
-BULL,"Bull isn't as carefree as he was in his youth, but just because his rowdy days are behind him doesn't mean he won't still crush someone who's asking for it.","GRIFF,COLLETE,SURGE,COLT,MAISIE,STU","8-BIT,LUMI,FINX,ELPRIMO"
+BULL,"Bull isn't as carefree as he was in his youth, but just because his rowdy days are behind him doesn't mean he won't still crush someone who's asking for it.","GRIFF,COLETTE,SURGE,COLT,MAISIE,STU","8-BIT,LUMI,FINX,EL PRIMO"
 BROCK,"Brock is a smack-talking video game enthusiast. His big attitude hides a more introverted personality, but he'll still do whatever it takes to win!","BELLE,PIPER,BEA","BONNIE,TARA,EL PRIMO"
-RICO,"Rico is definitely a real space bounty hunter who tracks down the galaxy's most wanted criminals, not a gumball machine pretending to be cool.","MAX, PIPER, NANI,COLT","MORTIS,8-BIT,ELPRIMO,COLLETE"
+RICO,"Rico is definitely a real space bounty hunter who tracks down the galaxy's most wanted criminals, not a gumball machine pretending to be cool.","MAX, PIPER, NANI,COLT","MORTIS,8-BIT,EL PRIMO,COLETTE"
 SPIKE,Most people think Spike is Colt and Shelly's cute sidekick at the Ranger Ranch. Nobody could begin to guess the depths of his trauma.,"MANDY, PIPER,NANI, LILY","SURGE,DYNAMIKE,POCO,SHELLY"
 BARLEY,"A bartending robot designed to mix drinks and banter with patrons, Barley also makes sure to keep his bar clean, to the detriment of anyone who makes a mess.","EDGAR, MICO,MORTIS,LEON,BUZZ","JESSIE,PENNY,NITA,FANG"
 JESSIE,Jessie is a prodigy who builds guns and gadgets from parts she finds in the junkyard. Maybe one day her mother Pam will see she can fend for herself!,"AMBER,DYNAMIKE,LARRY & LAWRIE,TARA","MORTIS,TARA,CROW"
 NITA,Nita is a ferocious child who never backs down from a fight! The teddy bear on her head serves as a warning to others: don't poke the bear.,"SHELLY, EL PRIMO, PAM, BULL, MORTIS","FRANK,SURGE,MEEPLE,PIPER,DYNAMIKE"
 DYNAMIKE,Dynamike is an old miner and prospector who's become obsessed with explosions. Nothing makes him happier than a big boom!,"EDGAR, FANG, BARLEY, MORTIS, CROW","TARA,JESSIE,TICK,8-BIT"
-EL PRIMO,"El Primo is always in the spotlight and that's right where he wants to be! There's no audience he can't win over, except maybe his fellow performers...","ASH, MAX, COLT, COLLETE,RICO","EDGAR,DARRYL,DOUG"
+EL PRIMO,"El Primo is always in the spotlight and that's right where he wants to be! There's no audience he can't win over, except maybe his fellow performers...","ASH, MAX, COLT, COLETTE,RICO","EDGAR,DARRYL,DOUG"
 MORTIS,"Mortis had grand designs built around being a mortician and a vampire, but the fact that nobody is dying at Starr Park has put a huge damper on his plan..","BULL,SHELLY,CHESTER,TARA,DARRYL","SHELLY,EDGAR,GRIFF,BULL,ROSA"
 CROW,"Crow trusts no one and keeps to himself. The most anyone knows about him is that he's often found at the diner, hanging out with Bull and Bibi.","MORTIS,SURGE,OTIS,","8-BIT,TICK,"
 POCO,"Poco believes music can change people's lives. He's so enthusiastic about it that he never stops playing, even after people ask him to!","DARRYL, SHELLY, LEON, TARA, NITA",N/A
@@ -23,7 +23,7 @@ FRANK,"Frank is a good-natured giant who helps out at the mortuary by day and sp
 GENE,Most people look at Gene and see a funny little guy in a costume. What they don't see is that his personality is split between his body and his teapot.,"RICO, PIPER, SHELLY","PIPER,ANGELO,HANK"
 TICK,"Tick follows Penny around like a pet as she plots her next big scheme. He isn't good for much besides blowing things up, but that's usually plenty!","MR. P, MORTIS, CROW, LEON, BARLEY","SURGE,MEEPLE,PIPER"
 LEON,"Since Leon doesn't like hanging with other people much, his ability to become invisible comes in handy. Only his little sister, Nita, seems to get through to him.","MORTIS,SURGE,OTIS","GROM,COLT,PIPER"
-ROSA,"Rosa is a botanist with a strong connection to plants. She's also a boxer, and won't hesitate to punch one of her specimens if it goes out of control!","COLLETE, MANDY, PIPER, CROW, EMZ",N/A
+ROSA,"Rosa is a botanist with a strong connection to plants. She's also a boxer, and won't hesitate to punch one of her specimens if it goes out of control!","COLETTE, MANDY, PIPER, CROW, EMZ",N/A
 CARL,Carl is a mining robot who's fascinated by rocks and stones of all kinds. Don't let him get started on his latest obsession: the effects of Gems!,"MORTIS,SURGE",N/A
 BIBI,"Bibi is a tough punk with a baseball bat and an attitude to match. She's a bit of a nerd too, but she'd never show it. She's got an image to maintain!","	8-BIT, MAISIE, MORTIS, SHELLY, EDGAR","FRANK,DOUG,JACKY"
 8-BIT,"An arcade game famous for its brutal difficulty, 8-Bit always hated its players. Now that it's missing one of its guns, it's angrier than ever before.","BONNIE, MAX, LEON, PENNY, CROW",N/A
@@ -32,7 +32,7 @@ BEA,"Bea spends her day watching bugs as they go about their lives, imagining wh
 EMZ,"Emz supposedly works for her uncle Mortis at the mortuary, but she rarely makes an appearance there. She's too busy hawking her hairspray brand online.","ASH, RICO, GRAY, MORTIS, EL PRIMO","FINX,"
 MR. P,"Mr. P is in over his head trying to run a hotel. He's always yelling at his employees to work faster, as if they could understand his gibberish!","EDGAR,TARA,BARLEY","SURGE,MORTIS,MEEPLE"
 MAX,"Fuelled by energy drinks, Max speeds to the scene whenever someone needs help. She never sticks around long enough to do much... but she sure is fast!","MORTIS,LOU,CROW","8-BIT,BO,BROCK"
-JACKY,"Jacky is a miner who can't resist mouthing off about her wild work experiences using very colorful language! Luckily, the bad words are drowned out by the noise of her jackhammer","TARA, SURGE, GALE, EDGAR,COLLETE","TICK,MORTIS,CORDELIUS"
+JACKY,"Jacky is a miner who can't resist mouthing off about her wild work experiences using very colorful language! Luckily, the bad words are drowned out by the noise of her jackhammer","TARA, SURGE, GALE, EDGAR,COLETTE","TICK,MORTIS,CORDELIUS"
 GALE,Gale's job is to use his snowblower to clear the areas around Mr. P's Snowtel. Nobody mentioned anything about stopping when the guests were around...,"DARRYL, SHELLY, LEON, TARA, NITA","FANG,HANK,EDGAR,MORTIS,BUZZ"
 NANI,"Originally a security camera, Nani was modified to keep an eye on Jessie. Unfortunately, she can hardly keep up with the precocious girl!","STU, GUS, BONNIE, CARL","PIPER,R-T,NITA,JESSIE"
 SPROUT,"Sprout appears to be a cute gardening robot who helps Rosa around the Biodome, but it's actually an incubator with arms and wheels for a strange pink seed!","MORTIS,LEON,BARLEY,MANDY",N/A
@@ -44,22 +44,22 @@ BYRON,Byron has invented many concoctions and tinctures that heal or harm in var
 EDGAR,"Edgar believes nobody understands him. Certainly not his mom, who thinks he's going through a phase. Only he knows the darkness in his soul is eternal.","	LOU, BUZZ, STU, SURGE, SHELLY","GROM,TICK,MORTIS,BELLE,BEA"
 RUFFS,"Ruffs is a loyal, highly disciplined space colonel who runs a tight ship and does everything by the book. But deep down, he just wants to be a good boy!","EDGAR,MORTIS,MEG",N/A
 STU,"A little punch-drunk from too many bumps, bruises, and gasoline fumes over his long stunt performing career, Stu is a bit wobbly on his wheel these days.","EDGAR, COLONEL RUFFS, MAISIE, HANK, MORTIS","SAM,FRANK,EL PRIMO,BUZZ,COLT"
-BELLE,"The leader of the notorious Goldarm Gang, Belle is after more than money. She wants to find out the truth behind Starr Park and bring it down!","EDGAR,LEON","R-T,BEA,JESSIE,NITA,PENNY."
+BELLE,"The leader of the notorious Goldarm Gang, Belle is after more than money. She wants to find out the truth behind Starr Park and bring it down!","EDGAR,LEON","R-T,BEA,JESSIE,NITA,PENNY"
 SQUEAK,"Squeak is a blob of happy energy who loves his creator, Ruffs. He's a joy to be around, at least if you are unaware that he's made of dog slobber","ROSA,ASH,FRANK",N/A
 GROM,Grom is a brawny security guard with one weak point: the flashback he gets from his time working at a kindergarten. Those kids were merciless.,"LEON,MORTIS,STU,KENJI,BULL,DARRYL",N/A
-BUZZ,Buzz is a lifeguard at the Velocirapids water park and a real stickler for the rules. He clearly enjoys wielding the tiny bit of authority he has to the greatest degree possible.,"SHELLY,FANG,BIBI,FRANK","LARRY AND LAWRIE,GROM,TICK"
-GRIFF,"Griff acts like a rich, successful entrepreneur, but his only business is the failing Starr Park Gift Shop. Oddly, he's never around when the bank calls.","PENNY, HANK, SHELLY, BUZZ, EDGAR","MORTIS,POCO,COLLETE,CROW,EDGAR"
-ASH,Ash has the thankless job of keeping the park clean. He's climbed into a trash can to protect himself from broken glass and rat bites. It makes him grumpy!,"COLLETE,GALE,CROW,SPIKE","FRANK,SURGE,MEEPLE,DYNAMIKE"
+BUZZ,Buzz is a lifeguard at the Velocirapids water park and a real stickler for the rules. He clearly enjoys wielding the tiny bit of authority he has to the greatest degree possible.,"SHELLY,FANG,BIBI,FRANK","LARRY & LAWRIE,GROM,TICK"
+GRIFF,"Griff acts like a rich, successful entrepreneur, but his only business is the failing Starr Park Gift Shop. Oddly, he's never around when the bank calls.","PENNY, HANK, SHELLY, BUZZ, EDGAR","MORTIS,POCO,COLETTE,CROW,EDGAR"
+ASH,Ash has the thankless job of keeping the park clean. He's climbed into a trash can to protect himself from broken glass and rat bites. It makes him grumpy!,"COLETTE,GALE,CROW,SPIKE","FRANK,SURGE,MEEPLE,DYNAMIKE"
 MEG,"Content to work behind the scenes with her trusty mecha suit, Meg takes care of real problems, while Max and Surge are out entertaining the crowds.",FRANK,N/A
 LOLA,"Lola makes sure everyone knows when she enters a room. She's an expert in the fine art of causing a scene to get what she wants, and she's proud of it!","BARLEY,DYNAMIKE,BUSTER,",N/A
-FANG,"Fang has absorbed so many kung-fu movies he practically lives in one. He's confident, charming, and never uses his hands if he can kick instead!","COLLETE,OTIS,GRIFF,SHELLY,GALE","GROM,TICK,MORTIS,BELLE"
+FANG,"Fang has absorbed so many kung-fu movies he practically lives in one. He's confident, charming, and never uses his hands if he can kick instead!","COLETTE,OTIS,GRIFF,SHELLY,GALE","GROM,TICK,MORTIS,BELLE"
 EVE,Eve's purpose in life is to mother and protect her precious babies! She'll do whatever it takes to find them a good home... preferably in Ruffs' fur,"AMBER,PIPER","SURGE,MORTIS,BUZZ"
 JANET,"Janet will do whatever it takes to reach the top! As a bonus, her performing skills come in handy for rescuing her sister Bonnie, whenever she gets into trouble.","GRIFF,SURGE,BELLE,PIPER","MR.P,NITA,EVE,NANI"
-BONNIE,"Bonnie is a bundle of uncontrollable and totally destructive energy. Her dream is to be fired from her cannon, all the way to the moon!","COLLETE,BELLE,NANI,MR.P,NITA","JESSIE,PENNY"
+BONNIE,"Bonnie is a bundle of uncontrollable and totally destructive energy. Her dream is to be fired from her cannon, all the way to the moon!","COLETTE,BELLE,NANI,MR.P,NITA","JESSIE,PENNY"
 OTIS,"Otis is a young street artist on the come-up who works by shooting ink at the walls. Nobody knows his true identity, which only adds to his mystique!",N/A,"CORDELIUS,FINX,SURGE,MORTIS,FRANK"
 SAM,"A former factory worker turned wanted member of the Goldarm Gang, Sam is always there to ensure Belle doesn't go too far on their latest heist!","SURGE,STU,PENNY,JESSIE","TICK,KIT,BUZZ,"
 GUS,"Gus looks so much like a ghost child that he's often mistaken for one. Perhaps fittingly, he's an enthusiast of all things Supernatural, since he's too innocent to be scared.",N/A,N/A
-BUSTER,Buster took a film projector from the movie theater where he works so he can play around with it like a prop. It's dangerous and highly unprofessional!,"COLLETE, DYNAMIKE,LARRY AND LAWRIE","BROCK,COLT,SHELLY,"
+BUSTER,Buster took a film projector from the movie theater where he works so he can play around with it like a prop. It's dangerous and highly unprofessional!,"COLETTE, DYNAMIKE,LARRY & LAWRIE","BROCK,COLT,SHELLY"
 CHESTER,"Chester makes vicious fun of anyone in sight, trying to get under their skin. The more hate he gets, the better... especially if that hater is Mandy!","SURGE,","DOUG,MORTIS,FANG"
 GRAY,Gray styles himself as a character in an old silent film. He takes the act seriously but sometimes forgets to keep his mouth shut when doing finger bullets.,"NANI,PIPER,",N/A
 MANDY,Mandy runs a candy store where she dresses in costume and doles out sweet treats. She's a little too into the act and rules her candy kingdom with an iron fist.,"PIPER,NANI,PENNY,","8-BIT,CORDELIUS,OTIS"

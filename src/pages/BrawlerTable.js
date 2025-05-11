@@ -38,35 +38,35 @@ function BrawlerTable() {
   const rowsPerPage = 15;
 
   useEffect(() => {
-  
-    
-    fetch('/modified_brawler_data.xlsx')
-      .then(res => {
-        if (!res.ok) throw new Error('Network response was not ok');
-        return res.arrayBuffer();
-      })
-      .then(data => {
-        const wb = XLSX.read(data, { type: 'array' });
-        const sheet = wb.SheetNames[0];
-        const ws = wb.Sheets[sheet];
-        const json = XLSX.utils.sheet_to_json(ws);
-        setBrawlers(json);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error('Error reading Excel:', err);
-        setError('Failed to load brawler data.');
-        setLoading(false);
-      });
-      
-    // Cleanup function
-    return () => {
-      document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
-      document.body.style.height = '';
-      document.documentElement.style.height = '';
-    };
-  }, []);
+  fetch('/BrawlerData.xlsx')
+    .then(res => {
+      if (!res.ok) throw new Error('Network response was not ok');
+      return res.arrayBuffer();
+    })
+    .then(data => {
+      const wb = XLSX.read(data, { type: 'array' });
+      const sheet = wb.SheetNames[0];
+      const ws = wb.Sheets[sheet];
+      const json = XLSX.utils.sheet_to_json(ws);
+      json.sort((a, b) => (a.Brawler || '').localeCompare(b.Brawler || '')); // Sort by Brawler name
+      setBrawlers(json);
+      setLoading(false);
+    })
+    .catch(err => {
+      console.error('Error reading Excel:', err);
+      setError('Failed to load brawler data.');
+      setLoading(false);
+    });
+
+  return () => {
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+    document.body.style.height = '';
+    document.documentElement.style.height = '';
+  };
+}, []);
+
+
 
   const handleRowClick = (name) => {
     navigate(`/brawler/${encodeURIComponent(name)}`);
@@ -84,7 +84,13 @@ function BrawlerTable() {
 
   return (
     <div className="outer-container">
-      
+
+      <div className="bottom-nav">
+        <button onClick={handleBackClick} className="bottom-back-button">
+          <span className="back-arrow">&#8592;</span> Back to Home Page
+        </button>
+        
+      </div>
       <div className="nav-section">
         <button onClick={handleBackClick} className="back-button">
           <span className="back-arrow">&#8592;</span> Home
@@ -162,11 +168,7 @@ function BrawlerTable() {
         </button>
       </div>
       
-      <div className="bottom-nav">
-        <button onClick={handleBackClick} className="bottom-back-button">
-          <span className="back-arrow">&#8592;</span> Back to Home Page
-        </button>
-      </div>
+      
     </div>
   );
 }
