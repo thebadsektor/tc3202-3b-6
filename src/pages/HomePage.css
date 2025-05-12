@@ -1,5 +1,6 @@
-/* HomePage.css - Enhanced with animations */
+/* HomePage.css - Enhanced with extended navy blue background gradient */
 @import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Rubik:wght@400;500;700&display=swap');
+
 :root {
   /* Color variables */
   --primary-dark: #191d36;
@@ -10,677 +11,1157 @@
   --text-muted: #b8bbcb;
   --danger: #f14668;
   --danger-dark: #991530;
-  /* Spacing variables */
   --space-xs: 5px;
   --space-sm: 10px;
   --space-md: 15px;
   --space-lg: 20px;
   --space-xl: 25px;
   --space-xxl: 40px;
-  /* Border radius variables */
   --radius-sm: 5px;
   --radius-md: 8px;
   --radius-lg: 12px;
   --radius-full: 50%;
-  /* Animation variables */
   --transition-fast: 0.2s ease;
   --transition-medium: 0.3s ease;
 }
+
 /* Reset and base styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   font-family: 'Rubik', Arial, sans-serif;
   line-height: 1.5;
   background-color: var(--primary-dark);
+  min-height: 100vh;
+  overflow-x: hidden;
 }
+
 h1, h2, h3, h4, h5, h6, .brawl-title, .brawl-username, .brawl-button, .logo-text {
   font-family: 'Lilita One', cursive, Arial, sans-serif;
 }
+
 button {
   cursor: pointer;
 }
+
 /* Fix for scrolling */
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
   overflow-x: hidden;
-  overflow-y: auto;
 }
+
 .brawl-home-container {
-  min-height: 100vh;
-  background: url(/public/images/BGdown.jpg)no-repeat;
-  background-size: cover;
   color: var(--text-light);
-  padding-bottom: var(--space-xxl);
+  min-height: 100vh;
+  width: 100%;
   position: relative;
-  overflow: hidden;
-  max-width: 100%;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
-.brawl-home-container:before {
-  content: "";
+
+/* Enhanced Background Slider with Glowing Elements */
+@keyframes floatAnimation {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes rotateAnimation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulseGlow {
+  0% { opacity: 0.4; filter: blur(8px); }
+  50% { opacity: 0.8; filter: blur(12px); }
+  100% { opacity: 0.4; filter: blur(8px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Background slider enhancements */
+.background-slider {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 800px;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Starry background effect */
+.background-slider::before {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
-  background-size: cover;
-  width: 100%;
-  height: 1130px;
-  background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 90% 60%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 100px 100px;
   z-index: 1;
+  pointer-events: none;
 }
-/* Make sure content is positioned above the overlay */
-.brawl-home-container > * {
-  position: relative;
+
+/* Glowing orbs */
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(8px);
   z-index: 2;
+  pointer-events: none;
+  animation: pulseGlow 4s infinite ease-in-out, floatAnimation 8s infinite ease-in-out;
 }
-.brawl-home-container.loaded {
-  opacity: 1;
-  transform: translateY(0);
+
+.glow-orb-1 {
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, rgba(243, 136, 28, 0.4) 0%, rgba(243, 136, 28, 0) 70%);
+  top: 15%;
+  left: 10%;
+  animation-delay: 0s, 1s;
 }
-/* Stars background animation */
-.stars-container {
+
+.glow-orb-2 {
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(249, 203, 95, 0.4) 0%, rgba(249, 203, 95, 0) 70%);
+  top: 60%;
+  left: 25%;
+  animation-delay: 1s, 0s;
+}
+
+.glow-orb-3 {
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(66, 133, 244, 0.3) 0%, rgba(66, 133, 244, 0) 70%);
+  top: 30%;
+  right: 15%;
+  animation-delay: 2s, 3s;
+}
+
+.glow-orb-4 {
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.3) 0%, rgba(138, 43, 226, 0) 70%);
+  bottom: 20%;
+  right: 30%;
+  animation-delay: 0.5s, 2s;
+}
+
+
+/* Floating energy particles */
+.energy-particle {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.particle-1 {
+  width: 15px;
+  height: 15px;
+  background: radial-gradient(circle, var(--accent-yellow) 0%, rgba(249, 203, 95, 0) 70%);
+  top: 25%;
+  left: 20%;
+  animation: floatAnimation 6s infinite ease-in-out;
+}
+
+.particle-2 {
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle, var(--accent-orange) 0%, rgba(243, 136, 28, 0) 70%);
+  top: 40%;
+  left: 35%;
+  animation: floatAnimation 7s infinite ease-in-out reverse;
+}
+
+.particle-3 {
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle, #64b5f6 0%, rgba(100, 181, 246, 0) 70%);
+  top: 65%;
+  right: 25%;
+  animation: floatAnimation 5s infinite ease-in-out;
+}
+
+/* Glowing lines */
+.glow-line {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-yellow), transparent);
+  z-index: 2;
+  opacity: 0.6;
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+.glow-line-1 {
+  width: 150px;
+  top: 40%;
+  left: 5%;
+  transform: rotate(15deg);
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+.glow-line-2 {
+  width: 100px;
+  top: 60%;
+  left: 30%;
+  transform: rotate(-20deg);
+  animation: pulseGlow 4s infinite ease-in-out;
+  animation-delay: 1s;
+}
+
+.glow-line-3 {
+  width: 120px;
+  bottom: 30%;
+  right: 15%;
+  transform: rotate(30deg);
+  animation: pulseGlow 3.5s infinite ease-in-out;
+  animation-delay: 0.5s;
+}
+
+/* Enhance the background slide */
+.background-slide {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 0;
-  overflow: hidden;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+  z-index: 1;
+  background: linear-gradient(90deg, 
+    rgba(25, 29, 54, 0.98) 0%, 
+    rgba(25, 29, 54, 0.95) 40%, 
+    rgba(25, 29, 54, 0.9) 60%,
+    rgba(25, 29, 54, 0.7) 80%);
+}
+
+.background-slide.active {
+  opacity: 1;
+}
+
+/* Add blur effect to the background */
+.background-blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2;
+  opacity: 0.3; /* Subtle blur */
   pointer-events: none;
 }
-.star {
+
+.background-slide.active {
+  opacity: 1;
+}
+
+.background-slide:after {
+  content: "";
   position: absolute;
-  width: 4px;
-  height: 4px;
-  background-color: white;
-  border-radius: 50%;
-  opacity: 0.6;
-  animation: twinkle 5s infinite alternate;
+  top: 0;
+  right: 0;
+  width: 50%; 
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  mask-image: linear-gradient(to right, transparent 10%, black 70%);
+  -webkit-mask-image: linear-gradient(to right, transparent 10%, black 70%);
+  opacity: 0.8; /* Slightly reduced opacity of the character images */
 }
-@keyframes twinkle {
-  0%, 100% { opacity: 0.2; transform: scale(0.8); }
-  50% { opacity: 0.8; transform: scale(1.2); }
+
+.background-slide:nth-child(1):after { background-image: url('/public/images/nani.jpg'); }
+.background-slide:nth-child(2):after { background-image: url('/public/images/smilee.png'); }
+.background-slide:nth-child(3):after { background-image: url('/public/images/spikee.png'); }
+
+.brawl-home-container.loaded {
+  opacity: 1;
+  transform: translateY(0);
 }
-/* Header styles */
+
+/* Header styles*/
 .brawl-header {
-  background-color: var(--primary-dark);
-  padding: var(--space-md) var(--space-lg);
   display: flex;
-  height: 80px;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 3px solid var(--accent-orange);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  position: sticky;
+  height: 90px;
+  padding: 0 var(--space-lg);
+  position: fixed; 
   top: 0;
+  left: 0;
   z-index: 100;
+  width: 100%;
+  background: linear-gradient(90deg, 
+    rgba(25, 29, 54, 0.98) 0%,
+    rgba(42, 46, 82, 0.95) 100%);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 2px solid var(--accent-orange);
 }
 
 .brawl-logo {
   display: flex;
   align-items: center;
-  justify-content: center; /* Optional: center the image horizontally */
-  width: 60px;
-  height: 60px;
+  gap: var(--space-sm);
+  z-index: 5;
 }
 
 .brawl-logo-img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
+  width: 68px;
+  height: 68px;
   object-fit: cover;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Optional: bubble-like shadow */
+  padding: 3px;
 }
 
 .logo-text {
-  font-size: 22px;
-  font-weight: bold;
-  color: var(--accent-yellow);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  position: relative;
-  animation: logoGlow 3s infinite alternate;
+    font-size: 18px;
+    font-weight: 200;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: linear-gradient(to left, #fff, var(--accent-blue));
 }
-/* Navigation buttons in header */
-.brawl-nav-buttons {
+
+/* Navigation buttons in header*/
+.brawl-nav {
   display: flex;
   align-items: center;
   gap: var(--space-md);
-  margin-left: var(--space-lg);
+  z-index: 5;
 }
 
 .brawl-nav-button {
   background: linear-gradient(to bottom, var(--accent-yellow), var(--accent-orange));
   color: var(--primary-dark);
   border: none;
-  width: 200px;
-  height: 42px;
+  width: 170px;
+  height: 50px;
   margin: 2px;
-  border-radius: var(--radius-sm);
-  padding: 8px 12px;
+  border-radius: 8px; 
+  padding: 0 var(--space-md);
   font-family: 'Lilita One', cursive, Arial, sans-serif;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: bold;
-  box-shadow: 0 3px 0 #d36a0f, 0 3px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
   transition: all var(--transition-fast);
   position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.brawl-nav-button:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.15), rgba(255,255,255,0));
+  z-index: -1;
 }
 
 .brawl-nav-button:hover {
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 5px 0 #d36a0f, 0 5px 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.4);
 }
 
 .brawl-nav-button:active {
   transform: translateY(1px);
-  box-shadow: 0 2px 0 #d36a0f, 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* AI Assistant button with floating animation */
-/* AI Assistant button with floating animation */
 .ai-assistant-container {
   position: fixed;
   bottom: 20px;
   right: 20px;
   z-index: 1000;
   text-align: center;
-  pointer-events: none; /* Ensures only the button is interactive */
+  pointer-events: none;
 }
 
 .ai-assistant-button {
-  pointer-events: auto; /* Make the button clickable */
-  
-  width: 100px;
-  height: 100px;
-  border-radius: 50%; /* Bubble shape */
-  background-image: url('/public/images/edd.jpg'); /* Update path if needed */
+  pointer-events: auto;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-image: url('/public/images/edd.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
-  border: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 3px solid var(--accent-yellow);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 0 15px rgba(249, 203, 95, 0.5);
   cursor: pointer;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .ai-assistant-button:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25), 0 0 20px rgba(249, 203, 95, 0.7);
 }
 
-
-.brawl-welcome-banner {
-  max-width: 800px;
-  margin: var(--space-xxl) auto;
-  padding: var(--space-xl) var(--space-lg);
-  background: radial-gradient(circle, rgba(25, 40, 80, 0.9), rgba(10, 20, 40, 0.95) 100%);
-  border-radius: var(--radius-lg);
-  border: 2px solid var(--accent-orange);
-  text-align: center;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+/* Main content layout - ADJUSTED FOR FIXED HEADER */
+.main-content {
+  display: block;
   position: relative;
+  z-index: 3;
+  gap: 3rem; 
+  height: 1970px;
+  padding: var(--space-lg);
+  padding-top: 90px; /* Added to account for fixed header */
+}
+
+/* Welcome Banner Container */
+.brawl-welcome-container {
+  width: 820px;
+  max-width: 100%;
+  height: auto;
+  min-height: 280px;
+  margin-top: 120px;
+  margin-left: 100px;
+  position: relative;
+  z-index: 10;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.brawl-welcome-container.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Background Elements */
+.welcome-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
-  transform: perspective(500px) rotateX(0deg);
-  transition: transform 0.5s ease;
-  animation: bannerAppear 1s ease forwards;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(25, 31, 69, 0.85) 0%, rgba(13, 16, 38, 0.95) 100%);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 0, 0, 0.3) inset;
 }
-@keyframes bannerAppear {
-  0% { opacity: 0; transform: perspective(500px) rotateX(10deg) translateY(50px); }
-  100% { opacity: 1; transform: perspective(500px) rotateX(0deg) translateY(0); }
+
+.welcome-card-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid rgba(249, 203, 95, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.838);
+  pointer-events: none;
+  z-index: 1;
 }
-.brawl-welcome-banner:hover {
-  transform: perspective(500px) rotateX(2deg);
-}
-.brawl-welcome-banner::before {
+
+.welcome-card-border::before {
   content: '';
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(65, 105, 225, 0.1) 0%, transparent 70%);
-  animation: pulse 6s ease-in-out infinite;
-  z-index: -1;
+  top: -2px;
+  left: -2px;
+  width: 30%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-yellow), transparent);
+  animation: borderGlow 4s infinite linear;
 }
-@keyframes pulse {
-  0% { transform: scale(0.8); opacity: 0.3; }
-  50% { transform: scale(1.2); opacity: 0.5; }
-  100% { transform: scale(0.8); opacity: 0.3; }
+
+@keyframes borderGlow {
+  0% { transform: translateX(0); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateX(300%); opacity: 0; }
 }
+.glow-effect {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(249, 203, 95, 0.1) 0%, rgba(249, 203, 95, 0) 70%);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: left 3s ease, top 3s ease;
+  z-index: 0;
+}
+/* Star field animation */
+.star-field {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: radial-gradient(circle, rgba(249, 203, 95, 0.8) 0%, rgba(255, 236, 179, 0.7) 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 3px rgba(249, 203, 95, 0.6);
+  animation: twinkle 3s infinite;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.3; transform: scale(1); box-shadow: 0 0 2px rgba(249, 203, 95, 0.4); }
+  50% { opacity: 1; transform: scale(1.5); box-shadow: 0 0 5px rgba(249, 203, 95, 0.8); }
+  100% { opacity: 0.3; transform: scale(1); box-shadow: 0 0 2px rgba(249, 203, 95, 0.4); }
+}
+
+/* Content Styling */
+.welcome-content {
+  position: relative;
+  z-index: 5;
+  padding: 32px;
+}
+
 .welcome-title {
-  font-size: 32px;
-  margin-bottom: var(--space-md);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  letter-spacing: 0.5px;
+  font-size: 42px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6), 0 0 30px rgba(249, 203, 95, 0.2);
   animation: slideDown 0.8s ease forwards;
 }
-.welcome-subtitle {
-  font-size: 18px;
-  color: var(--text-muted);
-  max-width: 600px;
-  margin: 0 auto;
+.username-highlight {
+  position: relative;
+  color: var(--accent-yellow, #F9CB5F);
+  font-weight: 900;
+  display: inline-block;
+  padding: 0 8px;
+  animation: pulseGlow 3s infinite alternate;
+}
+.username-highlight::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--accent-yellow, #F9CB5F), transparent);
+  border-radius: 4px;
+  opacity: 0.7;
+  transform: translateY(4px);
+}
+@keyframes pulseGlow {
+  0% { text-shadow: 0 0 5px rgba(249, 203, 95, 0.3); }
+  100% { text-shadow: 0 0 20px rgba(249, 203, 95, 0.8), 0 0 10px rgba(255, 156, 28, 0.6); }
+}
+.welcome-text-container {
+  position: relative;
+  margin-top: 20px;
+  padding-left: 16px;
+  border-left: 3px solid rgba(249, 203, 95, 0.4);
   animation: fadeIn 0.8s ease forwards 0.3s;
   opacity: 0;
 }
+.welcome-subtitle {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  max-width: 90%;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+/* Animation keyframes */
 @keyframes slideDown {
   0% { opacity: 0; transform: translateY(-20px); }
   100% { opacity: 1; transform: translateY(0); }
 }
+
 @keyframes fadeIn {
   0% { opacity: 0; }
   100% { opacity: 1; }
 }
-.brawl-highlight {
-  color: var(--accent-yellow);
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .brawl-welcome-container {
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
+  }
+  
+  .welcome-title {
+    font-size: 36px;
+  }
+  
+  .welcome-subtitle {
+    font-size: 18px;
+  }
+}
+
+/* Enhanced Features Section Styles with Visual Effects */
+.brawl-features-container {
+  width: 1908px;
+  height: auto;
+  min-height: 800px;
   position: relative;
-  display: inline-block;
-  animation: glowText 3s infinite alternate;
-}
-.carousel-container {
-  max-width: 900px;
-  margin: 60px auto;
-  position: relative;
-  z-index: 10;
-  padding: 0 15px;
-}
-
-.carousel-title {
-  text-align: center;
-  margin-bottom: 35px;
-  font-size: 32px;
-  color: var(--accent-yellow);
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 165, 0, 0.5);
-  letter-spacing: 3px;
-  font-weight: 800;
-  position: relative;
-  display: inline-block;
-  left: 50%;
-  transform: translateX(-50%);
-}
-.carousel-wrapper {
-  position: relative;
-  height: 450px;
-  perspective: 1600px;
-  overflow: visible;
-  margin-bottom: 50px;
-}
-
-.carousel {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Card positioning & effects */
-.carousel-item {
-  position: absolute;
-  width: 200px;
-  height: 290px;
-  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  cursor: pointer;
-  filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.7));
-  will-change: transform, opacity, filter;
-}
-
-.carousel-item.active {
-  transform: translateX(0) translateZ(300px) scale(1.15);
-  opacity: 1;
-  z-index: 15;
-  filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.7)) brightness(1.15);
-}
-
-.carousel-item.next {
-  transform: translateX(130%) translateZ(80px) rotateY(-30deg) scale(0.95);
-  opacity: 1; /* Full opacity */
-  z-index: 10;
-  filter: drop-shadow(10px 20px 25px rgba(0, 0, 0, 0.6)) brightness(0.9);
-}
-
-.carousel-item.far-next {
-  transform: translateX(220%) translateZ(-50px) rotateY(-35deg) scale(0.85);
-  opacity: 1; /* Full opacity */
-  z-index: 5;
-  filter: drop-shadow(5px 15px 20px rgba(0, 0, 0, 0.5)) brightness(0.7);
-}
-
-.carousel-item.prev {
-  transform: translateX(-130%) translateZ(80px) rotateY(30deg) scale(0.95);
-  opacity: 1; /* Full opacity */
-  z-index: 10;
-  filter: drop-shadow(-10px 20px 25px rgba(0, 0, 0, 0.6)) brightness(0.9);
-}
-
-.carousel-item.far-prev {
-  transform: translateX(-220%) translateZ(-50px) rotateY(35deg) scale(0.85);
-  opacity: 1; /* Full opacity */
-  z-index: 5;
-  filter: drop-shadow(-5px 15px 20px rgba(0, 0, 0, 0.5)) brightness(0.7);
-}
-
-.carousel-item.hidden {
-  transform: translateX(0) translateZ(-400px) scale(0.3);
-  opacity: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* Card design */
-.carousel-card {
-  width: 100%;
-  height: 100%;
-  border-radius: 8px;
+  background: linear-gradient(90deg, 
+    rgba(25, 29, 54, 0.98) 0%,
+    rgba(42, 46, 82, 0.95) 100%);
+  padding: 2rem 3rem;
+  margin-top: 310px;
+  margin-left: -20px;
   overflow: hidden;
-  background-color: #0c1023; /* Solid background */
-  border: 3px solid var(--accent-orange);
-  box-shadow: 
-    0 15px 35px rgba(0, 0, 0, 0.8),
-    0 0 15px rgba(255, 140, 0, 0.4),
-    inset 0 2px 2px rgba(255, 255, 255, 0.1),
-    inset 0 -2px 2px rgba(0, 0, 0, 0.5);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transform: translateY(0);
-  position: relative;
+  box-shadow: 0 -10px 25px rgba(0, 0, 255, 0.15);
+  border-top: 1px solid rgba(73, 86, 255, 0.3);
+  border-bottom: 2px solid var(--accent-orange);
+  z-index: 1;
 }
 
-/* Creating a highlight effect on the top edge */
-.carousel-card::before {
+/* Background effects */
+.features-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.features-background::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 5%;
-  right: 5%;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
-  border-radius: 3px;
-  z-index: 5;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 25% 25%, rgba(73, 86, 255, 0.1) 0%, transparent 50%);
+  animation: pulse 8s infinite alternate ease-in-out;
 }
 
-/* Subtle glow around card */
-.carousel-card::after {
+.features-background::after {
   content: '';
   position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  border-radius: 18px;
-  background: transparent;
-  z-index: -1;
-  box-shadow: 0 0 20px rgba(255, 165, 0, 0.3);
-  opacity: 0;
-  transition: opacity 0.4s ease;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 75% 75%, rgba(255, 156, 73, 0.1) 0%, transparent 50%);
+  animation: pulse 10s infinite alternate-reverse ease-in-out;
 }
 
-.carousel-item:hover .carousel-card {
-  box-shadow: 
-    0 20px 50px rgba(0, 0, 0, 0.8),
-    0 0 30px rgba(255, 140, 0, 0.6),
-    inset 0 2px 3px rgba(255, 255, 255, 0.2),
-    inset 0 -2px 3px rgba(0, 0, 0, 0.6);
-  transform: translateY(-12px) scale(1.03);
-  border-color: #ffb700;
+/* Floating particles */
+.feature-particle {
+  position: absolute;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
+  border-radius: 50%;
+  filter: blur(2px);
+  opacity: 1.0;
+  will-change: transform;
+  z-index: 0;
 }
 
-.carousel-item:hover .carousel-card::after {
+.particle-1 {
+  width: 150px;
+  height: 150px;
+  top: 15%;
+  right: 10%;
+  background: radial-gradient(circle, rgba(73, 86, 255, 0.2), transparent 70%);
+  animation: float 25s infinite ease-in-out;
+}
+
+.particle-2 {
+  width: 100px;
+  height: 100px;
+  bottom: 20%;
+  left: 15%;
+  background: radial-gradient(circle, rgba(255, 156, 73, 0.2), transparent 70%);
+  animation: float 20s infinite ease-in-out 2s;
+}
+
+.particle-3 {
+  width: 80px;
+  height: 80px;
+  top: 60%;
+  right: 25%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent 70%);
+  animation: float 15s infinite ease-in-out 1s;
+}
+
+.particle-4 {
+  width: 130px;
+  height: 130px;
+  top: 90%;
+  right: 5%;
+  opacity: 0.5;
+  background: radial-gradient(circle, #5DB996, transparent 70%);
+  animation: float 15s infinite ease-in-out 1s;
+}
+
+.particle-5 {
+  width: 100px;
+  height: 80px;
+  top: 90%;
+  right: 75%;
+  opacity: 0.3;
+  background: radial-gradient(circle, #FFF2AF, transparent 70%);
+  animation: float 15s infinite ease-in-out 1s;
+}
+
+.particle-6 {
+  width: 110px;
+  height: 110px;
+  top: 20%;
+  right: 15%;
+  background: radial-gradient(circle, #624E88, transparent 70%);
+  animation: float 15s infinite ease-in-out 1s;
+}
+
+/* Glowing lines */
+.features-glow-line {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(73, 86, 255, 0.8), transparent);
+  z-index: 0;
+}
+
+.glow-line-1 {
+  width: 70%;
+  top: 15%;
+  left: 15%;
+  animation: glow-move 15s infinite ease-in-out;
+}
+
+.glow-line-2 {
+  width: 50%;
+  top: 50%;
+  right: 15%;
+  animation: glow-move 12s infinite ease-in-out 2s;
+}
+
+.glow-line-3 {
+  width: 60%;
+  bottom: 20%;
+  left: 25%;
+  animation: glow-move 18s infinite ease-in-out 1s;
+}
+
+/* Title section enhancements */
+.features-title-wrapper {
+  position: relative;
+  margin-top: 15px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  z-index: 2;
+}
+
+.features-title {
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-right: 1rem;
+  white-space: nowrap;
+  position: relative;
+  text-shadow: 0 0 15px rgba(73, 86, 255, 0.5);
+}
+
+.features-title::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(135deg, var(--accent-yellow), var(--accent-orange));
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  animation: rotate 8s linear infinite;
+}
+
+.features-title-line {
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-yellow), var(--accent-orange) 100%);
+  flex-grow: 1;
+  position: relative;
+  box-shadow: 0 0 10px rgba(255, 156, 73, 0.7);
+}
+
+.features-title-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+  animation: line-glow 3s infinite ease-in-out;
+}
+
+.features-subtitle {
+  color: #bbc1ff;
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+  max-width: 900px;
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 0 10px rgba(73, 86, 255, 0.3);
+  line-height: 1.6;
+}
+
+/* Enhanced feature list */
+.features-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 0;
+  will-change: transform;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.feature-item:hover {
+  transform: translateX(10px);
+}
+
+.feature-item:hover .feature-glow {
   opacity: 1;
 }
 
-.carousel-item.active .carousel-card {
-  border: 3px solid #ffb700;
-  box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.8),
-    0 0 40px rgba(255, 165, 0, 0.7),
-    inset 0 2px 5px rgba(255, 255, 255, 0.3);
-}
-
-/* Card image */
-.carousel-card img {
+.feature-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 230px;
-  object-fit: cover;
-  border-bottom: 3px solid var(--accent-orange);
-  transition: all 0.4s ease;
-  display: block; /* Ensures no gap below image */
+  height: 100%;
+  border-radius: 12px;
+  background: linear-gradient(90deg, rgba(73, 86, 255, 0.1), rgba(255, 156, 73, 0.1));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
 }
-/* Card content area */
-.carousel-card-content {
-  padding: 15px;
-  text-align: center;
-  background: linear-gradient(to bottom, rgba(12, 16, 35, 1), rgba(8, 12, 25, 1)); /* Solid background */
-  height: calc(100% - 230px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-/* Add a subtle glow around the text */
-.carousel-card-content h4::after {
-  content: '';
-  position: absolute;
-  bottom: -6px;
-  left: 25%;
-  width: 50%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(255, 183, 0, 0.6), transparent);
-}
-/* Navigation dots */
-.carousel-dots {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
+
+.feature-image-wrapper {
+  width: 180px;
+  height: 180px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-right: 2rem;
+  margin-left: 30px;
   margin-top: 15px;
+  margin-bottom: 10px;
+  flex-shrink: 0;
   position: relative;
-  z-index: 20;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3),
+              0 0 15px rgba(73, 86, 255, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.carousel-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: #333;
-  opacity: 0.6;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-  position: relative;
-  margin-top: 20px;
+.feature-item:hover .feature-image-wrapper {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4),
+              0 0 20px rgba(73, 86, 255, 0.7);
 }
 
-/* Add shine effect to dots */
-.carousel-dot::after {
-  content: '';
+.feature-image-glow {
   position: absolute;
-  top: 2px;
-  left: 4px;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(73, 86, 255, 0.5), rgba(255, 156, 73, 0.5));
+  mix-blend-mode: overlay;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
-.carousel-dot:hover {
-  opacity: 0.9;
-  transform: scale(1.2);
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.6), 0 0 5px rgba(255, 165, 0, 0.3);
+.feature-item:hover .feature-image-glow {
+  opacity: 0.5;
 }
 
-.carousel-dot:hover::after {
-  opacity: 1;
+.feature-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translateZ(0);
+  transition: transform 0.5s ease;
 }
 
-.carousel-dot.active {
-  background: linear-gradient(135deg, #ffaa00, #ff7b00);
-  opacity: 1;
-  transform: scale(1.3);
-  box-shadow: 
-    0 3px 8px rgba(0, 0, 0, 0.6), 
-    0 0 10px rgba(255, 165, 0, 0.6);
+.feature-item:hover .feature-image {
+  transform: scale(1.1) translateZ(0);
 }
 
-.carousel-dot.active::after {
-  opacity: 1;
+.feature-content {
+  flex-grow: 1;
+  position: relative;
+  z-index: 2;
 }
 
-/* Add 3D lighting effect to entire carousel */
-.carousel-wrapper::before {
+.feature-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: relative;
+  display: inline-block;
+  text-shadow: 0 0 10px rgba(73, 86, 255, 0.5);
+}
+
+.feature-title-underline {
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-yellow), var(--accent-orange) 100%);
+  margin-bottom: 0.75rem;
+  position: relative;
+  box-shadow: 0 0 8px rgba(255, 156, 73, 0.7);
+  transition: width 0.3s ease;
+}
+
+.feature-item:hover .feature-title-underline {
+  width: 70px;
+}
+
+.feature-description {
+  font-size: 1.1rem;
+  color: #bbc1ff;
+  line-height: 1.6;
+  max-width: 1000px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.feature-item:hover .feature-description {
+  color: #d1d6ff;
+}
+
+.feature-divider {
+  height: 3px;
+  width: 100%;
+  background: linear-gradient(90deg, 
+    rgba(73, 86, 255, 0.3) 0%, 
+    rgba(73, 86, 255, 0.1) 50%,
+    rgba(73, 86, 255, 0.3) 100%);
+  margin: 0.5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-divider::after {
   content: '';
   position: absolute;
-  top: -50px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 400px;
-  height: 100px;
-  background: radial-gradient(ellipse at center, rgba(255, 165, 0, 0.2), transparent 70%);
-  pointer-events: none;
-  z-index: -1;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  animation: divider-glow 3s infinite ease-in-out;
 }
 
-/* Add a subtle reflection below the active card */
-.carousel::after {
+/* See More Button Styling */
+.feature-see-more {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(90deg, rgba(73, 86, 255, 0.2), rgba(255, 156, 73, 0.2));
+  border: 1px solid rgba(73, 86, 255, 0.5);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  margin-top: 1.2rem;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+}
+
+.feature-see-more::before {
   content: '';
   position: absolute;
-  bottom: -40px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 200px;
-  height: 40px;
-  background: radial-gradient(ellipse at center, rgba(255, 165, 0, 0.15), transparent 70%);
-  filter: blur(5px);
-  pointer-events: none;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
 }
 
-/* Add metallic trim effect */
-.carousel-item::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  border-radius: 18px;
-  background: linear-gradient(135deg, rgba(255, 165, 0, 0.7), rgba(255, 120, 0, 0.7));
-  z-index: -2;
-  opacity: 0;
-  transition: opacity 0.4s ease;
+.feature-see-more:hover {
+  background: linear-gradient(90deg, rgba(73, 86, 255, 0.4), rgba(255, 156, 73, 0.4));
+  box-shadow: 0 0 15px rgba(73, 86, 255, 0.5);
+  transform: translateY(-2px);
 }
 
-.carousel-item.active::before {
-  opacity: 0.8;
+.feature-see-more:hover::before {
+  left: 100%;
 }
 
-.carousel-item.active .carousel-card {
-  animation: activeCardPulse 3s infinite;
+.feature-see-more span {
+  position: relative;
+  z-index: 2;
 }
-/* Responsive styles */
+
+.button-arrow {
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+  transform: rotate(45deg);
+  margin-left: 10px;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease, margin-left 0.3s ease;
+}
+
+.feature-see-more:hover .button-arrow {
+  transform: rotate(45deg) scale(1.2);
+  margin-left: 15px;
+}
+
+/* Animation for the divider glow effect */
+@keyframes divider-glow {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+  50% {
+    transform: translateY(0) rotate(0deg);
+  }
+  75% {
+    transform: translateY(20px) rotate(-5deg);
+  }
+}
+
+@keyframes glow-move {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translateX(-5%);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateX(5%);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: translateY(-50%) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
+@keyframes line-glow {
+  0%, 100% {
+    opacity: 0;
+    left: -100%;
+  }
+  50% {
+    opacity: 1;
+    left: 100%;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes divider-glow {
+  0%, 100% {
+    left: -100%;
+  }
+  50% {
+    left: 100%;
+  }
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
-  .brawl-header {
+  .brawl-features-container {
+    padding: 1.5rem;
+  }
+  
+  .feature-item {
     flex-direction: column;
-    height: auto;
-    padding-bottom: var(--space-md);
+    align-items: flex-start;
   }
   
-  .brawl-logo {
-    margin-bottom: var(--space-sm);
+  .feature-image-wrapper {
+    margin-right: 0;
+    margin-bottom: 1rem;
+    width: 100%;
+    max-width: 280px;
   }
   
-  .brawl-nav-buttons {
-    margin-left: 0;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .features-section {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .carousel-item.active {
-    transform: translateX(-50%) translateZ(100px) scale(1.1);
-  }
-  
-  .carousel-item.next {
-    transform: translateX(25%) translateZ(0) rotateY(-15deg) scale(0.85);
-  }
-  
-  .carousel-item.prev {
-    transform: translateX(-125%) translateZ(0) rotateY(15deg) scale(0.85);
-  }
-  
-  .carousel-wrapper {
-    height: 350px;
+  .features-title {
+    font-size: 1.5rem;
   }
 }
 
-@media (max-width: 480px) {
-  .brawl-nav-button {
-    font-size: 12px;
-    padding: 6px 10px;
-  }
-  .welcome-title {
-    font-size: 24px;
-  }
-  .welcome-subtitle {
-    font-size: 16px;
-  }
-  .carousel-wrapper {
-    height: 300px;
-  }
-  .carousel-item.active {
-    transform: translateX(-50%) translateZ(50px) scale(1);
-  }
-  .carousel-item {
-    width: 160px;
-    height: 240px;
-  }
-  .brawl-footer-links {
-  gap: var(--space-xl);
-  margin-bottom: var(--space-md);
-}
-.brawl-footer-link {
-  color: var(--accent-yellow);
-  text-decoration: none;
-  transition: color var(--transition-fast);
-}
-.brawl-footer-link:hover {
-  color: var(--accent-orange);
-}
-/* Accessibility improvements */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
+/* Make sure image paths match the ones referenced in your JS file */
 .visually-hidden {
   position: absolute;
   width: 1px;
   height: 1px;
-  padding: 0;
   margin: -1px;
+  padding: 0;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
   border: 0;
-}
 }

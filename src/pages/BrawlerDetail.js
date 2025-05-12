@@ -202,8 +202,9 @@ function BrawlerDetail() {
 
   return (
     <div className="brawler-detail fade-in">
+     
       <Link to="/brawler" className="back-link">
-        ← Back to Brawler Stats
+        ← Back to Brawler Lists
       </Link>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '30px', flexWrap: 'wrap', marginTop: '50px' }}>

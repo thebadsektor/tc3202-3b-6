@@ -5,145 +5,250 @@ import "./HomePage.css";
 function HomePage() {
   const navigate = useNavigate();
   const username = "Brawler";
-  const [activeIndex, setActiveIndex] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
-
-  const brawlers = [
-    { id: 1, name: "NAPAGALITAN NG NANAY NI KINN", image: "/images/leee.jpg" },
-    { id: 2, name: "TINGININGINING", image: "/images/james.jpg" },
-    { id: 3, name: "MAMA'S BOY", image: "/images/kinn.jpg" },
-    { id: 4, name: "TIGER KAMOTE", image: "/images/eyyy.jpg" },
-    { id: 5, name: "CHINESE", image: "/images/edd.jpg" },
-    { id: 6, name: "VOTE BUYER", image: "/images/Argie.jpg" },
-    { id: 7, name: "PINAGALITAN NG NANAY", image: "/images/Karlito.jpg" },
+  const [currentBgIndex, setCurrentBgIndex] = useState(0);
+  const [glowPosition, setGlowPosition] = useState({ x: 50, y: 50 });
+  
+  const backgroundImages = [
+    "/images/nani.jpg",
+    "/images/smilee.png",
+    "/images/spikee.png"
   ];
-
+  
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prevIndex) => (prevIndex + 1) % brawlers.length);
-    }, 3000);
-    const timer = setTimeout(() => {
+    // Animation load effect timer
+    const loadTimer = setTimeout(() => {
       setIsLoaded(true);
     }, 300);
-
-    // IMPORTANT: Enable scrolling on body
+    
+    // Background image slider timer
+    const bgTimer = setInterval(() => {
+      setCurrentBgIndex((prevIndex) => 
+        prevIndex === backgroundImages.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 5000); // Change background every 5 seconds
+    
+    // Animate welcome banner glow effect position
+    const glowTimer = setInterval(() => {
+      setGlowPosition({
+        x: 30 + Math.random() * 40,
+        y: 30 + Math.random() * 40
+      });
+    }, 3000);
+    
+    // Reset body styles to ensure proper layout
     document.body.style.overflow = "auto";
-    document.body.style.height = "auto";
-
+    document.body.style.height = "100%";
+    
     return () => {
-      clearInterval(interval);
-      clearTimeout(timer);
-
+      clearTimeout(loadTimer);
+      clearInterval(bgTimer);
+      clearInterval(glowTimer);
       // Reset styles when leaving component
       document.body.style.overflow = "";
       document.body.style.height = "";
     };
-  }, [brawlers.length]);
-
-  const handleCarouselNav = (index) => {
-    setActiveIndex(index);
-  };
-
+  }, [backgroundImages.length]);
+  
   const handleMatchPredictionsClick = () => {
     navigate("/team-composition");
   };
-
+  
   const gotoBrawlerList = () => {
     navigate("/brawler");
   };
-
+  
   const gotoMapDetails = () => {
     navigate("/map-show");
   };
-
-  const getCarouselItemClass = (index) => {
-    const diff = (brawlers.length + (index - activeIndex)) % brawlers.length;
-    if (diff === 0) return "carousel-item active";
-    if (diff === 1) return "carousel-item next";
-    if (diff === 2) return "carousel-item far-next";
-    if (diff === brawlers.length - 1) return "carousel-item prev";
-    if (diff === brawlers.length - 2) return "carousel-item far-prev";
-    return "carousel-item hidden";
-  };
-
+  
   return (
-    <div className={`brawl-home-container ${isLoaded ? 'loaded' : ''}`} style={{ overflowY: 'auto', maxHeight: '100vh' }}>
-      <div className="stars-container">
-        {[...Array(20)].map((_, i) => (
+    <div className={`brawl-home-container ${isLoaded ? 'loaded' : ''}`}>
+      {/* Background image slider with glowing elements */}
+      <div className="background-slider">
+        {backgroundImages.map((_, index) => (
           <div
-            key={i}
-            className="star"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-            }}
+            key={index}
+            className={`background-slide ${index === currentBgIndex ? 'active' : ''}`}
           />
         ))}
-      </div>
+        {/* Glowing orbs */}
+        <div className="glow-orb glow-orb-1"></div>
+        <div className="glow-orb glow-orb-2"></div>
+        <div className="glow-orb glow-orb-3"></div>
+        <div className="glow-orb glow-orb-4"></div>
+        {/* Energy particles */}
+        <div className="energy-particle particle-1"></div>
+        <div className="energy-particle particle-2"></div>
+        <div className="energy-particle particle-3"></div>
 
+        <div className="background-blur"></div>
+      </div>
+      
+      {/* Header */}
       <div className="brawl-header">
         <div className="brawl-logo">
-        <img src="/public/james.jpg" alt="Brawl Logo" style={{ width: '100%', height: 'auto', borderRadius: '50%' }} />
+          <img 
+            src="/images/logo.png" 
+            alt="Brawl Logo" 
+            className="brawl-logo-img" 
+          />
           <div className="logo-text">Smart Brawl</div>
         </div>
-        <div className="brawl-nav-buttons">
+        
+        <nav className="brawl-nav">
           <button className="brawl-nav-button" onClick={handleMatchPredictionsClick}>
             PREDICT MATCH
           </button>
           <button className="brawl-nav-button" onClick={gotoMapDetails}>
-            MAP OVERVIEW
+            BRAWLERS ARENA
           </button>
           <button className="brawl-nav-button" onClick={gotoBrawlerList}>
-            ALL BRAWLERS
+            BRAWLERS
           </button>
-        </div>
-        
+        </nav>
       </div>
-
-      <div className="ai-assistant-container">
-        <button className="ai-assistant-button" onClick={() => navigate("/lumina")}>
-          <span className="ai-icon">./.</span>
-          <span> </span>
-        </button>
-      </div>
-
-      <div className="brawl-welcome-banner">
-        <h2 className="welcome-title">
-          WELCOME, <span className="brawl-highlight">{username.toUpperCase()}</span>!
-        </h2>
-        <p className="welcome-subtitle">Ready to predict your next Brawl Stars victory?</p>
-      </div>
-
-      <div className="carousel-container">
-        <h3 className="carousel-title">FEATURED BRAWLERS</h3>
-        <div className="carousel-wrapper">
-          <div className="carousel">
-            {brawlers.map((brawler, index) => (
-              <div
-                key={brawler.id}
-                className={getCarouselItemClass(index)}
-                onClick={() => handleCarouselNav(index)}
-              >
-                <div className="carousel-card">
-                  <img src={brawler.image} alt={brawler.name} />
-                  <div className="carousel-card-content">
-                    <h4>{brawler.name}</h4>
-                  </div>
-                </div>
-              </div>
-            ))}
+      
+      {/* Main content with enhanced welcome banner */}
+      <div className="main-content">
+        {/* Enhanced Welcome Banner */}
+        <div className={`brawl-welcome-container ${isLoaded ? 'loaded' : ''}`}>
+          {/* Background elements */}
+          <div className="welcome-bg">
+            <div className="star-field">
+              {[...Array(20)].map((_, i) => (
+                <div 
+                  key={i} 
+                  className="star" 
+                  style={{
+                    top: `${Math.random() * 100}%`,
+                    left: `${Math.random() * 100}%`,
+                    animationDelay: `${Math.random() * 3}s`,
+                    animationDuration: `${3 + Math.random() * 4}s`
+                  }}
+                />
+              ))}
+            </div>
+            
+            <div 
+              className="glow-effect" 
+              style={{
+                left: `${glowPosition.x}%`,
+                top: `${glowPosition.y}%`
+              }}
+            />
+            
+            <div className="welcome-card-border">
+              <div className="border-bottom"></div>
+              <div className="border-left"></div>
+            </div>
+          </div>
+          
+          {/* Content */}
+          <div className="welcome-content">
+            <h2 className="welcome-title">
+              WELCOME, <span className="username-highlight">{username.toUpperCase()}</span>!
+            </h2>
+            
+            <div className="welcome-text-container">
+              <p className="welcome-subtitle">
+                Whether you're planning your next match, checking strong picks, or learning more
+                about your favorite brawlers, this is your place for helpful tips, predictions,
+                and better choices of brawlers.
+              </p>
+            </div>
+            
+            <div className="welcome-decoration">
+            </div>
           </div>
         </div>
-        <div className="carousel-dots">
-          {brawlers.map((_, index) => (
-            <span
-              key={index}
-              className={`carousel-dot ${index === activeIndex ? 'active' : ''}`}
-              onClick={() => handleCarouselNav(index)}
-            />
-          ))}
+
+        {/* Features Highlight Section - Optimized layout based on image */}
+        <div className="brawl-features-container">
+
+          <div className="features-background">
+              <div className="feature-particle particle-1"></div>
+              <div className="feature-particle particle-2"></div>
+              <div className="feature-particle particle-3"></div>
+              <div className="feature-particle particle-4"></div>
+              <div className="feature-particle particle-5"></div>
+              <div className="feature-particle particle-6"></div>
+          </div>
+
+          <div className="features-title-wrapper">
+            <h2 className="features-title">SMART BRAWL FEATURES</h2>
+            <div className="features-title-line"></div>
+          </div>
+          <p className="features-subtitle">
+            With data from past and recent Brawl Stars Battle logs, we provide a useful and actionable data for you to dominate your opponents.
+          </p>
+          
+          {/* Enhanced features list with animations */}
+        <div className="features-list">
+          <div className="feature-item">
+            <div className="feature-glow"></div>
+              <div className="feature-image-wrapper">
+                <div className="feature-image-glow"></div>
+                <img src="/images/f1card.jpg" alt="Team Compositions" className="feature-image" />
+              </div>
+
+        <div className="feature-content">
+          <h3 className="feature-title">TEAM COMPOSITIONS</h3>
+          <div className="feature-title-underline"></div>
+          <p className="feature-description">Discover the most effective brawler combinations.</p>
+           <button className="feature-see-more" onClick={handleMatchPredictionsClick}>
+        <span>SEE MORE</span>
+        <div className="button-arrow"></div>
+      </button>
         </div>
+     </div>
+            
+            <div className="feature-divider"></div>
+            
+            <div className="feature-item">
+      <div className="feature-glow"></div>
+      <div className="feature-image-wrapper">
+        <div className="feature-image-glow"></div>
+        <img src="/images/f2card.jpg" alt="Map Showcase" className="feature-image" />
+      </div>
+      <div className="feature-content">
+        <h3 className="feature-title">MAP SHOWCASE</h3>
+        <div className="feature-title-underline"></div>
+        <p className="feature-description">Explore specific game modes and maps, showing which characters have the advantage or the highest win rates.</p>
+         <button className="feature-see-more" onClick={gotoMapDetails}>
+        <span>SEE MORE</span>
+        <div className="button-arrow"></div>
+      </button>
+      </div>
+    </div>
+            
+            <div className="feature-divider"></div>
+            
+            <div className="feature-item">
+              <div className="feature-glow"></div>
+      <div className="feature-image-wrapper">
+        <div className="feature-image-glow"></div>
+                <img src="/images/f3card.jpg" alt="Counter Picks" className="feature-image" />
+              </div>
+              <div className="feature-content">
+                <h3 className="feature-title">BROWSE BRAWLERS</h3>
+                <div className="feature-title-underline"></div>
+                <p className="feature-description">Learn every brawlers and their detailed info to level up your gamestyle.</p>
+                 <button className="feature-see-more" onClick={gotoBrawlerList}>
+        <span>SEE MORE</span>
+        <div className="button-arrow"></div>
+      </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* AI Assistant */}
+      <div className="ai-assistant-container">
+        <button className="ai-assistant-button" onClick={() => navigate("/lumina")}>
+          <span className="visually-hidden">AI Assistant</span>
+        </button>
       </div>
     </div>
   );

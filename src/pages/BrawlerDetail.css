@@ -13,29 +13,54 @@
   }
   
   /* General layout */
-  .brawler-detail {
-    background: linear-gradient(135deg, var(--dark-bg), #0f0f1a);
-    color: var(--text-light);
-    min-height: 100vh;
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  /* Background particle effects */
-  .brawler-detail::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: 
-      radial-gradient(circle at 10% 20%, rgba(78, 205, 196, 0.05) 0%, transparent 20%),
-      radial-gradient(circle at 90% 80%, rgba(255, 107, 107, 0.07) 0%, transparent 20%),
-      radial-gradient(circle at 50% 50%, rgba(255, 230, 109, 0.03) 0%, transparent 30%);
-    z-index: 0;
-  }
+.brawler-detail {
+  background: linear-gradient(135deg, #0a0a2a, #1a1a4a, #0a0a2a);
+  color: var(--text-light);
+  min-height: 100vh;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background cosmic effects */
+.brawler-detail::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(100, 200, 255, 0.1) 0%, transparent 25%),
+    radial-gradient(circle at 85% 25%, rgba(147, 112, 219, 0.1) 0%, transparent 20%),
+    radial-gradient(circle at 75% 85%, rgba(65, 105, 225, 0.08) 0%, transparent 30%),
+    radial-gradient(circle at 35% 65%, rgba(39, 48, 60, 0.734) 0%, transparent 25%);
+  z-index: 0;
+}
+
+/* Add stars to the cosmic background */
+.brawler-detail::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(1px at 20% 30%, white, transparent),
+    radial-gradient(1px at 40% 70%, white, transparent),
+    radial-gradient(1px at 50% 10%, white, transparent),
+    radial-gradient(1px at 60% 40%, white, transparent),
+    radial-gradient(1px at 80% 20%, white, transparent),
+    radial-gradient(1px at 10% 80%, white, transparent),
+    radial-gradient(1px at 30% 50%, white, transparent),
+    radial-gradient(1px at 70% 90%, white, transparent),
+    radial-gradient(1px at 90% 60%, white, transparent),
+    radial-gradient(2px at 25% 25%, rgba(255, 255, 255, 0.9), transparent),
+    radial-gradient(2px at 75% 75%, rgba(255, 255, 255, 0.9), transparent),
+    radial-gradient(2px at 55% 35%, rgba(255, 255, 255, 0.9), transparent);
+  z-index: 0;
+}
   
   /* Loading and error states */
   .loading-message, .not-found-message {
@@ -60,39 +85,26 @@
   
   /* Back button styling */
   .back-link {
-    position: fixed;
+    position: relative;
+    width: 240px;
     top: 2rem;
     left: 2rem;
-    background: linear-gradient(135deg, var(--primary-color), #ff8e8e);
+    background: linear-gradient(135deg, rgba(251, 186, 47, 0.719), rgba(24, 42, 82, 0.736));
     color: var(--text-light);
     padding: 0.8rem 1.5rem;
-    border-radius: 50px;
+    border-radius: 12px;
     text-decoration: none;
     font-weight: bold;
     z-index: 100;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.845);
     display: flex;
     align-items: center;
   }
   
-  .back-link::before {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    border-radius: 50px;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
   .back-link:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.6);
+    box-shadow: 0 8px 20px rgba(24, 42, 82, 0.736);
   }
   
   .back-link:hover::before {

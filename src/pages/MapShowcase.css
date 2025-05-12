@@ -1,156 +1,599 @@
-/* Overall page layout */
+/* Overall page layout with enhanced styling */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+  --primary-dark: #1a2a40;
+  --primary-medium: #2d4369;
+  --primary-light: #3a5683;
+  --accent-glow: #64a0ff;
+  --text-light: #f0f0f0;
+  --text-bright: #ffffff;
+  --card-bg: #1e1e1e;
+  --card-hover: #2a2a2a;
+}
+
 html {
   scroll-behavior: smooth;
 }
+
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
   overflow-y: scroll;
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 50%, var(--primary-light) 100%);
+  font-family: 'Poppins', sans-serif;
 }
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(42, 65, 92, 0.8);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #5a85bf 0%, #3d5f90 100%);
+  border-radius: 6px;
+  border: 2px solid rgba(42, 65, 92, 0.8);
+  box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #6a95cf 0%, #4d6fa0 100%);
+}
+
+/* Horizontal scrollbar for map rows */
+.map-grid-container {
+  overflow-x: auto;
+  padding-bottom: 15px;
+  position: relative;
+}
+.map-grid-container::-webkit-scrollbar {
+  height: 10px;
+}
+
+/* Page container with enhanced visual effects */
 .map-showcase {
-  background-color: #121212;
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 50%, var(--primary-light) 100%);
   padding: 0;
   min-height: 100vh;
   position: relative;
 }
+
+/* Add animated diagonal lines background effect */
+.map-showcase::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(45deg, rgba(255, 255, 255, 0.03) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(255, 255, 255, 0.03) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.03) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.03) 75%);
+  background-size: 40px 40px;
+  z-index: 0;
+}
+
+/* Add subtle particle overlay effect */
+.map-showcase::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='2' cy='2' r='1' fill='rgba(255,255,255,0.1)'/%3E%3C/svg%3E");
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
 .map-content {
   flex: 1;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 20px;
-  padding-top: 70px; /* Space for the fixed header */
+  padding-top: 200px; 
+  position: relative;
+  z-index: 1;
 }
 
-/* Back button styling */
-.back-button {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  color: #121212;
-  text-decoration: none;
-  background: linear-gradient(to right, #ffcc00, #ff9500);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* Title and tagline section */
+.map-showcase-header {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-bottom: -80px;
+  background: linear-gradient(to bottom, rgba(26, 42, 64, 0.95) 0%, rgba(26, 42, 64, 0.85) 80%, rgba(26, 42, 64, 0));
+  padding: 25px 0 35px;
+  z-index: 50;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+   border-bottom: 2px solid var(--accent-orange);
 }
 
-.back-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-  background: linear-gradient(to right, #ffdd44, #ff8800);
+.map-showcase-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-bright);
+  margin: 0 0 5px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 0 0 15px var(--accent-glow), 0 0 30px rgba(100, 160, 255, 0.5);
+  position: relative;
+  display: inline-block;
 }
 
-.back-button:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+.map-showcase-title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 25%;
+  width: 50%;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(100, 160, 255, 0), rgba(100, 160, 255, 1), rgba(100, 160, 255, 0));
+  border-radius: 3px;
 }
 
-/* Map row styling */
+.map-showcase-tagline {
+  font-size: 18px;
+  color: #b0c5e6;
+  font-weight: 300;
+  max-width: 800px;
+  margin: 15px auto 5px;
+  font-style: italic;
+}
+
+/* Background styling with navy blue gradient */
+body {
+  background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-medium) 50%, var(--navy-dark) 100%);
+  color: #e6f1ff;
+}
+
+/* Enhanced map row styling */
 .map-row {
-  margin-bottom: 40px;
+  margin-bottom: 45px;
+  background: linear-gradient(to right, #0d1e40, #17305e); /* Darker navy blue gradient */
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 20px rgba(13, 30, 64, 0.4) inset; /* Updated inner glow to match darker navy blue */
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(243, 167, 44, 0.598); /* Updated border to complement navy blue theme */
 }
+
+.map-row:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 25px var(--accent-orange) inset, 0 0 8px rgba(255, 236, 111, 0.4);
+}
+
+/* Add ambient light effect to map rows */
+.map-row::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(34, 32, 32, 0.4) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.map-row:hover::before {
+  opacity: 1;
+}
+
 .map-header {
   display: flex;
   align-items: center;
-  padding: 10px;
-  border-radius: 8px;
-  margin-bottom: 10px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, var(--navy-medium) 0%, var(--navy-light) 100%);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.853);
+  position: relative;
+  overflow: hidden;
+  border-left: 3px solid var(--accent-blue);
 }
+
+/* Add glow effect to map headers */
+.map-header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.3), transparent);
+}
+
 .map-icon {
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
+  width: 35px;
+  height: 35px;
+  margin-right: 18px;
+  filter: drop-shadow(0 0 5px rgba(100, 255, 218, 0.5));
+  animation: pulse 3s infinite ease-in-out;
 }
+
+@keyframes pulse {
+  0% { transform: scale(1); filter: drop-shadow(0 0 3px rgba(100, 255, 218, 0.3)); }
+  50% { transform: scale(1.08); filter: drop-shadow(0 0 8px rgba(100, 255, 218, 0.6)); }
+  100% { transform: scale(1); filter: drop-shadow(0 0 3px rgba(100, 255, 218, 0.3)); }
+}
+
 .map-title {
-  font-size: 24px;
+  font-size: 28px;
+  font-family: 'Montserrat', sans-serif;
   color: white;
   margin: 0;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 15px;
+  text-shadow: 0 0 10px rgba(255, 236, 111, 0.4), 2px 2px 4px rgba(0, 0, 0, 0.6);
+  letter-spacing: 0.5px;
+  position: relative;
 }
+
+/* Add subtle text glow effect on hover */
+.map-header:hover .map-title {
+  text-shadow: 0 0 15px rgba(255, 180, 88, 0.765), 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
 .map-count {
-  color: #bdbdbd;
+  color: #d0d0d0;
   font-weight: bold;
-  text-shadow: 2px 2px 0px #000;
-}
-/* Map grid layout */
-.map-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: flex-start;
-}
-/* Map card styling */
-.map-card {
-  text-decoration: none;
-  flex: 1 1 calc(20% - 10px);
-  max-width: calc(20% - 10px);
-  background: #1e1e1e;
-  border-radius: 10px;
-  overflow: hidden;
-  text-align: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  margin-bottom: 15px;
-}
-.map-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-.map-image-container {
-  background-color: #1e1e1e;
-  height: 360px;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.7);
+  font-size: 18px;
+  background: rgba(21, 45, 87, 0.866);
+  padding: 4px 10px;
+  border-radius: 14px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.769), 0 0 0 1px rgba(100, 255, 218, 0.1);
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 28px;
+  
 }
+
+.map-header:hover .map-count {
+  background: rgba(255, 180, 88, 0.765);
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(100, 255, 218, 0.2), 0 0 0 1px rgba(100, 255, 218, 0.2);
+}
+
+/* Map grid layout with enhanced scrolling effects */
+.map-grid-container {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 10px 5px;
+  margin: 0 -5px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-blue) var(--navy-medium);
+}
+
+.map-grid-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.map-grid-container::-webkit-scrollbar-track {
+  background: var(--navy-medium);
+  border-radius: 4px;
+}
+
+.map-grid-container::-webkit-scrollbar-thumb {
+  background: var(--accent-blue);
+  border-radius: 4px;
+  opacity: 0.6;
+}
+
+.map-grid-container::-webkit-scrollbar-thumb:hover {
+  opacity: 1;
+}
+
+.map-grid {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+  min-width: min-content;
+  padding: 8px 4px;
+  position: relative;
+}
+
+/* Add scrolling indicator arrows */
+.map-grid-container::before,
+.map-grid-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.map-grid-container::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(10, 25, 47, 0.7), transparent);
+}
+
+.map-grid-container::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(10, 25, 47, 0.7), transparent);
+}
+
+.map-grid-container:hover::before,
+.map-grid-container:hover::after {
+  opacity: 1;
+}
+
+/* Enhanced map card styling */
+.map-card {
+  text-decoration: none;
+  flex: 0 0 220px;
+  background: var(--card-bg);
+  border-radius: 16px;
+  overflow: hidden;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  margin-bottom: 8px;
+  border: 2px solid rgba(100, 255, 218, 0.08);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.869);
+  position: relative;
+}
+
+.map-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4), 0 0 15px rgba(100, 255, 218, 0.3);
+  border: 1px solid rgba(255, 180, 88, 0.765);
+  z-index: 5;
+}
+
+/* Add glow effect on hover */
+.map-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 16px;
+  box-shadow: 0 0 0 0 transparent;
+  transition: box-shadow 0.4s ease;
+}
+
+.map-card:hover::after {
+  box-shadow: 0 0 20px rgba(100, 255, 218, 0.3);
+}
+
+.map-image-container {
+  background-color: #0a192f;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
 .map-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border: 1px solid #333;
+  border-bottom: 1px solid rgba(100, 255, 218, 0.15);
+  transition: transform 0.5s ease, filter 0.3s ease;
+  filter: brightness(0.85) contrast(1.1) saturate(1.2);
 }
+
+.map-card:hover .map-image {
+  transform: scale(1.08);
+  filter: brightness(1) contrast(1.15) saturate(1.3);
+}
+
+/* Add overlay shine effect */
+.map-image-container::after {
+  content: "";
+  position: absolute;
+  top: -150%;
+  left: -210%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(100, 255, 218, 0.08) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(45deg);
+  transition: all 0.7s ease;
+}
+
+.map-card:hover .map-image-container::after {
+  top: -50%;
+  left: -30%;
+}
+
+/* Add subtle aurora effect behind cards */
+.map-card::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: radial-gradient(circle at 50% 50%, 
+    rgba(100, 255, 218, 0.1) 0%, 
+    rgba(138, 43, 226, 0.05) 25%, 
+    transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: -1;
+  border-radius: 16px;
+}
+
+.map-card:hover::before {
+  opacity: 1;
+}
+
 .map-name {
   display: block;
-  padding: 8px;
-  font-size: 14px;
-  font-weight: bold;
+  padding: 14px 10px;
+  font-size: 16px;
+  font-weight: 600;
   color: #f0f0f0;
+  background: linear-gradient(180deg, var(--card-bg) 0%, var(--card-hover) 100%);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  position: relative;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
-/* Responsive design */
-@media (max-width: 1200px) {
-  .map-card {
-    flex: 1 1 calc(25% - 10px);
-    max-width: calc(25% - 10px);
+
+.map-card:hover .map-name {
+  color: rgba(255, 180, 88, 0.765)  w;
+  text-shadow: 0 0 8px rgba(100, 255, 218, 0.3), 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* Loading effect animation */
+@keyframes shimmer {
+  0% { background-position: -500px 0; }
+  100% { background-position: 500px 0; }
+}
+
+.loading-shimmer {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(to right, 
+    rgba(23, 42, 69, 0.1) 4%, 
+    rgba(100, 255, 218, 0.2) 25%, 
+    rgba(23, 42, 69, 0.1) 36%);
+  background-size: 1000px 100%;
+}
+
+/* Add floating particles effect in background */
+.particles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: rgba(100, 255, 218, 0.5);
+  border-radius: 50%;
+  animation: float 15s infinite linear;
+  opacity: 0;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(20px);
+    opacity: 0;
   }
 }
-@media (max-width: 992px) {
-  .map-card {
-    flex: 1 1 calc(33.333% - 10px);
-    max-width: calc(33.333% - 10px);
+
+
+/* Responsive design with enhanced breakpoints */
+@media (max-width: 900px) {
+  .map-showcase-title {
+    font-size: 36px;
+  }
+  
+  .map-showcase-tagline {
+    font-size: 16px;
+    padding: 0 20px;
+  }
+  
+  .map-content {
+    padding-top: 180px;
   }
 }
+
 @media (max-width: 768px) {
-  .map-card {
-    flex: 1 1 calc(50% - 10px);
-    max-width: calc(50% - 10px);
+  .map-showcase-title {
+    font-size: 32px;
   }
   
   .map-image-container {
     height: 280px;
   }
-}
-@media (max-width: 480px) {
+  
   .map-card {
-    flex: 1 1 100%;
-    max-width: 100%;
+    flex: 0 0 200px;
   }
   
+  .map-content {
+    padding: 15px;
+    padding-top: 170px;
+  }
+  
+  .map-title {
+    font-size: 24px;
+  }
+  
+  .map-showcase-header {
+    padding: 20px 0 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .map-showcase-title {
+    font-size: 28px;
+  }
+  
+  .map-showcase-tagline {
+    font-size: 14px;
+  }
+  
+  .map-card {
+    flex: 0 0 180px;
+  }
+  
+  .map-image-container {
+    height: 240px;
+  }
+    
+  .map-title {
+    font-size: 22px;
+  }
+  
+  .map-count {
+    font-size: 16px;
+  }
+  
+  .map-content {
+    padding-top: 160px;
+  }
+  
+  .back-button {
+    font-size: 12px;
+    padding: 10px 16px;
+  }
 }
