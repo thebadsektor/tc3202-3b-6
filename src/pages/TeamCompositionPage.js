@@ -45,7 +45,7 @@ const UsersIcon = () => (
     <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
   </svg>
 );
-
+ 
 const UserIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="user-icon">
     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
@@ -355,11 +355,17 @@ const TeamCompositionPage = () => {
           <span>Back</span>
         </button>
         
+        <div className="map-showcase-header19">
+
         <div className="header">
           <h1 className="title">Smart Brawl</h1>
-          <h2 className="subtitle">Predict now</h2>
+          <h2 className="subtitle">Discover the most effective brawler combinations</h2>
+        </div>  
         </div>
-        
+
+<h1 className="map-line19"></h1>
+
+        <div className="game-container-1-2">
         <div className="game-selection">
           <div className="select-container">
             {getIconForMode()}
@@ -374,7 +380,9 @@ const TeamCompositionPage = () => {
               ))}
             </select>
           </div>
+          </div>
           
+          <div className="game-selection2">
           <div className="select-container">
             <MapIcon />
             <select
@@ -390,7 +398,9 @@ const TeamCompositionPage = () => {
             </select>
           </div>
         </div>
-        
+        </div>
+
+
         <div className="teams-container">
           <div className={`team-panel ${activeTab === 'team1' ? 'team-active team1-active' : ''}`}>
             <div className="team-header">
@@ -446,7 +456,29 @@ const TeamCompositionPage = () => {
             ))}
           </div>
         </div>
-        
+
+        <div className="button-pre">
+           <button
+           onClick={predict}
+           disabled={isLoading}
+           className={`predict-button ${isLoading ? 'loading' : ''}`}
+           >
+           {isLoading ? (
+            <>
+              <div className="loading-spinner"></div>
+              <span>Analyzing...</span>
+            </>
+           ) : (
+            <>
+              <span>PREDICT MATCH OUTCOME</span>
+              <ArrowRightIcon />
+            </>
+           )}
+           </button>
+        </div>
+
+       <h1 className="map-line19"></h1>
+
         {error && (
           <div className="error-message">
             <p>
@@ -467,23 +499,7 @@ const TeamCompositionPage = () => {
           />
         )}
         
-        <button
-          onClick={predict}
-          disabled={isLoading}
-          className={`predict-button ${isLoading ? 'loading' : ''}`}
-        >
-          {isLoading ? (
-            <>
-              <div className="loading-spinner"></div>
-              <span>Analyzing...</span>
-            </>
-          ) : (
-            <>
-              <span>PREDICT MATCH OUTCOME</span>
-              <ArrowRightIcon />
-            </>
-          )}
-        </button>
+      
         
          {result && (
       <div className="result-container">

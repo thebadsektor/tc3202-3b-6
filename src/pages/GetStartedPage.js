@@ -297,7 +297,7 @@ function GetStartedPage() {
           
           <div className="tagline-container">
             <p className="brawl-tagline">
-              Unleash the power of Karl to make pervert all the human AI to predict winning team compositions and explore every brawler in depth — your ultimate companion for dominating the arena.
+              Unleash the AI to predict winning team compositions and explore every brawler in depth — your ultimate companion for dominating the arena.
             </p>
           </div>
 

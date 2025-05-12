@@ -65,6 +65,7 @@ function HomePage() {
   return (
     <div className={`brawl-home-container ${isLoaded ? 'loaded' : ''}`}>
       {/* Background image slider with glowing elements */}
+      
       <div className="background-slider">
         {backgroundImages.map((_, index) => (
           <div
@@ -107,6 +108,9 @@ function HomePage() {
             BRAWLERS
           </button>
         </nav>
+        <button className="ai-assistant-button" onClick={() => navigate("/lumina")}>
+          <span className="visually-hidden">AI Assistant</span>
+        </button>
       </div>
       
       {/* Main content with enhanced welcome banner */}
@@ -182,7 +186,9 @@ function HomePage() {
           <p className="features-subtitle">
             With data from past and recent Brawl Stars Battle logs, we provide a useful and actionable data for you to dominate your opponents.
           </p>
+
           
+        
           {/* Enhanced features list with animations */}
         <div className="features-list">
           <div className="feature-item">
@@ -191,7 +197,7 @@ function HomePage() {
                 <div className="feature-image-glow"></div>
                 <img src="/images/f1card.jpg" alt="Team Compositions" className="feature-image" />
               </div>
-
+ 
         <div className="feature-content">
           <h3 className="feature-title">TEAM COMPOSITIONS</h3>
           <div className="feature-title-underline"></div>
@@ -246,9 +252,11 @@ function HomePage() {
       
       {/* AI Assistant */}
       <div className="ai-assistant-container">
-        <button className="ai-assistant-button" onClick={() => navigate("/lumina")}>
-          <span className="visually-hidden">AI Assistant</span>
-        </button>
+<h2 className="map-subname3">
+            © 2025   Smart Brawl
+          </h2>
+
+        
       </div>
     </div>
   );

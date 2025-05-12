@@ -351,6 +351,7 @@ html, body {
   align-items: center;
   gap: var(--space-md);
   z-index: 5;
+  margin-right: 70px;
 }
 
 .brawl-nav-button {
@@ -399,14 +400,31 @@ html, body {
   bottom: 20px;
   right: 20px;
   z-index: 1000;
-  text-align: center;
+  display: flex;                  /* added */
+  align-items: center;            /* vertically align text & button */
+  gap: 1400px;                      /* space between text and button */
   pointer-events: none;
 }
+ 
+.map-subname3 {
+  font-size: 21px;
+  color: var(--accent-yellow);
+  pointer-events: auto;
+  margin-left: 800px;       /* reset left margin */
+  position: fixed;
+  bottom: 20px;
+  left: 20px;          /* position it on the left side */
+  z-index: 900;
+  font-weight: normal;
+}
+
 
 .ai-assistant-button {
-  pointer-events: auto;
-  width: 80px;
-  height: 80px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background-image: url('/public/images/edd.jpg');
   background-size: cover;
@@ -416,15 +434,20 @@ html, body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 0 15px rgba(249, 203, 95, 0.5);
   cursor: pointer;
   display: flex;
-  align-items: center;
+  align-items: bottom;  
   justify-content: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Make sure it's above other content */
+  pointer-events: auto;
 }
+
+
 
 .ai-assistant-button:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25), 0 0 20px rgba(249, 203, 95, 0.7);
 }
+
 
 /* Main content layout - ADJUSTED FOR FIXED HEADER */
 .main-content {

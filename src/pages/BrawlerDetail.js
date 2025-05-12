@@ -233,7 +233,7 @@ function BrawlerDetail() {
     </div>
     {/* Description Section */}
   <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-    {/* OLLIE Image on the side */}
+    {/* BRAWLER Image on the side */}
     <img 
       src={`/Icon/${brawler.Brawler}.png`}
       onError={(e) => { e.target.onerror = null; e.target.src = '/Icon/default.png'; }}

@@ -96,13 +96,16 @@ const MapDetail = () => {
         ← Back
       </button>
       
-      {/* Map title */}
-      <h1 className="map-name1">
-        {formattedMapName}
-      </h1>
+      
 
       <div className="map-content-wrapper">
         {/* Left column - Map image */}
+
+        {/* Map title */}
+      <h1 className="map-name1">
+        {formattedMapName}
+      </h1>
+      
         <div className="map-column">
           <div className="map-photo-container">
             <img

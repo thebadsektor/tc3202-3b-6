@@ -1,10 +1,14 @@
-  import React, { useEffect, useState, useRef } from 'react';
-  import { Link } from 'react-router-dom';
-  import './MapShowcase.css';
+import React, { useEffect, useState, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import './MapShowcase.css';
 
   const MapShowcase = () => {
     const [isLoading, setIsLoading] = useState(true);
     const particlesContainerRef = useRef(null);
+    const navigate = useNavigate();
+    const glowingOrbs = Array(6).fill(null); // 6 glowing orbs
+    const twinklingStars = Array(30).fill(null); // 30 twinkling stars
+
 
     useEffect(() => {
       // Simulate loading time for animation effects
@@ -77,6 +81,11 @@
         }
       }, (duration + delay) * 1000);
     };
+
+
+    const handleBackClick = () => {
+    navigate('/home');
+  };
 
     const gemGrabMaps = [
       "Hard Rock Mine", "Crystal Arcade", "Deathcap Trap", "Gem Fort",
@@ -171,17 +180,36 @@
         </div>
       );
     };
+    
+
 
     return (
       <div className="map-showcase">
         {/* New Title and Tagline Section */}
+        
+      {/* Background Elements */}
+      {glowingOrbs.map((_, index) => (
+        <div key={`orb-${index}`} className="glow-circle"></div>
+      ))}
+      
+      {twinklingStars.map((_, index) => (
+        <div key={`star-${index}`} className="stars"></div>
+      ))}
         <div className="map-showcase-header">
           <h1 className="map-showcase-title">BRAWLERS ARENA</h1>
           <p className="map-showcase-tagline">
             Explore variaties maps of Game modes.
           </p>
+
         </div>
-        
+        <div className="nav-section">
+        <button onClick={handleBackClick} className="nav-back1-button">
+          <span className="back-arrow">&#8592;</span> Back
+        </button>
+      </div>  
+
+      <h1 className="map-line"></h1>
+
         <div className="map-content">
           {renderMapRow(gemGrabMaps, 'Gem Grab', '/map-icon/GemGrabIcon.png')}
           {renderMapRow(heistMaps, 'Heist', '/map-icon/HeistIcon.png')}
