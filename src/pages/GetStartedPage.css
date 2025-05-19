@@ -1,4 +1,4 @@
-/* Enhanced Fullscreen Background Container */
+/* full background the page*/
 .brawl-login-container {
     display: flex;
     justify-content: center;
@@ -13,7 +13,7 @@
     --accent-blue: #3A93D1;
 }
 
-/* Logo and Website Name Container */
+/*Logo and Website Name*/
 .brawl-logo-container {
     position: absolute;
     top: 20px;
@@ -57,7 +57,7 @@
 }
 
 
-/* Animated Background Elements */
+/* animation sa background*/
 .brawl-background {
     position: absolute;
     top: 0;
@@ -93,9 +93,6 @@
     }
 }
 
-
-/* Particle effects */
-
 .particles {
     position: absolute;
     top: 0;
@@ -117,7 +114,7 @@
 
 
 
-/* Different particle types with game themed colors */
+/*another particle effects na nasa bg*/
 
 .particle:nth-child(5n) {
     background: radial-gradient(circle, rgba(58, 147, 209, 0.9) 0%, rgba(58, 147, 209, 0) 70%);
@@ -151,8 +148,7 @@
 
 
 
-/* Generate 20 random particles with animations */
-
+/* nag gegenerate ng particles */
 @keyframes floatUp {
     0% {
         transform: translate(0, 100vh) scale(0) rotate(0deg);
@@ -179,8 +175,7 @@
     }
 }
 
-/* Enhanced Star Twinkle Effect */
-
+/* pagenhance ng effects*/
 .star-decoration {
     position: absolute;
     background-color: rgba(255, 255, 255, 0.8);
@@ -190,7 +185,7 @@
     will-change: transform, opacity;
 }
 
-/* Different types of stars with varying shapes and colors */
+
 .star-decoration:nth-child(4n) {
     box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8),
                 0 0 20px 4px rgba(255, 255, 255, 0.4);
@@ -214,8 +209,6 @@
                 0 0 16px 4px rgba(255, 182, 193, 0.4);
     background-color: rgba(255, 182, 193, 0.9);
 }
-
-/* Enhanced twinkling animations with multiple variations */
 
 @keyframes twinkle {
     0% {
@@ -309,7 +302,6 @@
     }
 }
 
-/* Glow effect for active elements */
 .brawl-login-button, .brawl-login-title {
     position: relative;
     z-index: 2;
@@ -331,7 +323,7 @@
     box-shadow: 0 0 30px rgba(58, 147, 209, 1), 0 0 50px rgba(58, 147, 209, 0.6);
 }
 
-/* Additional glow effects for text elements */
+/*glow animation ewaan*/
 .brawl-login-title {
     text-shadow: 0 0 10px rgba(58, 147, 209, 0.7), 0 0 20px rgba(58, 147, 209, 0.4);
     animation: titleGlow 5s infinite alternate;
@@ -349,7 +341,7 @@
     }
 }
 
-/* container of title, tagline and button */
+/* lalagyanan ng container ,title at button*/
 .brawl-form-wrapper {
     margin-right: 670px;
     background: linear-gradient(to right, rgba(30, 47, 65, 0.5), rgba(20, 30, 60, 0) 100%);
@@ -368,7 +360,6 @@
     overflow: hidden;
 }
 
-/* extremely intensified blur effect */
 .brawl-form-wrapper::before {
     content: '';
     position: absolute;
@@ -430,14 +421,9 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     width: 100%;
-    /* Ensure it takes full width */
-    /* Increase from 100% to accommodate the full text */
     white-space: nowrap;
-    /* allow wrapping */
     overflow: visible;
-    /* show full content */
     text-overflow: unset;
-    /* don't show ellipsis */
 }
 .brawl-login-title::after {
     content: '';
@@ -474,7 +460,7 @@
         transform: translateX(10px);
     }
 }
-/* Taglines with staggered animation - fixed for full display */
+
 .tagline-container {
     margin-bottom: 30px;
     width: 100%;
@@ -509,7 +495,7 @@
         transform: translateY(0);
     }
 }
-/* Enhanced Get Started button with neon effect */
+/* get started butoon na may effect*/
 .brawl-login-button {
     background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
     color: white;
@@ -533,7 +519,7 @@
     transform-style: preserve-3d;
     perspective: 1000px;
 }
-/* Button glow effect */
+
 .brawl-login-button::before {
     content: '';
     position: absolute;
@@ -548,7 +534,7 @@
     transition: opacity 0.4s ease;
     border-radius: 16px;
 }
-/* Button shine effect */
+
 .brawl-login-button::after {
     content: '';
     position: absolute;
@@ -582,13 +568,11 @@
     transition: all 0.75s ease;
 }
 
-/* Button active state */
 .brawl-login-button:active {
     transform: translateY(0) scale(0.98);
     box-shadow: 0 3px 10px rgba(245, 115, 40, 0.3);
 }
 
-/* Enhanced Button Press Animation */
 .button-pressed {
     animation: enhancedButtonPress 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
     transform-origin: center;
@@ -668,11 +652,6 @@ body {
     background: #191d36;
 }
 
-
-/* this is the Box element on BG */
-
-/* Enhanced box decorations to complement the game's vibrant aesthetic */
-
 /* Base decoration styling with improved animation */
 .brawl-decoration {
     position: absolute;
@@ -680,18 +659,16 @@ body {
     animation: float 8s infinite ease-in-out;
     opacity: 0.70;
     pointer-events: none;
-    filter: drop-shadow(0 0 8px rgba(255, 82, 82, 0.4)) blur(5px); /* Added blur here */
+    filter: drop-shadow(0 0 8px rgba(255, 82, 82, 0.4)) blur(5px); 
     transition: all 0.5s ease;
 }
 
-/* Common floating animation with subtle rotation */
 @keyframes float {
     0% { transform: translateY(0) rotate(0deg); }
     50% { transform: translateY(-15px) rotate(var(--float-rotation, 3deg)); }
     100% { transform: translateY(0) rotate(0deg); }
 }
 
-/* Pulse glow effect for all decorations */
 @keyframes pulse-glow {
     0% { filter: brightness(1) drop-shadow(0 0 8px var(--glow-color, rgba(255, 255, 255, 0.6))); }
     50% { filter: brightness(1.3) drop-shadow(0 0 15px var(--glow-color, rgba(255, 255, 255, 0.8))); }
@@ -699,7 +676,6 @@ body {
 }
 
 /* this is where yu customize the Box element */
-
 .deco-1 {
     top: 15%;
     right: 12%;
@@ -760,7 +736,6 @@ body {
     mask-image: linear-gradient(-135deg, #FFFA8D(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
 }
 
-/* Fallback styles if the image assets aren't available */
 .deco-1.fallback {
     background: radial-gradient(circle, #FFD700 0%, rgba(255, 215, 0, 0.2) 70%);
     clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
@@ -787,7 +762,6 @@ body {
     clip-path: polygon(25% 0%, 75% 0%, 75% 50%, 100% 50%, 50% 100%, 0% 50%, 25% 50%);
 }
 
-/* Additional sparkle effects around decorations */
 .brawl-decoration::before,
 .brawl-decoration::after {
     content: '';
@@ -816,14 +790,10 @@ body {
     50% { transform: scale(1.2); opacity: 0.8; }
 }
 
-/* Hover effects for interactive feel */
 .brawl-decoration:hover {
     transform: scale(1.1);
     filter: brightness(1.3) drop-shadow(0 0 15px var(--glow-color, rgba(255, 255, 255, 0.8)));
 }
-
-
-/* movement effect of the element */
 
 @media (max-width: 992px) {
     .brawl-form-wrapper {

@@ -48,7 +48,7 @@ function BrawlerTable() {
         const sheet = wb.SheetNames[0];
         const ws = wb.Sheets[sheet];
         const json = XLSX.utils.sheet_to_json(ws);
-        json.sort((a, b) => (a.Brawler || '').localeCompare(b.Brawler || '')); // Sort by Brawler name
+        json.sort((a, b) => (a.Brawler || '').localeCompare(b.Brawler || '')); 
         setBrawlers(json);
         setLoading(false);
       })

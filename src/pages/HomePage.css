@@ -1,8 +1,8 @@
 /* HomePage.css - Enhanced with extended navy blue background gradient */
 @import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Rubik:wght@400;500;700&display=swap');
 
+/*sinaved na colors*/
 :root {
-  /* Color variables */
   --primary-dark: #191d36;
   --primary: #2a2e52;
   --accent-orange: #f3881c;
@@ -25,7 +25,6 @@
   --transition-medium: 0.3s ease;
 }
 
-/* Reset and base styles */
 * {
   margin: 0;
   padding: 0;
@@ -48,7 +47,6 @@ button {
   cursor: pointer;
 }
 
-/* Fix for scrolling */
 html, body {
   margin: 0;
   padding: 0;
@@ -56,6 +54,7 @@ html, body {
   overflow-x: hidden;
 }
 
+/*pinaka container ng content*/
 .brawl-home-container {
   color: var(--text-light);
   min-height: 100vh;
@@ -66,7 +65,7 @@ html, body {
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-/* Enhanced Background Slider with Glowing Elements */
+/*mga effects at animationsr*/
 @keyframes floatAnimation {
   0% { transform: translateY(0); }
   50% { transform: translateY(-15px); }
@@ -89,7 +88,6 @@ html, body {
   100% { background-position: 200% 0; }
 }
 
-/* Background slider enhancements */
 .background-slider {
   position: fixed;
   top: 0;
@@ -100,7 +98,6 @@ html, body {
   overflow: hidden;
 }
 
-/* Starry background effect */
 .background-slider::before {
   content: '';
   position: absolute;
@@ -118,7 +115,6 @@ html, body {
   pointer-events: none;
 }
 
-/* Glowing orbs */
 .glow-orb {
   position: absolute;
   border-radius: 50%;
@@ -165,7 +161,6 @@ html, body {
 }
 
 
-/* Floating energy particles */
 .energy-particle {
   position: absolute;
   border-radius: 50%;
@@ -201,7 +196,6 @@ html, body {
   animation: floatAnimation 5s infinite ease-in-out;
 }
 
-/* Glowing lines */
 .glow-line {
   position: absolute;
   height: 2px;
@@ -238,7 +232,6 @@ html, body {
   animation-delay: 0.5s;
 }
 
-/* Enhance the background slide */
 .background-slide {
   position: absolute;
   top: 0;
@@ -259,7 +252,6 @@ html, body {
   opacity: 1;
 }
 
-/* Add blur effect to the background */
 .background-blur {
   position: fixed;
   top: 0;
@@ -269,7 +261,7 @@ html, body {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   z-index: 2;
-  opacity: 0.3; /* Subtle blur */
+  opacity: 0.3; 
   pointer-events: none;
 }
 
@@ -289,7 +281,7 @@ html, body {
   z-index: -1;
   mask-image: linear-gradient(to right, transparent 10%, black 70%);
   -webkit-mask-image: linear-gradient(to right, transparent 10%, black 70%);
-  opacity: 0.8; /* Slightly reduced opacity of the character images */
+  opacity: 0.8; 
 }
 
 .background-slide:nth-child(1):after { background-image: url('/public/images/nani.jpg'); }
@@ -301,7 +293,7 @@ html, body {
   transform: translateY(0);
 }
 
-/* Header styles*/
+/*header sa taas*/
 .brawl-header {
   display: flex;
   justify-content: space-between;
@@ -345,7 +337,7 @@ html, body {
     background: linear-gradient(to left, #fff, var(--accent-blue));
 }
 
-/* Navigation buttons in header*/
+/*three buttons sa taas*/
 .brawl-nav {
   display: flex;
   gap: var(--space-md);
@@ -398,9 +390,9 @@ html, body {
   bottom: 20px;
   right: 20px;
   z-index: 1000;
-  display: flex;                  /* added */
-  align-items: center;            /* vertically align text & button */
-  gap: 1400px;                      /* space between text and button */
+  display: flex;                  
+  align-items: center;            
+  gap: 1400px;                    
   pointer-events: none;
 }
  
@@ -408,15 +400,15 @@ html, body {
   font-size: 21px;
   color: var(--accent-yellow);
   pointer-events: auto;
-  margin-left: 800px;       /* reset left margin */
+  margin-left: 800px;       
   position: fixed;
   bottom: 20px;
-  left: 20px;          /* position it on the left side */
+  left: 20px;       
   z-index: 900;
   font-weight: normal;
 }
 
-
+/*lumina ni ed*/
 .ai-assistant-button {
   position: relative;
   bottom: 20px;
@@ -426,7 +418,7 @@ html, body {
   margin-right: -10px;
   margin-top: 34px;
   border-radius: 50%;
-  background-image: url('/public/images/edd.jpg');
+  background-image: url('/public/images/lumina.svg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -437,7 +429,6 @@ html, body {
   align-items: bottom;  
   justify-content: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  /* Make sure it's above other content */
   pointer-events: auto;
 }
 
@@ -449,7 +440,6 @@ html, body {
 }
 
 
-/* Main content layout - ADJUSTED FOR FIXED HEADER */
 .main-content {
   display: block;
   position: relative;
@@ -457,10 +447,10 @@ html, body {
   gap: 3rem; 
   height: 1970px;
   padding: var(--space-lg);
-  padding-top: 90px; /* Added to account for fixed header */
+  padding-top: 90px; 
 }
 
-/* Welcome Banner Container */
+/*welcome banner*/
 .brawl-welcome-container {
   width: 820px;
   max-width: 100%;
@@ -480,7 +470,6 @@ html, body {
   transform: translateY(0);
 }
 
-/* Background Elements */
 .welcome-bg {
   position: absolute;
   top: 0;
@@ -534,7 +523,8 @@ html, body {
   transition: left 3s ease, top 3s ease;
   z-index: 0;
 }
-/* Star field animation */
+
+/*star na design*/
 .star-field {
   position: absolute;
   width: 100%;
@@ -558,7 +548,7 @@ html, body {
   100% { opacity: 0.3; transform: scale(1); box-shadow: 0 0 2px rgba(249, 203, 95, 0.4); }
 }
 
-/* Content Styling */
+/*design ng welcome banner*/
 .welcome-content {
   position: relative;
   z-index: 5;
@@ -614,7 +604,7 @@ html, body {
   max-width: 90%;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
-/* Animation keyframes */
+
 @keyframes slideDown {
   0% { opacity: 0; transform: translateY(-20px); }
   100% { opacity: 1; transform: translateY(0); }
@@ -625,7 +615,7 @@ html, body {
   100% { opacity: 1; }
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 900px) {
   .brawl-welcome-container {
     margin-left: 5%;
@@ -642,7 +632,7 @@ html, body {
   }
 }
 
-/* Enhanced Features Section Styles with Visual Effects */
+/*feature section sa baba*/
 .brawl-features-container {
   width: 1908px;
   height: auto;
@@ -661,7 +651,7 @@ html, body {
   z-index: 1;
 }
 
-/* Background effects */
+
 .features-background {
   position: absolute;
   top: 0;
@@ -694,7 +684,7 @@ html, body {
   animation: pulse 10s infinite alternate-reverse ease-in-out;
 }
 
-/* Floating particles */
+/*floating effect sa background*/
 .feature-particle {
   position: absolute;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
@@ -761,7 +751,7 @@ html, body {
   animation: float 15s infinite ease-in-out 1s;
 }
 
-/* Glowing lines */
+/* glow line sa effect*/
 .features-glow-line {
   position: absolute;
   height: 1px;
@@ -790,7 +780,7 @@ html, body {
   animation: glow-move 18s infinite ease-in-out 1s;
 }
 
-/* Title section enhancements */
+/* title sa feature section*/
 .features-title-wrapper {
   position: relative;
   margin-top: 15px;
@@ -855,7 +845,6 @@ html, body {
   line-height: 1.6;
 }
 
-/* Enhanced feature list */
 .features-list {
   display: flex;
   flex-direction: column;
@@ -1014,7 +1003,7 @@ html, body {
   animation: divider-glow 3s infinite ease-in-out;
 }
 
-/* See More Button Styling */
+
 .feature-see-more {
   display: flex;
   align-items: center;
@@ -1077,7 +1066,7 @@ html, body {
   margin-left: 15px;
 }
 
-/* Animation for the divider glow effect */
+/* Animation ng divider */
 @keyframes divider-glow {
   0% {
     left: -100%;
@@ -1087,7 +1076,6 @@ html, body {
   }
 }
 
-/* Animations */
 @keyframes float {
   0%, 100% {
     transform: translateY(0) rotate(0deg);
@@ -1177,7 +1165,6 @@ html, body {
   }
 }
 
-/* Make sure image paths match the ones referenced in your JS file */
 .visually-hidden {
   position: absolute;
   width: 1px;

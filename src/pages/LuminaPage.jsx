@@ -11,7 +11,7 @@ function LuminaPage() {
         src="http://localhost:5173"
         title="Brawl AI"
         width="100%"
-        height="600px"
+        height="800px"
         style={{ border: "1px solid #ccc", borderRadius: "8px" }}
       ></iframe>
       <br />
